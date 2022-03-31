@@ -28,6 +28,7 @@ INSERT INTO `users` (`id`, `name`, `age`) VALUES
 - 根据需要修改 access 配置
 - 修改 environmentVariables 配置，填入 MYSQL_USER, MYSQL_PASSWORD, MYSQL_ENDPOING, MYSQL_PORT 和 MYSQL_DBNAME
 - 使用 initialize 和 prestop 回调，需要在 s.yaml 中配置
+
 ```yaml
         initializationTimeout: 20
         initializer: index.initialize
@@ -117,4 +118,4 @@ cd code && zip -r python3-mysql.zip *
 参考文档：https://help.aliyun.com/document_detail/91243.html
 
 ## 备注
-1. 本示例不是连接池方式，若要使用资源池，可以参考文档 [DBUtils User's Guide](https://webwareforpython.github.io/DBUtils/main.html)
+1. 本示例不是连接池方式，因python不支持单实例多并发，可以不使用连接池，若要使用连接池，可以参考文档 [DBUtils User's Guide](https://webwareforpython.github.io/DBUtils/main.html)

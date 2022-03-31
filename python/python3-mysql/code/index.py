@@ -37,7 +37,7 @@ def handler(event, context):
     
     # Check if the server is alive.
     # If the connection is closed, reconnect.
-    connection.ping()
+    connection.ping(reconnect=True)
 
     try:
         with connection.cursor() as cursor:
