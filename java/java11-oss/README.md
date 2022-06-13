@@ -63,9 +63,10 @@ cd target && zip -r java11-oss.zip *
 - 填入函数名称
 - 选择运行环境 java11/java8
 - 选择函数触发方式：通过事件请求触发
+- [请求处理程序](https://help.aliyun.com/document_detail/432663.html)（函数入口）设为：example.App::handleRequest
 - 其他设置使用默认
 
-![img_1.png](assets/20220408110824.jpg)
+![img_1.png](assets/20220608161024.jpg)
 
 > 详细创建函数流程见文档: [使用控制台创建函数](https://help.aliyun.com/document_detail/51783.html)
 
