@@ -5,6 +5,7 @@
 - Nodejs runtime 代码开发文档: [Nodejs runtime](https://help.aliyun.com/document_detail/74754.html) 。
 - Java runtime 代码开发文档: [Java runtime](https://help.aliyun.com/document_detail/74755.html) 。
 - Golang runtime 代码开发文档: [Golang runtime](https://help.aliyun.com/document_detail/323505.html) 。
+- Custom runtime 代码开发文档: [Custom runtime](https://help.aliyun.com/document_detail/132042.html) 。
 
 ## Python Runtime 示例
 > 注意： python/nodejs/golang runtime 与 custom python/nodejs/golang runtime 是不同的运行时，custom runtime 文档请参考 [Custom runtime](https://help.aliyun.com/document_detail/132044.html) 。
@@ -19,8 +20,8 @@
     - java11-blank-http: java11 HTTP回调示例程序。
     - java11-oss: java11 使用临时密钥访问oss示例程序。
     - java11-mysql: 使用initializer和preStop回调函数的mysql示例程序。
-
-
+  - custom-runtime
+    - python-demo-with-lib-in-layer: 在 Custom Runtime(Python) 语言中如何引用层中的依赖
 
 ## 注意事项
 1. 该示例仅供参考，如果用于正式生产环境，请根据具体应用场景修改验证。
