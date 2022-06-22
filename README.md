@@ -22,6 +22,7 @@
     - java11-mysql: 使用initializer和preStop回调函数的mysql示例程序。
   - custom-runtime
     - python-demo-with-lib-in-layer: 在 Custom Runtime(Python) 语言中如何引用层中的依赖
+    - nodejs-demo-with-lib-in-layer: 在 Custom Runtime(Nodejs) 语言中如何引用层中的依赖
 
 ## 注意事项
 1. 该示例仅供参考，如果用于正式生产环境，请根据具体应用场景修改验证。
