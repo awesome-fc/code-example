@@ -15,7 +15,7 @@ https://help.aliyun.com/document_detail/193057.html
 
 #### 1. 使用Python自定义运行时创建函数
 
-- 运行环境选择 Python3.9 (层中的依赖要和该python版本匹配)
+- 运行环境选择 "自定义运行时-Python3.9" (层中的依赖要和该python版本匹配)
 - 使用示例代码创建
 - 选择 HTTP 请求处理程序类型
 
