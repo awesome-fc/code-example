@@ -1,4 +1,4 @@
-# go17 oss 示例程序
+# golang oss 示例程序
 本示例演示了当你在 oss 对象存储上传任意一张照片时，会触发 FC 函数，将上传的图片缩放为固定宽高100 px 后保存至 oss 中，并在图片名称添加前缀 “w_100_h_100_” 来区别原图。
 
 示例原理如下图所示：
@@ -17,6 +17,8 @@
 #### 1. 修改 s.yaml 配置
 - 根据需要修改 access 配置
 - 根据需要修改 triggers 配置，详见官方文档 [triggers 字段](https://docs.serverless-devs.com/fc/yaml/triggers)
+  - 其中 triggers 字段中的 role 参数指一个 RAM 角色的 ARN，是函数指定执行角色，事件源会使用该角色触发函数执行，请确保该角色有调用函数的权限。
+
 
 #### 2. 安装依赖并部署
 
@@ -121,6 +123,9 @@ GOOS=linux GOARCH=amd64 go build main.go
 # 打包文件
 zip main.zip main
 ```
+
+> 以上命令只适用于 Linux/Mac 环境，Windows 环境可参考官方文档: [在 Windows 下编译打包](https://help.aliyun.com/document_detail/418490.html#section-qfg-n9c-m9v)
+>
 
 #### 2. 创建函数
 选择服务（或创建服务）后，单击创建函数，如图所示

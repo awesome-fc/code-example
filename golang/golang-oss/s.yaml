@@ -19,7 +19,7 @@ name: hello-world-app
 # access 是当前应用所需要的密钥信息配置：
 # 密钥配置可以参考：https://www.serverless-devs.com/serverless-devs/command/config
 # 密钥使用顺序可以参考：https://www.serverless-devs.com/serverless-devs/tool#密钥使用顺序与规范
-access: mph
+access:  default
 
 vars: # 全局变量
   region: cn-shenzhen
@@ -35,8 +35,6 @@ services:
     component: fc # 组件名称，Serverless Devs 工具本身类似于一种游戏机，不具备具体的业务能力，组件类似于游戏卡，用户通过向游戏机中插入不同的游戏卡实现不同的功能，即通过使用不同的组件实现不同的具体业务能力
     actions: # 自定义执行逻辑，关于actions 的使用，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#行为描述
       pre-deploy:
-        - run: go mod tidy
-          path: ./code
         - run: GO111MODULE=on GOOS=linux CGO_ENABLED=0 go build -o main main.go
           path: ./code
     #        - component: fc build --use-docker --dockerfile ./code/Dockerfile  # 要运行的组件，格式为【component: 组件名 命令 参数】（可以通过s cli registry search --type Component 获取组件列表）
