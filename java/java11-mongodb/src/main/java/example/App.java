@@ -16,9 +16,6 @@ import com.aliyun.fc.runtime.PreStopHandler;
 
 import org.bson.Document;
 
-// Notice, do not import com.mysql.jdbc.*
-// or you will have problems!
-
 public class App implements StreamRequestHandler, FunctionInitializer, PreStopHandler {
     // mongodb://<hostname>:<port>
     String MONGO_URL = null;
