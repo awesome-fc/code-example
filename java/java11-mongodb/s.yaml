@@ -63,5 +63,5 @@ services:
             handler: example.App::preStop
             timeout: 60
         environmentVariables:
-          MONGO_URL: "mongodb://<hostname>:<port>" # 设置mongodb数据库配置
+          MONGO_URL: "mongodb://xxxxx" # 设置mongodb数据库配置
           MONGO_DATABASE: "your database"                        # 设置mongodb数据库配置
