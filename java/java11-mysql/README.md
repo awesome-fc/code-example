@@ -3,7 +3,7 @@
 本示例为您展示了Java runtime的mysql使用示例。
 在本示例中，mysql数据库配置在函数的环境变量配置中（参考s.yaml)，initializer 回调函数从环境变量中获取数据库配置，创建mysql连接，preStop 回调函数负责关闭mysql连接。
 
-本示例使用MySQL Connector/J 8.0版本，支持MySQL 5.7 and 8.0，版本兼容详情见 https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-versions.html。
+本示例使用MySQL Connector/J 8.0版本，支持MySQL 5.7 and 8.0，版本兼容详情见 https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-versions.html 。
 
 > MySQL Connector/J 8.0 Developer Guide: https://dev.mysql.com/doc/connector-j/8.0/en/ 
 
