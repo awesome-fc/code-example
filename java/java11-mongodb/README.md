@@ -1,7 +1,7 @@
 # java11 MongoDB示例
 
-本示例为您展示了 Java runtime 的 MongoDB 使用示例。
-在本示例中，MongoDB 数据库配置在函数的环境变量配置中（参考s.yaml)，initializer 回调函数从环境变量中获取数据库配置，创建 MongoDB 连接，preStop 回调函数负责关闭 MongoDB 连接。
+本示例为您展示了 Java runtime 的 MongoDB 使用示例。 
+在本示例中，MongoDB 数据库配置在函数的环境变量配置中（参考s.yaml，yaml 配置详见 https://gitee.com/devsapp/fc/tree/main/docs/zh/yaml)，initialize 回调函数从环境变量中获取数据库配置，创建 MongoDB 连接，preStop 回调函数负责关闭 MongoDB 连接。回调函数与函数实例生命周期的关系详见 https://help.aliyun.com/document_detail/203027.html
 
 本示例 Driver 使用4.6版本。版本兼容详情见 https://www.mongodb.com/docs/drivers/java/sync/current/compatibility
 

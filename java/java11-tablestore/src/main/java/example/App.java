@@ -35,6 +35,7 @@ public class App implements StreamRequestHandler, FunctionInitializer, PreStopHa
 
     @Override
     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
+        // 本示例所用表格存储的主键包含两个主键列：region 和 id
         PrimaryKey primaryKey = PrimaryKeyBuilder.createPrimaryKeyBuilder()
         .addPrimaryKeyColumn("region", PrimaryKeyValue.fromString("abc"))
         .addPrimaryKeyColumn("id", PrimaryKeyValue.fromLong(1))
