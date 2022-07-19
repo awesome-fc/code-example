@@ -44,11 +44,23 @@ INSERT INTO `users` (`id`, `name`, `age`) VALUES
 
 #### 2. 安装依赖并部署
 
+在 pom.xml 中添加 mysql 依赖，如下所示（在示例pom.xml中已添加该依赖）
+
+```xml
+<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.28</version>
+</dependency>
+```
+
 编译部署代码包
 ```shell
 s deploy
 ```
-> 注意: `pom.xml` 中有配置 `pre-deploy` 脚本 `mvn package`, 在部署前会调用 `mvn package` 编译打包。
+
+> 注意: `s.yaml` 文件中有配置 `pre-deploy` 脚本, 该脚本会在部署前会调用 `mvn package` 编译。
 
 #### 3. 调用测试
 
@@ -59,17 +71,23 @@ s invoke
 调用函数时收到的响应如下所示：
 
 ```bash
-FC Initialize Start RequestId: 9f22c9a2-8ec6-45ba-bdd1-f586b2832439
-FC Initialize End RequestId: 9f22c9a2-8ec6-45ba-bdd1-f586b2832439
-FC Invoke Start RequestId: 209ece4d-c26b-42da-871a-21d38fc0d7be
-2022-04-11 02:38:32.008 [INFO] [209ece4d-c26b-42da-871a-21d38fc0d7be] get user: {name=张三, id=1, age=18}
-FC Invoke End RequestId: 209ece4d-c26b-42da-871a-21d38fc0d7be
+========= FC invoke Logs begin =========
+FC Initialize Start RequestId: 9fe60072-7fe2-4f62-9d13-xxxxxxx
+[Name] Register [com.aliyun.serverless.runtime.classloader.FunctionClassLoader@58372a00] as [com.aliyun.serverless.runtime.classloader.FunctionClassLoader@com.aliyun.serverless.runtime.classloader.FunctionClassLoader@/code/HelloFCJava-1.0-SNAPSHOT.jar/code/original-HelloFCJava-1.0-SNAPSHOT.jar]: hash [8bbd2e0] (normal mode)
+2022-07-19 04:21:54.577 [INFO] [9fe60072-7fe2-4f62-9d13-62fc04156f77] database connection time cost: 397ms
+FC Initialize End RequestId: 9fe60072-7fe2-4f62-9d13-xxxxxxx
+FC Invoke Start RequestId: 7581b7c4-bb40-4690-90d6-xxxxxxx
+2022-07-19 04:21:59.539 [INFO] [7581b7c4-bb40-4690-90d6-xxxxxxx] Success - 1 rows affected.
+2022-07-19 04:21:59.613 [INFO] [7581b7c4-bb40-4690-90d6-xxxxxxx] get user: {name=王五, id=3, age=5}
+FC Invoke End RequestId: 7581b7c4-bb40-4690-90d6-xxxxxxx
 
-Duration: 87.02 ms, Billed Duration: 88 ms, Memory Size: 128 MB, Max Memory Used: 92.02 MB
+Duration: 108.03 ms, Billed Duration: 109 ms, Memory Size: 128 MB, Max Memory Used: 109.13 MB
 ========= FC invoke Logs end =========
 
+FC Invoke instanceId: c-62d63161-a82af772bxxxxxxx
+
 FC Invoke Result:
-{name=张三, id=1, age=18}
+{name=王五, id=3, age=5}
 
 
 End of method: invoke
@@ -111,7 +129,7 @@ cd target && zip -r java11-mysql.zip *
 
 返回结果如下所示
 ```bash
-{name=张三, id=1, age=18}
+{name=王五, id=3, age=5}
 ```
 
 ## 数据库访问限制
@@ -125,6 +143,6 @@ cd target && zip -r java11-mysql.zip *
    参考文档：https://help.aliyun.com/document_detail/84514.html
 2. 代理方式<br>
    参考文档：https://help.aliyun.com/document_detail/91243.html
-3. 
+
 ## 备注
 1. 本示例不是连接池方式，若要使用连接池，可以参考文档 [Connection Pooling with Connector/J](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-usagenotes-j2ee-concepts-connection-pooling.html)

@@ -31,6 +31,7 @@ public class App implements StreamRequestHandler, FunctionInitializer, PreStopHa
         JDBC_URL = System.getenv("JDBC_URL");
         JDBC_USER = System.getenv("JDBC_USER");
         JDBC_PASSWORD = System.getenv("JDBC_PASSWORD");
+        long start = System.currentTimeMillis();
         try {
             // The newInstance() call is a work around for some
             // broken Java implementations
@@ -41,12 +42,14 @@ public class App implements StreamRequestHandler, FunctionInitializer, PreStopHa
             // handle any errors
             context.getLogger().error("SQLException: " + ex.getMessage());
             throw new RuntimeException(ex.getMessage());
+        } finally {
+            context.getLogger().info("database connection time cost: " + (System.currentTimeMillis() - start) + "ms");
         }
     }
 
     @Override
     public void preStop(Context context) throws IOException {
-        context.getLogger().info("preStop start ...");
+        context.getLogger().info("preStop start");
         if (connect != null) {
             try {
                 connect.close();
@@ -57,18 +60,25 @@ public class App implements StreamRequestHandler, FunctionInitializer, PreStopHa
             }
             connect = null;
         }
+        context.getLogger().info("preStop end");
     }
 
     @Override
     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
-            // Do something with the Connection
-            // Statements allow to issue SQL queries to the database
+            // Create a Statement instance that we can use for
+            // 'normal' result sets assuming you have a
+            // Connection 'connect' to a MySQL database already available
             stmt = connect.createStatement();
 
+            // Insert a user item into the database
+            int rowsEffected = stmt.executeUpdate("INSERT INTO users(name, age) VALUES('王五', 5)");
+            context.getLogger().info("Success - " + rowsEffected + " rows affected.");
+
+            // Get a user item from database
             // Result set get the result of the SQL query
-            rs = stmt.executeQuery("select * from users LIMIT 1");
+            rs = stmt.executeQuery("SELECT * FROM `users` ORDER BY `id` DESC LIMIT 1");
 
             // ResultSet is initially before the first data set
             while (rs.next()) {
@@ -91,7 +101,6 @@ public class App implements StreamRequestHandler, FunctionInitializer, PreStopHa
                 try {
                     rs.close();
                 } catch (SQLException sqlEx) { } // ignore
-
                 rs = null;
             }
 
