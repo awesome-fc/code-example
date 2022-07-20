@@ -55,14 +55,14 @@ s invoke
 
 ```bash
 ========= FC invoke Logs begin =========
-FC Invoke Start RequestId: 71946c57-10f7-4548-8574-866cfa29c591
+FC Invoke Start RequestId: 71946c57-******
 2022-07-12 03:13:22.763 [INFO] [71946c57-10f7-4548-8574-866cfa29c591] get user: Document{{_id=62cb9e5a5c21fd08dbf68490, name=张三, age=18.0}}
-FC Invoke End RequestId: 71946c57-10f7-4548-8574-866cfa29c591
+FC Invoke End RequestId: 71946c57-******
 
 Duration: 344.21 ms, Billed Duration: 345 ms, Memory Size: 128 MB, Max Memory Used: 102.32 MB
 ========= FC invoke Logs end =========
 
-FC Invoke instanceId: c-62cce588-65fc906bf53e422d8e4a
+FC Invoke instanceId: c-62cce588-******
 
 FC Invoke Result:
 Document{{_id=62cb9e5a5c21fd08dbf68490, name=张三, age=18.0}}
@@ -75,7 +75,7 @@ End of method: invoke
 todo...
 
 ## 数据库访问限制
-当使用云数据库时，一般都会有访问控制，比如阿里云数据库RDS中的白名单设置（ [RDS白名单设置说明](https://help.aliyun.com/document_detail/43185.html?spm=5176.19908528.help.dexternal.6c721450iLu0jH) )。
+当使用MongoDB时，一般都会有访问控制，比如云数据库MongoDB中的白名单设置（ [MongoDB白名单设置说明](https://help.aliyun.com/document_detail/88888.htm) )。
 
 如果仅仅作为测试，可以将白名单配置成 `0.0.0.0/0`。（不要在生产环境使用!)
 

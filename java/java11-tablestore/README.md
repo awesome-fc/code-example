@@ -43,19 +43,19 @@ s invoke
 
 ```bash
 ========= FC invoke Logs begin =========
-FC Initialize Start RequestId: 69630f98-1d03-4487-abc4-6e89bce3221e
+FC Initialize Start RequestId: 69630f98-******
 [Name] Register [com.aliyun.serverless.runtime.classloader.FunctionClassLoader@58372a00] as [com.aliyun.serverless.runtime.classloader.FunctionClassLoader@com.aliyun.serverless.runtime.classloader.FunctionClassLoader@/code/HelloFCJava-1.0-SNAPSHOT.jar/code/original-HelloFCJava-1.0-SNAPSHOT.jar]: hash [8bbd2e0] (normal mode)
-FC Initialize End RequestId: 69630f98-1d03-4487-abc4-6e89bce3221e
-FC Invoke Start RequestId: 69630f98-1d03-4487-abc4-6e89bce3221e
+FC Initialize End RequestId: 69630f98-******
+FC Invoke Start RequestId: 69630f98-******
 SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-FC Invoke End RequestId: 69630f98-1d03-4487-abc4-6e89bce3221e
+FC Invoke End RequestId: 69630f98-******
 
 Duration: 624.84 ms, Billed Duration: 625 ms, Memory Size: 128 MB, Max Memory Used: 124.22 MB
 ========= FC invoke Logs end =========
 
-FC Invoke instanceId: c-62ccee5a-841c57c6de894d879926
+FC Invoke instanceId: c-62ccee5a-******
 
 FC Invoke Result:
 [PrimaryKey:]region:abc, id:1
@@ -68,10 +68,7 @@ End of method: invoke
 ### 方式二、使用控制台创建
 todo...
 
-## 数据库访问限制
-当使用云数据库时，一般都会有访问控制，比如阿里云数据库RDS中的白名单设置（ [RDS白名单设置说明](https://help.aliyun.com/document_detail/43185.html?spm=5176.19908528.help.dexternal.6c721450iLu0jH) )。
-
-如果仅仅作为测试，可以将白名单配置成 `0.0.0.0/0`。（不要在生产环境使用!)
+## 表格存储访问限制
 
 在生产环境，可以使用以下两种方式访问：
 

@@ -25,6 +25,7 @@ public class App implements StreamRequestHandler, FunctionInitializer, PreStopHa
 
     @Override
     public void initialize(Context context) {
+        // 在initialize回调中创建客户端，可以实现在整个函数实例生命周期内复用该客户端
         MONGO_URL = System.getenv("MONGO_URL");
         MONGO_DATABASE = System.getenv("MONGO_DATABASE");
         mongoClient = MongoClients.create(MONGO_URL);
@@ -32,7 +33,6 @@ public class App implements StreamRequestHandler, FunctionInitializer, PreStopHa
 
     @Override
     public void preStop(Context context) {
-        context.getLogger().info("preStop start ...");
         mongoClient.close();
     }
 
