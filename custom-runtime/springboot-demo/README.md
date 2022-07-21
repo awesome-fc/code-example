@@ -72,7 +72,7 @@ Document{{_id=62cb9e5a5c21fd08dbf68490, name=张三, age=18.0}}
 todo...
 
 ## 数据库访问限制
-当使用云数据库时，一般都会有访问控制，比如阿里云数据库RDS中的白名单设置（ [RDS白名单设置说明](https://help.aliyun.com/document_detail/43185.html?spm=5176.19908528.help.dexternal.6c721450iLu0jH) )。
+当使用MongoDB时，一般都会有访问控制，比如云数据库MongoDB中的白名单设置（ [MongoDB白名单设置说明](https://help.aliyun.com/document_detail/88888.htm) )。
 
 如果仅仅作为测试，可以将白名单配置成 `0.0.0.0/0`。（不要在生产环境使用!)
 
@@ -82,4 +82,5 @@ todo...
    参考文档：https://help.aliyun.com/document_detail/84514.html
 2. 代理方式<br>
    参考文档：https://help.aliyun.com/document_detail/91243.html
+
 
