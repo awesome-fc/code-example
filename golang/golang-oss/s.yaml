@@ -19,7 +19,7 @@ name: hello-world-app
 # access 是当前应用所需要的密钥信息配置：
 # 密钥配置可以参考：https://www.serverless-devs.com/serverless-devs/command/config
 # 密钥使用顺序可以参考：https://www.serverless-devs.com/serverless-devs/tool#密钥使用顺序与规范
-access:  default
+access: default
 
 vars: # 全局变量
   region: cn-shenzhen
@@ -58,9 +58,9 @@ services:
         handler: main
         instanceType: e1
       triggers:
-        - name: oss
+        - name: trigger-f900jdf2
           description: ''
-          sourceArn: acs:oss:acs:log:<region>:<account-id>:<buckctName>
+          sourceArn: acs:oss:<region>:<account-id>:<buckctName>
           type: oss
           role: acs:ram::<account-id>:role/aliyunosseventnotificationrole
           qualifier: LATEST
