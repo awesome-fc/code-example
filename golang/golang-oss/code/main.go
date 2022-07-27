@@ -6,8 +6,9 @@ import (
 	"fmt"
 	"os"
 	"strings"
-	"github.com/aliyun/fc-runtime-go-sdk/events"
+
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
+	"github.com/aliyun/fc-runtime-go-sdk/events"
 	"github.com/aliyun/fc-runtime-go-sdk/fc"
 	"github.com/aliyun/fc-runtime-go-sdk/fccontext"
 )
@@ -17,7 +18,7 @@ func HandleError(err error) {
 	os.Exit(-1)
 }
 
-func HandleRequest(ctx context.Context, event OssEvent) (string, error) {
+func HandleRequest(ctx context.Context, event events.OssEvent) (string, error) {
 	// 获取密钥信息，执行前，确保函数所在的服务配置了角色信息，并且角色需要拥有 AliyunOSSFullAccess权限
 	fctx, _ := fccontext.FromContext(ctx)
 	creds := fctx.Credentials
@@ -29,19 +30,19 @@ func HandleRequest(ctx context.Context, event OssEvent) (string, error) {
 		HandleError(err)
 	}
 	//获取 oss 的 Bucket
-	buckName := event.Events[0].Oss.Bucket.Name
+	buckName := *event.Events[0].Oss.Bucket.Name
 	bucket, err := ossClient.Bucket(buckName)
 	if err != nil {
 		HandleError(err)
 	}
 	//获得上传至 oss 图片的名称
-	sourceImageName := event.Events[0].Oss.Object.Key
+	sourceImageName := *event.Events[0].Oss.Object.Key
 	//判断这个图片是否已经被压缩过，如果已经是压缩图片则跳过，防止循环压缩
 	if strings.HasPrefix(sourceImageName, "w_100_h_100") {
 		return "skip", nil
 	}
 	// 指定压缩处理后的图片名称。
-	targetImageName := "w_100_h_100_" + event.Events[0].Oss.Object.Key
+	targetImageName := "w_100_h_100_" + *event.Events[0].Oss.Object.Key
 	//将图片缩放为固定宽高100 px后保存在oss中
 	style := "image/resize,m_fixed,w_100,h_100"
 	process := fmt.Sprintf("%s|sys/saveas,o_%v,b_%v", style, base64.URLEncoding.EncodeToString([]byte(targetImageName)), base64.URLEncoding.EncodeToString([]byte(buckName)))
