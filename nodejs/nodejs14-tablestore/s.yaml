@@ -26,6 +26,7 @@ vars: # 全局变量
   service:
     name: fc-example
     description: 'hello world by serverless devs'
+    role: acs:ram::{your account id}:role/aliyunfcdefaultrole
 
 services:
   fc-example:
@@ -44,7 +45,5 @@ services:
         environmentVariables:
           ENDPOINT: "xxxxxx" # 设置tablestore的ENDPOINT，这里使用公网
           INSTANCE_NAME: "xxxxxx" # tablestore实例名
-          ACCESS_KEY: "xxxxxx" # 用户的AccessKey ID
-          ACCESS_KEY_SECRET: "xxxxxx" # 用户的AccessKey Secret
         initializationTimeout: 20
         initializer: index.initialize

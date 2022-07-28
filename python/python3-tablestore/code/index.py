@@ -11,7 +11,9 @@ client: OTSClient = None
 def initialize(context):
     # 在initialize回调中创建客户端，可以实现在整个函数实例生命周期内复用该客户端
     global client
-    client = OTSClient(os.getenv("ENDPOINT"), os.getenv("ACCESS_KEY"), os.getenv("ACCESS_KEY_SECRET"), os.getenv("INSTANCE_NAME"))
+    creds = context.credentials
+    access_key, access_secret, sts_token = creds.access_key_id, creds.access_key_secret, creds.security_token
+    client = OTSClient(os.getenv("ENDPOINT"), access_key, access_secret, os.getenv("INSTANCE_NAME"), sts_token=sts_token)
 
 
 def handler(event, context):

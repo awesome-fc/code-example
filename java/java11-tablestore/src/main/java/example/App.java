@@ -13,6 +13,7 @@ import com.alicloud.openservices.tablestore.model.PrimaryKeyValue;
 import com.alicloud.openservices.tablestore.model.Row;
 import com.alicloud.openservices.tablestore.model.SingleRowQueryCriteria;
 import com.aliyun.fc.runtime.Context;
+import com.aliyun.fc.runtime.Credentials;
 import com.aliyun.fc.runtime.StreamRequestHandler;
 import com.aliyun.fc.runtime.FunctionInitializer;
 import com.aliyun.fc.runtime.PreStopHandler;
@@ -24,9 +25,10 @@ public class App implements StreamRequestHandler, FunctionInitializer, PreStopHa
     @Override
     public void initialize(Context context) {
         // 在initialize回调中创建客户端，可以实现在整个函数实例生命周期内复用该客户端
+        Credentials creds = context.getExecutionCredentials();
         String endpoint = System.getenv("ENDPOINT"), instanceName = System.getenv("INSTANCE_NAME");
-        String accessKeyId = System.getenv("ACCESS_KEY"), accessKeySecret = System.getenv("ACCESS_KEY_SECRET");
-        client = new SyncClient(endpoint, accessKeyId, accessKeySecret, instanceName);
+        String accessKeyId = creds.getAccessKeyId(), accessKeySecret = creds.getAccessKeySecret(), stsToken = creds.getSecurityToken();
+        client = new SyncClient(endpoint, accessKeyId, accessKeySecret, instanceName, stsToken);
     }
 
     @Override

@@ -7,6 +7,7 @@ import (
 
 	"github.com/aliyun/aliyun-tablestore-go-sdk/tablestore"
 	"github.com/aliyun/fc-runtime-go-sdk/fc"
+	"github.com/aliyun/fc-runtime-go-sdk/fccontext"
 )
 
 func HandleError(err error) {
@@ -17,13 +18,15 @@ func HandleError(err error) {
 var Client *tablestore.TableStoreClient
 
 func initialize(ctx context.Context) {
+	fctx, _ := fccontext.FromContext(ctx)
 	var (
 		endPoint        string = os.Getenv("ENDPOINT")
 		instanceName    string = os.Getenv("INSTANCE_NAME")
-		accessKey       string = os.Getenv("ACCESS_KEY")
-		accessKeySecret string = os.Getenv("ACCESS_KEY_SECRET")
+		accessKey       string = fctx.Credentials.AccessKeyId
+		accessKeySecret string = fctx.Credentials.AccessKeySecret
+		stsToken        string = fctx.Credentials.SecurityToken
 	)
-	Client = tablestore.NewClient(endPoint, instanceName, accessKey, accessKeySecret)
+	Client = tablestore.NewClientWithConfig(endPoint, instanceName, accessKey, accessKeySecret, stsToken, nil)
 }
 
 func HandleRequest(ctx context.Context) (*tablestore.GetRowResponse, error) {

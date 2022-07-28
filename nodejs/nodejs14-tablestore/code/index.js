@@ -4,10 +4,11 @@ var client;
 
 exports.initialize = (context, callback) => {
   client = new Client({
-    accessKeyId: process.env.ACCESS_KEY,
-    accessKeySecret: process.env.ACCESS_KEY_SECRET,
+    accessKeyId: context.credentials.accessKeyId,
+    accessKeySecret: context.credentials.accessKeySecret,
     endpoint: process.env.ENDPOINT,
-    instancename: process.env.INSTANCE_NAME
+    instancename: process.env.INSTANCE_NAME,
+    securityToken: context.credentials.securityToken
   });
   callback(null, "succ")
 };
