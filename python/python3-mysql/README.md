@@ -68,14 +68,14 @@ FunctionCompute python3 runtime inited.
 FC Initialize Start RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
 FC Initialize End RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
 FC Invoke Start RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
-2022-03-31T02:57:49.693Z 28fa11ab-81da-4cd0-b050-xxxxxxxxxx [INFO] (1, '张三', 18)
+2022-03-31T02:57:49.693Z 28fa11ab-81da-4cd0-b050-xxxxxxxxxx [INFO] (3, '王二', 38)
 FC Invoke End RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
 
 Duration: 18.42 ms, Billed Duration: 19 ms, Memory Size: 128 MB, Max Memory Used: 34.80 MB
 ========= FC invoke Logs end =========
 
 FC Invoke Result:
-user: (1, '张三', 18)
+user: (3, '王二', 38)
 
 
 End of method: invoke
