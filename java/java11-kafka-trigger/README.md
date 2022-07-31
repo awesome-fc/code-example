@@ -53,7 +53,7 @@ mvn clean package
 在消息队列Kafka版控制台，选择`Connector任务列表`，选择对应的Kafka实例创建Connector。有关Connector详情可见(https://help.aliyun.com/document_detail/171242.html)。
 
 - 输入名称
-- 配置触发函数的Topic（即该Topic有消息时触发函数）
+- 配置触发函数的Topic（即该Topic有消息进入时触发函数）
 - 选择刚创建好的服务与函数
 - 部署Connector
 
