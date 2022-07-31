@@ -72,12 +72,11 @@ mvn clean package
 日志如下：
 
  ```bash
- c-62e67aa5-8501421476c2421c996e2022-07-31 20:50:45FunctionCompute python3 runtime inited.
- c-62e67aa5-8501421476c2421c996e2022-07-31 20:50:45FC Invoke Start RequestId: 789a7345-4340-47a7-b2f9-e529ff05fe68
- c-62e67aa5-8501421476c2421c996e2022-07-31 20:50:452022-07-31 20:50:45 789a7345-4340-47a7-b2f9-e529ff05fe68 [INFO] kafka whole message:[{"key":"testkey","offset":14,"overflowFlag":false,"partition":10,"timestamp":1659271844051,"topic":"HelloTopic","value":"Test Payload","valueSize":14}]
- c-62e67aa5-8501421476c2421c996e2022-07-31 20:50:452022-07-31 20:50:45 789a7345-4340-47a7-b2f9-e529ff05fe68 [INFO] message topic:HelloTopic
- c-62e67aa5-8501421476c2421c996e2022-07-31 20:50:452022-07-31 20:50:45 789a7345-4340-47a7-b2f9-e529ff05fe68 [INFO] message value:Test Payload
- c-62e67aa5-8501421476c2421c996e2022-07-31 20:50:45FC Invoke End RequestId: 789a7345-4340-47a7-b2f9-e529ff05fe68
+ c-62e67aa4-2ec94d809f4e4a6fa5452022-07-31 20:50:44FC Invoke Start RequestId: de2db9e9-f28c-4d45-aa71-549f43777693
+ c-62e67aa4-2ec94d809f4e4a6fa5452022-07-31 20:50:44[Name] Register [com.aliyun.serverless.runtime.classloader.FunctionClassLoader@58372a00] as [com.aliyun.serverless.runtime.classloader.FunctionClassLoader@com.aliyun.serverless.runtime.classloader.FunctionClassLoader@/code/HelloFCJavaKafka-1.0-SNAPSHOT.jar]: hash [69452ada] (normal mode)
+ c-62e67aa4-2ec94d809f4e4a6fa5452022-07-31 20:50:452022-07-31 12:50:45.071 [INFO] [de2db9e9-f28c-4d45-aa71-549f43777693] Kafka Topic: HelloTopic
+ c-62e67aa4-2ec94d809f4e4a6fa5452022-07-31 20:50:452022-07-31 12:50:45.072 [INFO] [de2db9e9-f28c-4d45-aa71-549f43777693] Message Value: Test Payload
+ c-62e67aa4-2ec94d809f4e4a6fa5452022-07-31 20:50:45FC Invoke End RequestId: de2db9e9-f28c-4d45-aa71-549f43777693
  ```
 
 
