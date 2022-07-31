@@ -1,4 +1,4 @@
-# Python3 Kafka消息队列读写示例
+# Python3 Kafka消息队列生产者示例
 
 本示例为您展示了 Python 的 [消息队列Kafka](https://help.aliyun.com/document_detail/68151.html?spm=5176.167616.J_5253785160.5.2dfe6feexRPqMj) 生产者示例。（消费者示例见Kafka触发器示例）
 
