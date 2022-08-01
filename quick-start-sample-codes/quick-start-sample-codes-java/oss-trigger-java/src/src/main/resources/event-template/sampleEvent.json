@@ -1,0 +1,39 @@
+{
+  "events": [
+    {
+      "eventName": "ObjectCreated:PostObject",
+      "eventSource": "acs:oss",
+      "eventTime": "2022-07-26T03:07:18.000Z",
+      "eventVersion": "1.0",
+      "oss": {
+        "bucket": {
+          "arn": "acs:oss:cn-hangzhou:xxxx:xxxx",
+          "name": "xxxx",
+          "ownerIdentity": "xxxxxx",
+          "virtualBucket": ""
+        },
+        "object": {
+          "deltaSize": 0,
+          "eTag": "0D1B95964986C0ED15C539E17F602680",
+          "key": "animal/cat-2.jpeg",
+          "objectMeta": {
+            "mimeType": "image/jpeg"
+          },
+          "size": 7107
+        },
+        "ossSchemaVersion": "1.0",
+        "ruleId": "8872c90ead7375674d61d6dc89087d9f87698990"
+      },
+      "region": "cn-hangzhou",
+      "requestParameters": {
+        "sourceIPAddress": "106.11.34.10"
+      },
+      "responseElements": {
+        "requestId": "62DF5A66FDF078363260257A"
+      },
+      "userIdentity": {
+        "principalId": "xxxxx"
+      }
+    }
+  ]
+}

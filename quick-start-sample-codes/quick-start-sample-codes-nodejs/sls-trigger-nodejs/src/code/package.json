@@ -1,0 +1,15 @@
+{
+  "name": "sls-trigger-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aliyun-sdk": "^1.12.5",
+    "util": "^0.12.4"
+  }
+}
