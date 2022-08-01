@@ -15,27 +15,31 @@
 #   有问题快来钉钉群问一下吧：33947367
 # ------------------------------------
 edition: 1.0.0
-name: hello-world-app
+name: start-nodejs14-tablestore
 # access 是当前应用所需要的密钥信息配置：
 # 密钥配置可以参考：https://www.serverless-devs.com/serverless-devs/command/config
 # 密钥使用顺序可以参考：https://www.serverless-devs.com/serverless-devs/tool#密钥使用顺序与规范
 access: default # 配置密钥信息
 
 vars: # 全局变量
-  region: cn-hangzhou
+  region: {{ region }}
   service:
-    name: fc-example
+    name: {{ serviceName }}
     description: 'hello world by serverless devs'
-    role: acs:ram::{your account id}:role/aliyunfcdefaultrole
+    role: {{ roleArn }}
 
 services:
   fc-example:
     component: fc
+    actions:
+      pre-deploy:
+        - run: npm install
+          path: ./code
     props:
       region: ${vars.region} 
       service: ${vars.service}
       function:
-        name: nodejs14-tablestore
+        name: {{ functionName }}
         description: 'hello world by serverless devs'
         runtime: nodejs14
         codeUri: ./code
@@ -43,7 +47,8 @@ services:
         memorySize: 128
         timeout: 60
         environmentVariables:
-          ENDPOINT: "xxxxxx" # 设置tablestore的ENDPOINT，这里使用公网
-          INSTANCE_NAME: "xxxxxx" # tablestore实例名
+          ENDPOINT: {{ ENDPOINT }} # 设置tablestore的ENDPOINT，这里使用公网
+          INSTANCE_NAME: {{ INSTANCE_NAME }} # tablestore实例名
+          TABLE_NAME: {{ TABLE_NAME }} # tablestore表名
         initializationTimeout: 20
         initializer: index.initialize

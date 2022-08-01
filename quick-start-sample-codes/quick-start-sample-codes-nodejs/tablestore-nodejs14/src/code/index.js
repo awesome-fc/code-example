@@ -15,8 +15,9 @@ exports.initialize = (context, callback) => {
 
 exports.handler = (event, context, callback) => {
   // 本示例中表格存储表名为 fc_test, 主键包含两列 region 和 id
+  const tableName = process.env.TABLE_NAME;
   var params = {
-    tableName: "fc_test",
+    tableName: tableName,
     primaryKey: [{"region": "abc"}, {"id": Long.fromNumber(1)}],
     maxVersions: 1,
   };
