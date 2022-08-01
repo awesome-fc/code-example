@@ -19,7 +19,7 @@ public class App implements StreamRequestHandler{
     @Override
      public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
 
-      // 读出要发送的消息
+      // Read the inputStream
       ByteArrayOutputStream result = new ByteArrayOutputStream();
       byte[] buffer = new byte[1024];
       for (int length; (length = inputStream.read(buffer)) != -1; ) {
@@ -28,7 +28,9 @@ public class App implements StreamRequestHandler{
       String eventString = result.toString(StandardCharsets.UTF_8.name());
       context.getLogger().info("Event: " + eventString);
 
+      // Parse the json array
       JSONArray eventArray = JSONArray.parseArray(eventString);
+      // Get the first json object from the json array
       JSONObject event = eventArray.getJSONObject(0);
 
       String topic = event.getString("topic");
