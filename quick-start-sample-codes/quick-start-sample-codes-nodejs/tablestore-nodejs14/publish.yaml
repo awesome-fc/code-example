@@ -11,7 +11,7 @@ Type: Application
 Name: start-nodejs14-tablestore
 Provider:
   - 阿里云
-Version: 0.0.3
+Version: 0.0.4
 Description: 函数计算访问表格存储示例
 HomePage: https://github.com/devsapp/start-nodejs14-tablestore
 Tags: #标签详情
