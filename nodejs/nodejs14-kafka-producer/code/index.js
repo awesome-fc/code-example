@@ -29,7 +29,7 @@ exports.initialize = (context, callback) => {
 
     producer.on("disconnected", function() {
         connected = false;
-        //断线自动重连
+        // Auto reconnect
         producer.connect();
     })
 
@@ -62,8 +62,9 @@ function wait(ms) {
 exports.handler = async(event, context, callback) => {
     // Connect to the broker manually
     producer.connect();
-    // 等待connect成功
+    // Waiting for connecting
     await wait(5000);
+
     producer.produce(
         topic_name,   
         null,      
@@ -72,7 +73,7 @@ exports.handler = async(event, context, callback) => {
         Date.now()
     );
     producer.flush();
-    // 等待发送成功
+    // Wait for message deliveries before return
     await wait(5000);
     
     callback(null, "Finish sending the message:" + event);
