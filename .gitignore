@@ -2,7 +2,9 @@
 .idea/
 */.idea/
 */.s
-*/*/*.s
+*/*/.s
 */*.bak
 */*/*.bak
+*/*/*.test
 java/*/target/
+.vscode
