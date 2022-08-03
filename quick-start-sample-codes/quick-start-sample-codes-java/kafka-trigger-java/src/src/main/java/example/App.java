@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.lang.reflect.Type;
 
 import com.aliyun.fc.runtime.Context;
 import com.aliyun.fc.runtime.FunctionInitializer;
@@ -30,8 +32,10 @@ public class App implements StreamRequestHandler{
       String eventString = result.toString(StandardCharsets.UTF_8.name());
       context.getLogger().info("Event: " + eventString);
 
+      // A rude way to deal with the string like this ["JsonObject"]->JsonObject
+      String eventJsonString = eventString.substring(2, eventString.length() - 2);
       // Deal with Escape Character
-      JSONObject event = JSON.parseObject(StringEscapeUtils.unescapeJava(eventString.substring(2, eventString.length() - 2)));
+      JSONObject event = JSON.parseObject(StringEscapeUtils.unescapeJava(eventJsonString));
 
       // Get the data field
       JSONObject eventData = event.getJSONObject("data");
