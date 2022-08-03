@@ -39,7 +39,7 @@ exports.initialize = (context, callback) => {
 
     producer.on("error", function(error) {
         console.log("error:" + error);
-
+        throw new Error(error);
     });
 
     producer.on('delivery-report', function(err, report) {
@@ -48,6 +48,7 @@ exports.initialize = (context, callback) => {
     // Any errors we encounter, including connection errors
     producer.on('event.error', function(err) {
         console.error('event.error:' + err);
+        throw new Error(err);
     })
     // Poll for events every 10 ms
     producer.setPollInterval(10);
@@ -73,6 +74,7 @@ exports.handler = async(event, context, callback) => {
         Date.now()
     );
     producer.flush();
+    
     // Wait for message deliveries before return
     await wait(5000);
     

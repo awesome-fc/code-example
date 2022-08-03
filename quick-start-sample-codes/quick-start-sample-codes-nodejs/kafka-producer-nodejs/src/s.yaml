@@ -25,28 +25,28 @@ services:
   fc-example:
     actions: # 自定义执行逻辑，关于actions 的使用，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#行为描述
       pre-deploy:
-        - run: mvn clean package
+        - run: s build --use-docker
           path: ./
     component: fc
     props:
-      region: cn-hangzhou
+      region: "{{region}}"
       service: 
-        name: fc-kafka-java11-example
+        name: "{{serviceName}}"
         vpcConfig:
-          vpcId: vpc-bp1qbcu6i8pml******** # Kafka实例所在的VPC ID
-          securityGroupId: sg-bp1etti4xsid******** # 安全组Id
+          vpcId: "{{vpcId}}" # Kafka实例所在的VPC ID
+          securityGroupId: "{{securityGroupId}}" # 安全组Id
           vswitchIds:
-            - vsw-bp1hen4k8k6bw******** # Kafka实例所在的vSwitch ID
+            - "{{vswitchIds}}" # Kafka实例所在的vSwitch ID (请注意要函数计算支持的az)
       function:
-        name: fc-java11-kafka
-        description: 'hello world by serverless devs'
-        runtime: java11
-        codeUri: ./target
-        handler: example.App::handleRequest
+        name: "{{functionName}}"
+        description: 'kafka producer by serverless devs'
+        runtime: nodejs14
+        codeUri: ./code
+        handler: index.handler
         memorySize: 128
         timeout: 60
         initializationTimeout: 20
-        initializer: example.App::initialize
+        initializer: index.initialize
         environmentVariables:
-          bootstrap_servers: "***********.alikafka.aliyuncs.com:9092"       # 设置成你自己的Kafka VPC接入点
-          topic_name: "HelloTopic"   # 设置成要写入Kafka Topic
+          bootstrap_servers: "{{bootstrapServers}}"       # 设置成你自己的Kafka接入点
+          topic_name: "{{topicName}}"   # 设置成要发送消息的Topic

@@ -25,21 +25,29 @@ services:
   fc-example:
     actions: # 自定义执行逻辑，关于actions 的使用，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#行为描述
       pre-deploy:
+        # Linux
         - run: CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build main.go
           path: ./code
+        # Mac 确保安装此Linux编译工具链-> brew install FiloSottile/musl-cross/musl-cross
+        # - run: CGO_ENABLED=1 GOOS=linux GOARCH=amd64 CC=x86_64-linux-musl-gcc CGO_LDFLAGS="-static" go build -a -v -tags musl
+        #   path: ./code
+
+        # Windows / Mac (use docker)
+        # - run: docker run -v $(pwd):/go/src/gocode -w /go/src/gocode --entrypoint='' karalabe/xgo-latest /bin/bash -c "CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build main.go"
+        #   path: ./code
     component: fc
     props:
-      region: cn-hangzhou
+      region: "{{region}}"
       service: 
-        name: fc-kafka-golang-example
+        name: "{{serviceName}}"
         vpcConfig:
-          vpcId: vpc-bp1qbcu6i8pml******** # Kafka实例所在的VPC ID
-          securityGroupId: sg-bp1etti4xsid******** # 安全组Id
+          vpcId: "{{vpcId}}" # Kafka实例所在的VPC ID
+          securityGroupId: "{{securityGroupId}}" # 安全组Id
           vswitchIds:
-            - vsw-bp1hen4k8k6bw******** # Kafka实例所在的vSwitch ID
+            - "{{vswitchIds}}" # Kafka实例所在的vSwitch ID (请注意要函数计算支持的az)
       function:
-        name: fc-golang-kafka
-        description: 'hello world by serverless devs'
+        name: "{{functionName}}"
+        description: 'kafka producer by serverless devs'
         runtime: go1
         codeUri: ./code
         handler: main
@@ -48,5 +56,5 @@ services:
         initializationTimeout: 20
         initializer: "true"
         environmentVariables:
-          bootstrap_servers: "***************-1-vpc.alikafka.aliyuncs.com:9092"       # 设置成你自己的Kafka接入点
-          topic_name: "HelloTopic"   # 设置成要发送消息的Topic
+          bootstrap_servers: "{{bootstrapServers}}"       # 设置成你自己的Kafka接入点
+          topic_name: "{{topicName}}"   # 设置成要发送消息的Topic

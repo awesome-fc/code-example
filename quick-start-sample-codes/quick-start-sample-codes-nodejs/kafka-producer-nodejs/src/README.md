@@ -103,15 +103,16 @@ load code for handler:index.handler
 FC Invoke End RequestId: 3f19de00-ab31-48b4-a386-03cded9f97ee
 ```
 
- ### 方式二、使用 Serverless Devs 工具编译部署
+ ### 方式二. 使用 Serverless Devs 工具编译部署
 
  #### 1. 修改 s.yaml 配置
+
+- 修改region、serviceName、functionName（设置和Kafka实例相同的region）
 
 - 修改vpcConfig，将Kafka实例对应的VPC ID、安全组ID、vSwitchID填入。
 
 - 修改 environmentVariables 配置，填入 bootstrap_servers 和 topic_name
 
- - 设置和Kafka实例相同的region
 
  #### 2. 安装依赖并部署
 

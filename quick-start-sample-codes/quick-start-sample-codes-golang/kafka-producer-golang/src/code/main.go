@@ -39,22 +39,34 @@ func initialize(ctx context.Context) {
 	kafkaconf.SetKey("bootstrap.servers", bootstrapServers)
 	kafkaconf.SetKey("security.protocol", "plaintext")
 
-	producer, _ = kafka.NewProducer(kafkaconf)
-
+	var err error
+	producer, err = kafka.NewProducer(kafkaconf)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func HandleRequest(ctx context.Context, event StructEvent) (string, error) {
-	// Produce messages to topic (asynchronously)
-	producer.Produce(&kafka.Message{
-		TopicPartition: kafka.TopicPartition{Topic: &topicName, Partition: kafka.PartitionAny},
-		Value:          []byte(event.Key),
-	}, nil)
-
 	fctx, _ := fccontext.FromContext(ctx)
 	fctx.GetLogger().Infof("sending the message to kafka: %s!", event.Key)
 
-	// Flush the internel queue, wait for message deliveries before return
-	producer.Flush(1000)
+	// Produce messages to topic (synchronously)
+	delivery_chan := make(chan kafka.Event, 10000)
+	producer.Produce(&kafka.Message{
+		TopicPartition: kafka.TopicPartition{Topic: &topicName, Partition: kafka.PartitionAny},
+		Value:          []byte(event.Key)}, delivery_chan)
+
+	e := <-delivery_chan
+	m := e.(*kafka.Message)
+
+	// Capture the delivery report
+	if m.TopicPartition.Error != nil {
+		panic(m.TopicPartition.Error)
+	} else {
+		fctx.GetLogger().Infof("Delivered message to topic %s [%d] at offset %v\n",
+			*m.TopicPartition.Topic, m.TopicPartition.Partition, m.TopicPartition.Offset)
+	}
+	close(delivery_chan)
 
 	return fmt.Sprintf("Finish sending the message to kafka: %s!", event.Key), nil
 }

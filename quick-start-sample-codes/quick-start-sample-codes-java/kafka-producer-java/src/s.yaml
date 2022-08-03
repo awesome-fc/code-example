@@ -23,27 +23,30 @@ access: default # 设置成你自己的密钥信息
 
 services:
   fc-example:
-    component: fc 
+    actions: # 自定义执行逻辑，关于actions 的使用，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#行为描述
+      pre-deploy:
+        - run: mvn clean package
+          path: ./
+    component: fc
     props:
-      region: cn-hangzhou
+      region: "{{region}}"
       service: 
-        name: fc-kafka-nodejs14-example
-        internetAccess: true
+        name: "{{serviceName}}"
         vpcConfig:
-          vpcId: vpc-bp1qbcu6i8pml******** # Kafka实例所在的VPC ID
-          securityGroupId: sg-bp1etti4xsid******* # 安全组ID
-          vswitchIds: 
-            - vsw-bp1hen4k8k6bw******** # vSwitchID要在函数计算可用区内
+          vpcId: "{{vpcId}}" # Kafka实例所在的VPC ID
+          securityGroupId: "{{securityGroupId}}" # 安全组Id
+          vswitchIds:
+            - "{{vswitchIds}}" # Kafka实例所在的vSwitch ID (请注意要函数计算支持的az)
       function:
-        name: nodejs14-kafka
-        description: 'hello world by serverless devs'
-        runtime: nodejs14
-        codeUri: ./code
-        handler: index.handler
+        name: "{{functionName}}"
+        description: 'kafka producer by serverless devs'
+        runtime: java11
+        codeUri: ./target
+        handler: example.App::handleRequest
         memorySize: 128
         timeout: 60
         initializationTimeout: 20
-        initializer: index.initialize
+        initializer: example.App::initialize
         environmentVariables:
-          bootstrap_servers: "************-vpc.alikafka.aliyuncs.com:9092"       # 设置成你自己的Kafka VPC接入点
-          topic_name: "HelloTopic"   # 设置成要写入Kafka Topic
+          bootstrap_servers: "{{bootstrapServers}}"       # 设置成你自己的Kafka接入点
+          topic_name: "{{topicName}}"   # 设置成要发送消息的Topic

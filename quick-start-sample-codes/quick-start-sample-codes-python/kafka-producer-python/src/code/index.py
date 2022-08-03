@@ -19,6 +19,7 @@ def delivery_report(err, msg):
         Triggered by poll() or flush(). """
     if err is not None:
         logger.info('Message delivery failed: {}'.format(err))
+        raise Exception('Message delivery failed: {}'.format(err))
     else:
         logger.info('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
 

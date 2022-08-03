@@ -48,10 +48,9 @@
   - ```shell
     # 拉取镜像
     docker pull karalabe/xgo-latest
-    # 在code目录下
-    docker run -v $(pwd):/gocode -w /gocode -it --entrypoint='' 镜像ID /bin/bash
-    # 在容器内编译，可在宿主机code目录下查看到编译好的可执行文件
-    CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build main.go
+    # 在code目录下运行：
+    docker run -v $(pwd):/go/src/gocode -w /go/src/gocode --entrypoint='' karalabe/xgo-latest /bin/bash -c "CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build main.go"
+    # 运行的指令即在容器内编译，可在宿主机code目录下查看到编译好的可执行文件
     ```
 
 最后压缩可执行文件即可。
@@ -64,7 +63,7 @@
 
 创建服务时在`高级选项`中`服务角色`选择AliyunFcDefaultRole（如没有则根据提示创建相应角色），并开启`允许访问VPC`，选取创建Kafka实例时所选择的`专有网络`、`交换机`与对应的`安全组(Kafka实例部署后自动创建)`。
 
-![CreateService.png](assets/CreateService.png)
+![CreateService.png](/Users/leospard/Desktop/golang-kafka-producer/assets/CreateService.png)
 
 
 
@@ -93,7 +92,7 @@
 
 - topic_name设置为相应发送消息到的Topic（需要在Kafka消息队列版中提前创建）
 
-![FunctionConfig.png](assets/FunctionConfig.png)
+![FunctionConfig.png](/Users/leospard/Desktop/golang-kafka-producer/assets/FunctionConfig.png)
 
 
 
@@ -122,16 +121,15 @@ FC Invoke End RequestId: 7e7931d4-3f62-452e-86a7-4f8190bbabb7
 
 
 
- ### 方式二、使用 Serverless Devs 工具编译部署
+ ### 方式二. 使用 Serverless Devs 工具编译部署
 
  #### 1. 修改 s.yaml 配置
 
+- 修改region、serviceName、functionName（设置和Kafka实例相同的region）
+
 - 根据平台不同，修改pre-dploy中run的命令，如果为mac平台则在安装相应linux工具链后将run设置为`CGO_ENABLED=1 GOOS=linux GOARCH=amd64 CC=x86_64-linux-musl-gcc CGO_LDFLAGS="-static" go build -a -v -tags musl`即可。
-- 修改vpcConfig，将Kafka实例对应的VPC ID、安全组ID、vSwitchID填入。
-
+- 修改vpcConfig，将Kafka实例对应的VPC ID、安全组ID（可在**云服务器 ECS**控制台`网络与安全`菜单项找到）、vSwitchID填入。
 - 修改 environmentVariables 配置，填入 bootstrap_servers 和 topic_name
-
- - 设置和Kafka实例相同的region
 
  #### 2. 安装依赖并部署
 
