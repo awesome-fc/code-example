@@ -70,8 +70,10 @@ for eve_app in publish_list:
         times = times + 1
 
     # publish code.zip to oss
+    os.chdir(workspace)
     makefile = Path('%s/src/code/Makefile' % (eve_app))
     if makefile.is_file():
+        print("----------------------Makefile: ", makefile)
         command = 'cd %s/src/code && make release' % (eve_app)
         print(command)
         child = subprocess.Popen(

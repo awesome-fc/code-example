@@ -1,0 +1,20 @@
+{
+  "id": "2C5424F2807661357FC66F46XXXXX",
+  "source": "MNS-java11-mns-queue-trigger-mns-queue-trigger-1",
+  "specversion": "1.0",
+  "type": "mns:Queue:SendMessage",
+  "datacontenttype": "application/json;charset=utf-8",
+  "subject": "acs:mns:cn-hangzhou:${AccountID}:queues/fc-example",
+  "time": "2022-07-22T06:34:27.9Z",
+  "aliyunaccountid": "1431999136518149",
+  "aliyunpublishtime": "2022-07-22T06:34:27.943Z",
+  "aliyunoriginalaccountid": "1431999136518149",
+  "aliyuneventbusname": "MNS-java11-mns-queue-trigger-mns-queue-trigger-1",
+  "aliyunregionid": "cn-hangzhou",
+  "aliyunpublishaddr": "172.20.xx.xx",
+  "data": {
+    "requestId": "62DA44F3373832393xxxxxx",
+    "messageId": "2C5424F2807661357FC66xxxxxx",
+    "messageBody": "bW9jayBtbnMgcXVldWUgbWVzc2FnZQ=="
+  }
+}
