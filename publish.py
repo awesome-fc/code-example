@@ -20,7 +20,12 @@ def is_ignored(target_path, ignores):
 
 def zip_file(workspace, eve_app):
     os.chdir('%s/%s/src' % (workspace, eve_app))
-    shutil.copy('readme.md', 'code')
+    if os.path.isfile('README.md'):
+        shutil.copy('README.md', 'code')
+    elif os.path.isfile('readme.md'):
+        shutil.copy('readme.md', 'code')
+    elif os.path.isfile('Readme.md'):
+        shutil.copy('Readme.md', 'cogit de')
     os.chdir('%s/%s/src/code' % (workspace, eve_app))
     ignore_list = ['./.git', './.github', './.idea', './.DS_Store', './.vscode']
     with zipfile.ZipFile('code.zip', mode="w") as f:
