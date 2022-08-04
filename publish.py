@@ -5,6 +5,7 @@ from pathlib import Path
 import zipfile
 import os
 import oss2
+import shutil
 
 def path_is_parent(parent_path, child_path):
     parent_path = os.path.abspath(parent_path)
@@ -18,9 +19,10 @@ def is_ignored(target_path, ignores):
     return False
 
 def zip_file(workspace, eve_app):
+    os.chdir('%s/%s/src' % (workspace, eve_app))
+    shutil.copy('readme.md', 'code')
     os.chdir('%s/%s/src/code' % (workspace, eve_app))
     ignore_list = ['./.git', './.github', './.idea', './.DS_Store', './.vscode']
-    # dirname = '%s/src/code' % (eve_app)
     with zipfile.ZipFile('code.zip', mode="w") as f:
         for dirpath, dirnames, filenames in os.walk('./'):
             if dirpath != './' and is_ignored(dirpath, ignore_list):
@@ -30,7 +32,6 @@ def zip_file(workspace, eve_app):
                 if not is_ignored(absoult_file_path, ignore_list) and "code.zip" not in filename:
                     f.write(os.path.join(dirpath, filename))
 
-    # return '%s/src/code/code.zip' % (eve_app)
     return 'code.zip'
 
 def upload_oss(code_name, zip_file):
@@ -74,6 +75,7 @@ for eve_app in publish_list:
     if makefile.is_file():
         print("----------------------Makefile: ", makefile)
         command = 'cd %s/src/code && make release' % (eve_app)
+        print(command)
         child = subprocess.Popen(
             command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, )
         stdout, stderr = child.communicate()
