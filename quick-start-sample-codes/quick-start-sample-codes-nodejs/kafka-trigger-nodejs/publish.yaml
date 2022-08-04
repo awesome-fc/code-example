@@ -29,6 +29,7 @@ Parameters:
     - instanceId
     - topicName
     - consumerGroup
+    - offsetReset
   properties:
     region:
       title: 地域
@@ -62,7 +63,7 @@ Parameters:
       title: kafka 实例所在 vpc 的 security group id
       type: string
       default: sg-*****
-      description: vpc 下安全组 id, 用于内网访问 kafka
+      description: vpc 下安全组 id, 用于内网访问 kafka, 请注意需要填写函数计算支持的 az
     instanceId:
       title: kafka 实例id
       type: string
@@ -74,7 +75,12 @@ Parameters:
       default: topic-a
       description: kafka 实例的 topic name, 此topic的数据生产会触发部署函数
     consumerGroup:
-      title: kafka topic name
+      title: kafka consumer group
       type: string
       default: consumer-a
       description: kafka 实例的消费组, 数据由此 Group 消费
+    offsetReset:
+      title: kafka offsetReset
+      type: string
+      default: latest
+      description: kafka 消费位， 可选最新位点(latest) / 最早位点(earliest)

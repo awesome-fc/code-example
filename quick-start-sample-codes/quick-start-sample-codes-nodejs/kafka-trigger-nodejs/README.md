@@ -21,7 +21,7 @@
 
 | 服务/业务 | 函数计算                                                     |
 | --------- | ------------------------------------------------------------ |
-| 权限/策略 | AliyunFCFullAccess<br/>AliyunKafkaFullAccess<br/>AliyunVPCReadOnlyAccess |
+| 权限/策略 | AliyunFCFullAccess<br/>AliyunKafkaReadOnlyAccess<br/>AliyunVPCReadOnlyAccess |
 
 
 ### 资源准备
@@ -50,6 +50,7 @@
   - 实例ID (instanceId): 您购买的Kafka实例ID。
   - topicName: Kafka实例的topic name, 此topic的数据生产会触发部署函数，需要您提前创建。
   - 消费组 (consumerGroup): 数据由此消费组消费，需要您提前创建。
+  - 消费位点 (offsetReset): Kafka消费位点，可选择最新位点(latest)或最早位点(earliest)。
 
 </codepre>
 

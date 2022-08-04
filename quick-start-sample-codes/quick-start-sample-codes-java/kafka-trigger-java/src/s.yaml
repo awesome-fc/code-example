@@ -63,6 +63,7 @@ services:
               eventSourceParameters:
                 sourceKafkaParameters:
                   RegionId: ${vars.region}
-                  InstanceId: "{{instanceId}}"   # 需要提前创建
-                  ConsumerGroup: "{{topicName}}"  # 需要提前创建
-                  Topic: "{{consumerGroup}}"    # 需要提前创建
+                  InstanceId: "{{instanceId}}" # 需要提前创建
+                  Topic: "{{topicName}}" # 需要提前创建
+                  ConsumerGroup: "{{consumerGroup}}" # 需要提前创建
+                  OffsetReset: "{{offsetReset}}" # latest or earliest
