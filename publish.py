@@ -25,7 +25,7 @@ def zip_file(workspace, eve_app):
     elif os.path.isfile('readme.md'):
         shutil.copy('readme.md', 'code')
     elif os.path.isfile('Readme.md'):
-        shutil.copy('Readme.md', 'cogit de')
+        shutil.copy('Readme.md', 'code')
     os.chdir('%s/%s/src/code' % (workspace, eve_app))
     ignore_list = ['./.git', './.github', './.idea', './.DS_Store', './.vscode']
     with zipfile.ZipFile('code.zip', mode="w") as f:
