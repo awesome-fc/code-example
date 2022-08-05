@@ -35,6 +35,7 @@ exports.initialize = (context, callback) => {
 
     producer.on('event.log', function(event) {
         console.log("event.log", event);
+        throw new Error(event);
     });
 
     producer.on("error", function(error) {
@@ -42,41 +43,43 @@ exports.initialize = (context, callback) => {
         throw new Error(error);
     });
 
-    producer.on('delivery-report', function(err, report) {
-        console.log("delivery-report: producer ok");
-    });
     // Any errors we encounter, including connection errors
     producer.on('event.error', function(err) {
         console.error('event.error:' + err);
         throw new Error(err);
     })
+    
     // Poll for events every 10 ms
     producer.setPollInterval(10);
 
     callback(null, "");
 };
 
-function wait(ms) {
-    return new Promise(resolve =>setTimeout(() =>resolve(), ms));
-};
-
 exports.handler = async(event, context, callback) => {
     // Connect to the broker manually
     producer.connect();
-    // Waiting for connecting
-    await wait(5000);
 
-    producer.produce(
-        topic_name,   
-        null,      
-        Buffer.from(event),      
-        null,   
-        Date.now()
-    );
-    producer.flush();
-    
-    // Wait for message deliveries before return
-    await wait(5000);
-    
-    callback(null, "Finish sending the message:" + event);
+    // Wait for connection
+    await producer.on('ready', function() {
+        producer.produce(
+            topic_name,   
+            null,      
+            Buffer.from(event),      
+            null,   
+            Date.now()
+        );
+        producer.flush();
+    });
+
+    // waiting for sending
+    await producer.on('delivery-report', function(err, report) {
+        console.log("delivery-report err: ", err);
+        console.log("delivery-report content: ", report);
+
+        if (err == null) {
+            callback(null, "Finish sending the message:" + event);
+        } else {
+            callback(err, "Send message fail!");
+        }  
+    });
 }
