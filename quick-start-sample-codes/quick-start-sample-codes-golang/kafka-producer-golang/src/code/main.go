@@ -30,7 +30,10 @@ func initialize(ctx context.Context) {
 	bootstrapServers = os.Getenv("BOOTSTRAP_SERVERS")
 	topicName = os.Getenv("TOPIC_NAME")
 
-	fctx, _ := fccontext.FromContext(ctx)
+	fctx, ok := fccontext.FromContext(ctx)
+	if !ok {
+		panic("Get fccontext fail.")
+	}
 	fctx.GetLogger().Infof("Initializing the kafka config")
 
 	var kafkaconf = &kafka.ConfigMap{
