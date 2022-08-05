@@ -90,7 +90,7 @@ Duration: 1.73 ms, Billed Duration: 2 ms, Memory Size: 128 MB, Max Memory Used: 
 FC Invoke instanceId: c-62e92887-fd8de351cc1b447386da
 
 FC Invoke Result:
-Kafka trigger data message:b'{\n    "Test": "TestKafkaEBtrigger"\n}'
+Kafka Trigger Event:["{\"data\":{\"topic\":\"HelloTopic\",\"partition\":9,\"offset\":3,\"timestamp\":1659346376797,\"headers\":{\"headers\":[],\"isReadOnly\":false},\"value\":\"b\\u0027{\\\\n    \\\"Test\\\": \\\"TestKafkaEBtrigger\\\"\\\\n}\\u0027\"},\"id\":\"1cb591f9-987e-41d9-b974-0342e9acb90a\",\"source\":\"acs:alikafka\",\"specversion\":\"1.0\",\"type\":\"alikafka:Topic:Message\",\"datacontenttype\":\"application/json; charset\\u003dutf-8\",\"time\":\"2022-08-01T09:32:56.797Z\",\"subject\":\"acs:alikafka:alikafka_pre-cn-7pp2t2jwj001:topic:HelloTopic\",\"aliyunaccountid\":\"1938858730552836\"}"]
 
 
 End of method: invoke

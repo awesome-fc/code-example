@@ -7,13 +7,13 @@ def handler(event, context):
   logger.info('Receive kafka whole message:' + bytes.decode(event))
 
   # Parse the json
-  evt = json.loads(event)
-  # Get the first json object from json array 
-  evt = evt[0]
-  # Parse the json inside
-  evt = json.loads(evt)
-  
-  logger.info('message topic:' + evt['data']['topic'])
-  logger.info('message value:' + evt['data']['value'])
+  eventObject = json.loads(event)
+  # Get each json object from json array
+  for evt in eventObject:
+    # Parse the json inside
+    evt = json.loads(evt)
 
-  return 'Kafka trigger data message:' + evt['data']['value']
+    logger.info('message topic:' + evt['data']['topic'])
+    logger.info('message value:' + evt['data']['value'])
+
+  return 'Kafka Trigger Event:' + bytes.decode(event)
