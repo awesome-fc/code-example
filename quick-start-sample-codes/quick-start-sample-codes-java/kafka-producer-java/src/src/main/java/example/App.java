@@ -26,8 +26,8 @@ public class App implements StreamRequestHandler, FunctionInitializer {
     @Override
      public void initialize(Context context) {
         // Get the environment variables
-        BOOTSTRAP_SERVERS = System.getenv("bootstrap_servers");
-        TOPIC_NAME = System.getenv("topic_name");
+        BOOTSTRAP_SERVERS = System.getenv("BOOTSTRAP_SERVERS");
+        TOPIC_NAME = System.getenv("TOPIC_NAME");
 
         Properties props = new Properties();
 
@@ -38,12 +38,7 @@ public class App implements StreamRequestHandler, FunctionInitializer {
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
 
-        try {
-            producer = new KafkaProducer<>(props);
-        } catch(Exception e) {
-            context.getLogger().error("Create kafka producer failed: " + e.toString());
-        }
-         
+        producer = new KafkaProducer<>(props);
      }
 
     @Override
@@ -59,21 +54,15 @@ public class App implements StreamRequestHandler, FunctionInitializer {
         // Create the message to be sent
         ProducerRecord<String, String> kafkaMessage =  new ProducerRecord<>(TOPIC_NAME, value);
         
-        try {
-            // Produce messages to topic (asynchronously)
-            Future<RecordMetadata> metadataFuture = producer.send(kafkaMessage);
+        // Produce messages to topic (asynchronously)
+        Future<RecordMetadata> metadataFuture = producer.send(kafkaMessage);
 
-            // Flush the internel queue, wait for message deliveries before return
-            producer.flush();
+        // Flush the internel queue, wait for message deliveries before return
+        producer.flush();
 
-            RecordMetadata recordMetadata = metadataFuture.get();
-            context.getLogger().info("Produce ok: " + recordMetadata.toString() + "\n Payload: " + value);
-            outputStream.write(("Produce ok: " + recordMetadata.toString() + "\n Payload: " + value).getBytes());
-
-        } catch(Exception e) {
-            context.getLogger().error("Send message to kafka fail: " + e.toString());
-            outputStream.write(("Produce fail: " + e.toString()).getBytes());
-        }        
+        RecordMetadata recordMetadata = metadataFuture.get();
+        context.getLogger().info("Produce ok: " + recordMetadata.toString() + "\n Payload: " + value);
+        outputStream.write(("Produce ok: " + recordMetadata.toString() + "\n Payload: " + value).getBytes());
      }
         
 }

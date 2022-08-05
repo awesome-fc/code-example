@@ -48,5 +48,5 @@ services:
         initializationTimeout: 20
         initializer: index.initialize
         environmentVariables:
-          bootstrap_servers: "{{bootstrapServers}}"       # 设置成你自己的Kafka接入点
-          topic_name: "{{topicName}}"   # 设置成要发送消息的Topic
+          BOOTSTRAP_SERVERS: "{{bootstrapServers}}"       # 设置成你自己的Kafka接入点
+          TOPIC_NAME: "{{topicName}}"   # 设置成要发送消息的Topic

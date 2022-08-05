@@ -68,8 +68,8 @@ zip code.zip -r ./*
 其中环境变量：
 
 - 修改region、serviceName、functionName（设置和Kafka实例相同的region）
-- bootstrap_servers设置为Kafka实例详情内`接入点信息`对应的`默认接入点`地址。
-- topic_name设置为相应发送消息到的Topic（需要在Kafka消息队列版中提前创建）
+- BOOTSTRAP_SERVERS设置为Kafka实例详情内`接入点信息`对应的`默认接入点`地址。
+- TOPIC_NAME设置为相应发送消息到的Topic（需要在Kafka消息队列版中提前创建）
 
 Initializer设置为index.initialize；
 
@@ -105,7 +105,7 @@ FC Invoke End RequestId: 6476cbb0-223b-4763-a13e-15cf2c2cf280
  #### 1. 修改 s.yaml 配置
 
 - 修改vpcConfig，将Kafka实例对应的VPC ID、安全组ID、vSwitchID填入。
-- 修改 environmentVariables 配置，填入 bootstrap_servers 和 topic_name
+- 修改 environmentVariables 配置，填入 BOOTSTRAP_SERVERS 和 TOPIC_NAME
 
  #### 2. 安装依赖并部署
 

@@ -88,9 +88,9 @@
 
 其中环境变量：
 
-- bootstrap_servers设置为Kafka实例详情内`接入点信息`对应的`默认接入点`地址。
+- BOOTSTRAP_SERVERS设置为Kafka实例详情内`接入点信息`对应的`默认接入点`地址。
 
-- topic_name设置为相应发送消息到的Topic（需要在Kafka消息队列版中提前创建）
+- TOPIC_NAME设置为相应发送消息到的Topic（需要在Kafka消息队列版中提前创建）
 
 ![FunctionConfig.png](/Users/leospard/Desktop/golang-kafka-producer/assets/FunctionConfig.png)
 
@@ -129,7 +129,7 @@ FC Invoke End RequestId: 7e7931d4-3f62-452e-86a7-4f8190bbabb7
 
 - 根据平台不同，修改pre-dploy中run的命令，如果为mac平台则在安装相应linux工具链后将run设置为`CGO_ENABLED=1 GOOS=linux GOARCH=amd64 CC=x86_64-linux-musl-gcc CGO_LDFLAGS="-static" go build -a -v -tags musl`即可。
 - 修改vpcConfig，将Kafka实例对应的VPC ID、安全组ID（可在**云服务器 ECS**控制台`网络与安全`菜单项找到）、vSwitchID填入。
-- 修改 environmentVariables 配置，填入 bootstrap_servers 和 topic_name
+- 修改 environmentVariables 配置，填入 BOOTSTRAP_SERVERS 和 TOPIC_NAME
 
  #### 2. 安装依赖并部署
 
