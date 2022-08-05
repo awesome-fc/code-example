@@ -10,13 +10,16 @@ import (
 
 // Define the timer trigger event struct
 type StructEvent struct {
-	TriggerTime string `json:"triggerTime"`
-	TriggerName string `json:"triggerName"`
-	Payload     string `json:"payload"`
+	TriggerTime string
+	TriggerName string
+	Payload     string
 }
 
 func HandleRequest(ctx context.Context, event StructEvent) (string, error) {
-	fctx, _ := fccontext.FromContext(ctx)
+	fctx, ok := fccontext.FromContext(ctx)
+	if !ok {
+		return "Get fccontext fail.", nil
+	}
 	flog := fctx.GetLogger()
 
 	flog.Info("triggerName: ", event.TriggerName)

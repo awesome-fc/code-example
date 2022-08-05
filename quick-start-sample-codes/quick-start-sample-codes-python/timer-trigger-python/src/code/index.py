@@ -13,7 +13,7 @@ def handler(event, context):
     payload = evt["payload"]
 
     logger.info('triggerName: %s', triggerName)
-    logger.info("triggerTime = %s", triggerTime)
-    logger.info("payload = %s", payload)     
+    logger.info("triggerTime: %s", triggerTime)
+    logger.info("payload: %s", payload)     
 
-    return 'Timer Payload:' + payload
+    return 'Timer Payload: ' + payload
