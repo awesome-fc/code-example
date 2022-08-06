@@ -115,9 +115,9 @@
         "cursorTime": 1529486425
       }
       ```
-    - 您需要将以上样例中 sls 资源部分进行替换，其中的 `endpoint`, `projectName`, `logstoreName` 需要根据您创建的事件源日志库信息进行替换，`beginCursor`, `shardId`、`endCursor`以及`cursorTime` 在本示例中未用到，可以不进行指定。
+    - 您需要将以上样例中 sls 资源部分进行替换，其中的 `endpoint`, `projectName`, `logstoreName` 需要根据您创建的事件源日志库信息进行替换，`beginCursor`, `shardId`、 `endCursor` 需要基于实际写入的日志数据内容进行指定。
     - 使用测试样例进行触发测试，运行 `s cli fc invoke --service-name ${serviceNamme} --function-name ${functionName} --event-file event-template/test-sls.json --region ${regionName}`
-    - 执行成功后您可以查询目标日志库中是否被写入了日志数据，同时日志服务触发函数执行过程的日志可以在记录日志库中查看。
+    - 执行成功后您可以检查函数执行日志。
 
   #### 向事件源数据库写入日志数据进行真实触发
 
@@ -166,7 +166,7 @@
     }, 1 * 1000)
 
   ```
-    - 执行成功后您可以查询目标日志库中是否被写入了日志数据，同时日志服务触发函数执行过程的日志可以在记录日志库中查看。
+    - 执行成功后您可以检查函数执行日志。
 
 </deploy>
 
