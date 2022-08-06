@@ -17,7 +17,7 @@ This sample code is mainly doing the following things:
 import logging
 import json
 import os
-from aliyun.log import LogClient, PutLogsRequest, LogItem, GetLogsRequest, GetLogsResponse
+from aliyun.log import LogClient
 
 
 logger = logging.getLogger()
@@ -39,35 +39,33 @@ def handler(event, context):
     event_obj = json.loads(event.decode())
     print("The content in event entity is: \n")
     print(event_obj)
-    
-    # 从 event 中获取 cursorTime，该字段表示本次函数调用包括的数据中，最后一条日志到达日志服务的服务器端的 unix_timestamp
-    # Get cursorTime from event, where cursorTime indicates that in the data of the invocation, the unix timestamp of the last log arrived at log store
-    cursor_time = event_obj['cursorTime']
 
-    # 从 event.source 中获取日志项目名称、日志仓库名称以及日志服务访问 endpoint
-    # Get the name of log project, the name of log store and the endpoint of sls from event.source
+    # 从 event.source 中获取日志项目名称、日志仓库名称、日志服务访问 endpoint、日志起始游标、日志终点游标以及分区 id
+    # Get the name of log project, the name of log store, the endpoint of sls, begin cursor, end cursor and shardId from event.source
     source = event_obj['source']
     log_project = source['projectName']
     log_store = source['logstoreName']
     endpoint = source['endpoint']
-
-    # 从环境变量中获取触发时间间隔，该环境变量可在 s.yml 中配置
-    # Get interval of trigger from environment variables, which was configured via s.yaml
-    trigger_interval = int(os.environ.get('triggerInterval'))
+    begin_cursor = source['beginCursor']
+    end_cursor = source['endCursor']
+    shard_id = source['shardId']
 
     # 初始化 sls 客户端
     # Initialize client of sls
     client = LogClient(endpoint=endpoint, accessKeyId=access_key_id, accessKey=access_key_secret, securityToken=security_token)
 
-    # 从源日志库中读取日志
-    # Read data from source logstore
-    to_time = cursor_time
-    from_time = to_time - trigger_interval
+    # 基于日志的游标从源日志库中读取日志，本示例中的游标范围包含了触发本次执行的所有日志内容
+    # Read data from source logstore within cursor: [begin_cursor, end_cursor) in the example, which contains all the logs trigger the invocation
+    while True:
+      response = client.pull_logs(project_name=log_project, logstore_name=log_store,
+                                shard_id=shard_id, cursor=begin_cursor, count=100,
+                                end_cursor=end_cursor, compress=False)
+      log_group_cnt = response.get_loggroup_count()
+      if log_group_cnt == 0:
+        break
+      logger.info("get %d log group from %s" % (log_group_cnt, log_store))
+      logger.info(response.get_loggroup_list())
 
-    request = GetLogsRequest(project=log_project, logstore=log_store, fromTime=from_time, toTime=to_time, query='')
-    response = client.get_logs(request)
-
-    for log in response.get_logs():
-        logger.info(log.contents.items())
+      begin_cursor = response.get_next_cursor()
 
     return 'success'
