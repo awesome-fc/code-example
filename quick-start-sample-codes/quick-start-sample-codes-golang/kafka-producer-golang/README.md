@@ -112,7 +112,26 @@
   - 即可查看到模拟事件触发函数后的结果。
 
 ```bash
+========= FC invoke Logs begin =========
+2022/08/08 06:44:34.255072 start
+FC Initialize Start RequestId: be4c11f1-a99e-4421-852d-55ace08a6cad
+2022-08-08T06:44:42.322Z be4c11f1-a99e-4421-852d-55ace08a6cad [INFO] main.go:37: Initializing the kafka config
+FC Initialize End RequestId: be4c11f1-a99e-4421-852d-55ace08a6cad
+FC Invoke Start RequestId: be4c11f1-a99e-4421-852d-55ace08a6cad
+2022-08-08T06:44:42.366Z be4c11f1-a99e-4421-852d-55ace08a6cad [INFO] main.go:57: sending the message to kafka: test go kafka producer!
+2022-08-08T06:44:42.394Z be4c11f1-a99e-4421-852d-55ace08a6cad [INFO] main.go:72: Delivered message to topic HelloTopic [7] at offset 19
+FC Invoke End RequestId: be4c11f1-a99e-4421-852d-55ace08a6cad
 
+Duration: 29.94 ms, Billed Duration: 30 ms, Memory Size: 128 MB, Max Memory Used: 15.91 MB
+========= FC invoke Logs end =========
+
+FC Invoke instanceId: c-62f0b0d0-626f0eb5c5e94c42bf37
+
+FC Invoke Result:
+"Finish sending the message to kafka: test go kafka producer!"
+
+
+End of method: invoke
 ```
 
 ​		
@@ -129,7 +148,14 @@
   日志如下：
   
   ```bash
-
+  2022/08/08 06:45:36.589266 start
+  FC Initialize Start RequestId: 0f2f1c1c-a89a-46fe-a588-96469cfbeba2
+  2022-08-08 14:45:36 0f2f1c1c-a89a-46fe-a588-96469cfbeba2 [INFO] main.go:37: Initializing the kafka config
+  FC Initialize End RequestId: 0f2f1c1c-a89a-46fe-a588-96469cfbeba2
+  FC Invoke Start RequestId: 0f2f1c1c-a89a-46fe-a588-96469cfbeba2
+  2022-08-08 14:45:36 0f2f1c1c-a89a-46fe-a588-96469cfbeba2 [INFO] main.go:57: sending the message to kafka: test kafka producer go!
+  2022-08-08 14:45:36 0f2f1c1c-a89a-46fe-a588-96469cfbeba2 [INFO] main.go:72: Delivered message to topic HelloTopic [4] at offset 21
+  FC Invoke End RequestId: 0f2f1c1c-a89a-46fe-a588-96469cfbeba2
   ```
   
   - 登陆Kafka控制台，查看对应实例的对应Topic`消息详情`，找到对应分区，即可查询到相应消息。
