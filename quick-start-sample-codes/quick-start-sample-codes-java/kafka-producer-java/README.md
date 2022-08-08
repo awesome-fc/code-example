@@ -86,7 +86,7 @@
   - [安装 Serverless Devs Cli 开发者工具](https://www.serverless-devs.com/serverless-devs/install) ，并进行[授权信息配置](https://www.serverless-devs.com/fc/config) ；
   - 初始化项目：`s init kafka-producer-fc-event-java11 -d kafka-producer-fc-event-java11`
   - 填入在以上模块介绍的参数
-  - 进入项目目录，`cd kafka-producer-fc-event-java11`根据使用环境选择相应`pre-deploy`中`run`的字段。
+  - 进入项目目录，`cd kafka-producer-fc-event-java11`
   - 进行项目部署： `s deploy -y`
 - 本地调试
   - 进入应用项目工程下，执行下面命令：`s invoke -e '{"Key": "test java11 kafka producer"}'`。
