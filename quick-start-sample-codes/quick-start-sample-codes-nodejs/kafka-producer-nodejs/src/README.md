@@ -40,7 +40,7 @@ zip code.zip -r ./*
 
 创建服务时在`高级选项`中`服务角色`选择AliyunFcDefaultRole（如没有则根据提示创建相应角色），并开启`允许访问VPC`，选取创建Kafka实例时所选择的`专有网络`、`交换机`与对应的`安全组(Kafka实例部署后自动创建)`。
 
-![CreateService.png](/Users/leospard/Desktop/code-example/java/java11-kafka-producer/assets/CreateService.png)
+![CreateService.png](assets/CreateService.png)
 
 
 

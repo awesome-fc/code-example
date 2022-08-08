@@ -12,7 +12,7 @@
 
    > 部署Kafka实例时会提示创建可用的VPC专有网络
 
- - 能够编译CGO程序至Linux/amd64的环境（在下一部分讲述具体方法）
+ - 能够编译CGO程序至Linux / amd64的环境（在下一部分讲述具体方法）
 
  - [可选] 安装并配置 Serverless Devs 工具。(https://help.aliyun.com/document_detail/195474.html)
 
@@ -63,7 +63,7 @@
 
 创建服务时在`高级选项`中`服务角色`选择AliyunFcDefaultRole（如没有则根据提示创建相应角色），并开启`允许访问VPC`，选取创建Kafka实例时所选择的`专有网络`、`交换机`与对应的`安全组(Kafka实例部署后自动创建)`。
 
-![CreateService.png](/Users/leospard/Desktop/golang-kafka-producer/assets/CreateService.png)
+![CreateService.png](assets/CreateService.png)
 
 
 
@@ -92,7 +92,7 @@
 
 - TOPIC_NAME设置为相应发送消息到的Topic（需要在Kafka消息队列版中提前创建）
 
-![FunctionConfig.png](/Users/leospard/Desktop/golang-kafka-producer/assets/FunctionConfig.png)
+![FunctionConfig.png](assets/FunctionConfig.png)
 
 
 

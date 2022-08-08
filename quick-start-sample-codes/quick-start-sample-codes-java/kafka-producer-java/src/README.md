@@ -70,7 +70,8 @@ Initializer设置为example.App::initialize
 
  返回结果如下所示
  ```bash
- Produce ok: {
+ Produce ok: HelloTopic-6@20
+  Payload: {
      "key1": "value1",
      "key2": "value2",
      "key3": "value3"
@@ -117,16 +118,25 @@ s invoke -e '{
 
  ```bash
 ========= FC invoke Logs begin =========
-FC Invoke Start RequestId: ee1c420a-2619-4567-8da1-378f41200c80
-FC Invoke End RequestId: ee1c420a-2619-4567-8da1-378f41200c80
-
-Duration: 185.91 ms, Billed Duration: 186 ms, Memory Size: 128 MB, Max Memory Used: 111.15 MB
+FC Initialize Start RequestId: 951d096c-d9d9-4105-806b-d350f31786c9
+[Name] Register [com.aliyun.serverless.runtime.classloader.FunctionClassLoader@58372a00] as [com.aliyun.serverless.runtime.classloader.FunctionClassLoader@com.aliyun.serverless.runtime.classloader.FunctionClassLoader@/code/HelloFCJavaKafka-1.0-SNAPSHOT.jar/code/original-HelloFCJavaKafka-1.0-SNAPSHOT.jar]: hash [d4d9f0d4] (normal mode)
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+FC Initialize End RequestId: 951d096c-d9d9-4105-806b-d350f31786c9
+FC Invoke Start RequestId: 951d096c-d9d9-4105-806b-d350f31786c9
+2022-08-08 09:41:44.123 [INFO] [951d096c-d9d9-4105-806b-d350f31786c9] Produce ok: HelloTopic-10@18
+ Payload: {
+	"Key": "test java serverless devs"
+}
+FC Invoke End RequestId: 951d096c-d9d9-4105-806b-d350f31786c9
 ========= FC invoke Logs end =========
 
 FC Invoke instanceId: c-62e61808-256d56a4065243eb9951
 
 FC Invoke Result:
-Produce ok: {
+Produce ok: HelloTopic-10@18
+ Payload: {
     "Key": "test java serverless devs"
 }
 
