@@ -66,12 +66,12 @@ zip code.zip -r ./*
 - 消息位点选择最新位点
 - 网络配置选择默认网络
 
-<img src="/Users/leospard/Desktop/code-example/java/java11-kafka-trigger/assets/CreateEventBridge.png" alt="CreateEventBridge.png" style="zoom:50%;" />
+<img src="assets/CreateEventBridge.png" alt="CreateEventBridge.png" style="zoom:50%;" />
 
 - 规则默认设置为`{}`空对象即可
 - 目标选择`函数计算`，选择对应的触发服务与函数。
 
-<img src="/Users/leospard/Desktop/code-example/java/java11-kafka-trigger/assets/Objective.png" alt="Objective" style="zoom:50%;" />
+<img src="assets/Objective.png" alt="Objective" style="zoom:50%;" />
 
 创建成功后`启用`该事件流等待启动成功即可。
 
