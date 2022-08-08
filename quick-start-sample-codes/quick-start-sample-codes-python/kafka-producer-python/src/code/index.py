@@ -14,7 +14,7 @@ def initialize(context):
 
     p = Producer({'bootstrap.servers': BOOTSTRAP_SERVERS})
 
-def delivery_report(err, msg):
+def deliveryReport(err, msg):
     """ Called once for each message produced to indicate delivery result.
         Triggered by poll() or flush(). """
     if err is not None:
@@ -23,10 +23,9 @@ def delivery_report(err, msg):
     else:
         logger.info('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
 
-
 def handler(event, context):
     """ Produce messages to topic (asynchronously) """
-    p.produce(TOPIC_NAME, str(event).encode('utf-8'), callback=delivery_report)
+    p.produce(TOPIC_NAME, str(event).encode('utf-8'), callback=deliveryReport)
     p.poll(0)
 
     """ Flush the internel queue, wait for message deliveries before return """

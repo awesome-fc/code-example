@@ -19,11 +19,6 @@ exports.initialize = (context, callback) => {
         'message.send.max.retries': 10
     });
 
-    producer.on("disconnected", function() {
-        // Auto reconnect
-        producer.connect();
-    })
-
     producer.on('event.log', function(event) {
         console.log("event.log", event);
         callback(new Error(event.message), "");
@@ -63,7 +58,6 @@ exports.handler = async(event, context, callback) => {
     );
     producer.flush();
 
-
     // waiting for sending
     await producer.on('delivery-report', function(err, report) {
         console.log("delivery-report err: ", err);
@@ -75,4 +69,13 @@ exports.handler = async(event, context, callback) => {
             callback(err, "Send message fail!");
         }  
     });
+}
+
+module.exports.preStop = function(context, callback) {
+    console.log('preStop hook start');
+    if (producer != null) {
+        producer.disconnect();
+    }
+    console.log('preStop hook finish');
+    callback(null, "");
 }

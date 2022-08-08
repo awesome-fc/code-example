@@ -77,7 +77,21 @@ func HandleRequest(ctx context.Context, event StructEvent) (string, error) {
 	return fmt.Sprintf("Finish sending the message to kafka: %s!", event.Key), nil
 }
 
+func preStop(ctx context.Context) {
+	fctx, ok := fccontext.FromContext(ctx)
+	if !ok {
+		return
+	}
+	fctx.GetLogger().Infof("preStop hook start.")
+	if producer != nil {
+		producer.Close()
+	}
+
+	fctx.GetLogger().Infof("preStop hook finish.")
+}
+
 func main() {
 	fc.RegisterInitializerFunction(initialize)
+	fc.RegisterPreStopFunction(preStop)
 	fc.Start(HandleRequest)
 }

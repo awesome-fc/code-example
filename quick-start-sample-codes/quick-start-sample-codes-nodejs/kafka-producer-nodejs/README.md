@@ -94,21 +94,30 @@
 
 ```bash
 ========= FC invoke Logs begin =========
-FC Initialize Start RequestId: 3cfe9ee3-c05f-4975-bac6-f1992d215a87
-load code for handler:index.initialize
-2022-08-03T11:21:34.580Z 3cfe9ee3-c05f-4975-bac6-f1992d215a87 [verbose] Servers:  alikafka-pre-cn-7mz2sr1xa00c-1-vpc.alikafka.aliyuncs.com:9092,alikafka-pre-cn-7mz2sr1xa00c-2-vpc.alikafka.aliyuncs.com:9092,alikafka-pre-cn-7mz2sr1xa00c-3-vpc.alikafka.aliyuncs.com:9092
-2022-08-03T11:21:34.580Z 3cfe9ee3-c05f-4975-bac6-f1992d215a87 [verbose] TopicName:  HelloTopic
-FC Initialize End RequestId: 3cfe9ee3-c05f-4975-bac6-f1992d215a87
-FC Invoke Start RequestId: 3cfe9ee3-c05f-4975-bac6-f1992d215a87
-load code for handler:index.handler
-2022-08-03T11:21:34.613Z 3cfe9ee3-c05f-4975-bac6-f1992d215a87 [verbose] connect ok
-2022-08-03T11:21:39.608Z 3cfe9ee3-c05f-4975-bac6-f1992d215a87 [verbose] delivery-report: producer ok
-FC Invoke End RequestId: 3cfe9ee3-c05f-4975-bac6-f1992d215a87
+c-62f075a3-58d34b2b8b444083bb972022-08-08 10:34:13FC Initialize Start RequestId: c47410a0-ada0-45d8-863f-a9343feaa47e
+c-62f075a3-58d34b2b8b444083bb972022-08-08 10:34:13load code for handler:index.initialize
+c-62f075a3-58d34b2b8b444083bb972022-08-08 10:34:132022-08-08 10:34:13 c47410a0-ada0-45d8-863f-a9343feaa47e [verbose] Servers:  alikafka-pre-cn-7mz2sr1xa00c-1-vpc.alikafka.aliyuncs.com:9092
+c-62f075a3-58d34b2b8b444083bb972022-08-08 10:34:132022-08-08 10:34:13 c47410a0-ada0-45d8-863f-a9343feaa47e [verbose] TopicName:  HelloTopic
+c-62f075a3-58d34b2b8b444083bb972022-08-08 10:34:132022-08-08 10:34:13 c47410a0-ada0-45d8-863f-a9343feaa47e [verbose] connect ok
+c-62f075a3-58d34b2b8b444083bb972022-08-08 10:34:13FC Initialize End RequestId: c47410a0-ada0-45d8-863f-a9343feaa47e
+c-62f075a3-58d34b2b8b444083bb972022-08-08 10:34:13FC Invoke Start RequestId: c47410a0-ada0-45d8-863f-a9343feaa47e
+c-62f075a3-58d34b2b8b444083bb972022-08-08 10:34:13load code for handler:index.handler
+c-62f075a3-58d34b2b8b444083bb972022-08-08 10:34:432022-08-08 10:34:43 1c233449-024d-4a67-8e7f-83fe3bab6bac [verbose] delivery-report err:  null
+c-62f075a3-58d34b2b8b444083bb972022-08-08 10:34:432022-08-08 10:34:43 1c233449-024d-4a67-8e7f-83fe3bab6bac [verbose] delivery-report content:  {
+  topic: 'HelloTopic',
+  partition: 0,
+  offset: 16,
+  key: null,
+  timestamp: 1659926083428,
+  value: <Buffer 7b 22 4b 65 79 22 3a 20 22 74 65 73 74 20 6e 6f 64 65 6a 73 31 34 20 6b 61 66 6b 61 20 70 72 6f 64 75 63 65 72 22 7d>,
+  size: 39
+}
+c-62f075a3-58d34b2b8b444083bb972022-08-08 10:34:43FC Invoke End RequestId: 1c233449-024d-4a67-8e7f-83fe3bab6bac
 
 Duration: 10006.53 ms, Billed Duration: 10007 ms, Memory Size: 128 MB, Max Memory Used: 52.28 MB
 ========= FC invoke Logs end =========
 
-FC Invoke instanceId: c-62ea5a35-767cfad1f5614638a908
+FC Invoke instanceId: c-62f075a3-58d34b2b8b444083bb97
 
 FC Invoke Result:
 Finish sending the message:{"Key": "test nodejs14 kafka producer"}
@@ -135,16 +144,25 @@ End of method: invoke
   日志如下：
   
   ```bash
-  FC Initialize Start RequestId: afba2fbc-76b2-41ce-bda0-477374c43def
-  load code for handler:index.initialize
-  2022-08-03 19:21:44 afba2fbc-76b2-41ce-bda0-477374c43def [verbose] Servers:  alikafka-pre-cn-7mz2sr1xa00c-1-vpc.alikafka.aliyuncs.com:9092,alikafka-pre-cn-7mz2sr1xa00c-2-vpc.alikafka.aliyuncs.com:9092,alikafka-pre-cn-7mz2sr1xa00c-3-vpc.alikafka.aliyuncs.com:9092
-  2022-08-03 19:21:44 afba2fbc-76b2-41ce-bda0-477374c43def [verbose] TopicName:  HelloTopic
-  FC Initialize End RequestId: afba2fbc-76b2-41ce-bda0-477374c43def
-  FC Invoke Start RequestId: afba2fbc-76b2-41ce-bda0-477374c43def
-  load code for handler:index.handler
-  2022-08-03 19:21:44 afba2fbc-76b2-41ce-bda0-477374c43def [verbose] connect ok
-  2022-08-03 19:21:49 afba2fbc-76b2-41ce-bda0-477374c43def [verbose] delivery-report: producer ok
-  FC Invoke End RequestId: afba2fbc-76b2-41ce-bda0-477374c43def
+  c-62f075a3-58d34b2b8b444083bb972022-08-08 10:32:13FC Initialize Start RequestId: c47410a0-ada0-45d8-863f-a9343feaa47e
+  c-62f075a3-58d34b2b8b444083bb972022-08-08 10:32:13load code for handler:index.initialize
+  c-62f075a3-58d34b2b8b444083bb972022-08-08 10:32:132022-08-08 10:32:13 c47410a0-ada0-45d8-863f-a9343feaa47e [verbose] Servers:  alikafka-pre-cn-7mz2sr1xa00c-1-vpc.alikafka.aliyuncs.com:9092
+  c-62f075a3-58d34b2b8b444083bb972022-08-08 10:32:132022-08-08 10:32:13 c47410a0-ada0-45d8-863f-a9343feaa47e [verbose] TopicName:  HelloTopic
+  c-62f075a3-58d34b2b8b444083bb972022-08-08 10:32:132022-08-08 10:32:13 c47410a0-ada0-45d8-863f-a9343feaa47e [verbose] connect ok
+  c-62f075a3-58d34b2b8b444083bb972022-08-08 10:32:13FC Initialize End RequestId: c47410a0-ada0-45d8-863f-a9343feaa47e
+  c-62f075a3-58d34b2b8b444083bb972022-08-08 10:32:13FC Invoke Start RequestId: c47410a0-ada0-45d8-863f-a9343feaa47e
+  c-62f075a3-58d34b2b8b444083bb972022-08-08 10:32:13load code for handler:index.handler
+  c-62f075a3-58d34b2b8b444083bb972022-08-08 10:32:132022-08-08 10:32:13 c47410a0-ada0-45d8-863f-a9343feaa47e [verbose] delivery-report err:  null
+  c-62f075a3-58d34b2b8b444083bb972022-08-08 10:32:132022-08-08 10:32:13 c47410a0-ada0-45d8-863f-a9343feaa47e [verbose] delivery-report content:  {
+    topic: 'HelloTopic',
+    partition: 8,
+    offset: 19,
+    key: null,
+    timestamp: 1659925933345,
+    value: <Buffer 7b 0a 20 20 20 20 22 6b 65 79 31 22 3a 20 22 4e 6f 64 65 6a 73 31 34 22 2c 0a 20 20 20 20 22 6b 65 79 32 22 3a 20 22 76 61 6c 75 65 32 22 2c 0a 20 20 ... 20 more bytes>,
+    size: 70
+  }
+  c-62f075a3-58d34b2b8b444083bb972022-08-08 10:32:13FC Invoke End RequestId: c47410a0-ada0-45d8-863f-a9343feaa47e
   ```
   
   - 登陆Kafka控制台，查看对应实例的对应Topic`消息详情`，找到对应分区，即可查询到相应消息。

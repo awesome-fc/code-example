@@ -47,6 +47,10 @@ services:
         timeout: 60
         initializationTimeout: 20
         initializer: index.initialize
+        instanceLifecycleConfig:      # 扩展函数
+          preStop:                    # PreStop 函数
+            handler: index.preStop    # 函数入口
+            timeout: 60               # 超时时间
         environmentVariables:
           BOOTSTRAP_SERVERS: "{{bootstrapServers}}"       # 设置成你自己的Kafka接入点
           TOPIC_NAME: "{{topicName}}"   # 设置成要发送消息的Topic

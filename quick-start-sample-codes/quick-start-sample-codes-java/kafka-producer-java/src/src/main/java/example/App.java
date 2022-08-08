@@ -24,7 +24,7 @@ public class App implements StreamRequestHandler, FunctionInitializer {
     KafkaProducer<String, String> producer;
 
     @Override
-     public void initialize(Context context) {
+    public void initialize(Context context) {
         // Get the environment variables
         BOOTSTRAP_SERVERS = System.getenv("BOOTSTRAP_SERVERS");
         TOPIC_NAME = System.getenv("TOPIC_NAME");
@@ -39,10 +39,10 @@ public class App implements StreamRequestHandler, FunctionInitializer {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
 
         producer = new KafkaProducer<>(props);
-     }
+    }
 
     @Override
-     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
+    public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
         // Read the inputStream
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
@@ -63,6 +63,5 @@ public class App implements StreamRequestHandler, FunctionInitializer {
         RecordMetadata recordMetadata = metadataFuture.get();
         context.getLogger().info("Produce ok: " + recordMetadata.toString() + "\n Payload: " + value);
         outputStream.write(("Produce ok: " + recordMetadata.toString() + "\n Payload: " + value).getBytes());
-     }
-        
+    }
 }

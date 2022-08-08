@@ -112,22 +112,7 @@
   - 即可查看到模拟事件触发函数后的结果。
 
 ```bash
-========= FC invoke Logs begin =========
-FC Invoke Start RequestId: ae8994c8-03fe-4d65-8726-3529e4150c80
-2022-08-03T08:39:51.098Z ae8994c8-03fe-4d65-8726-3529e4150c80 [INFO] main.go:73: sending the message to kafka: test go kafka producer!
-%3|1659515992.098|FAIL|rdkafka#producer-1| [thrd:123:9092/bootstrap]: 123:9092/bootstrap: Failed to connect to broker at 0.0.0.123:9092: Invalid argument (after 1ms in state CONNECT, 1 identical error(s) suppressed)
-FC Invoke End RequestId: ae8994c8-03fe-4d65-8726-3529e4150c80
 
-Duration: 2001.49 ms, Billed Duration: 2002 ms, Memory Size: 128 MB, Max Memory Used: 16.54 MB
-========= FC invoke Logs end =========
-
-FC Invoke instanceId: c-62ea33c8-fad19eba6bb641218616
-
-FC Invoke Result:
-"Finish sending the message to kafka: test go kafka producer!"
-
-
-End of method: invoke
 ```
 
 ​		
@@ -144,14 +129,7 @@ End of method: invoke
   日志如下：
   
   ```bash
-  2022/08/03 08:40:51.351737 start
-  FC Initialize Start RequestId: 21319b27-95ac-47ba-a62b-00324fb76aa0
-  2022-08-03 16:40:51 21319b27-95ac-47ba-a62b-00324fb76aa0 [INFO] main.go:35: Initializing the kafka config
-  FC Initialize End RequestId: 21319b27-95ac-47ba-a62b-00324fb76aa0
-  FC Invoke Start RequestId: 89973d15-8831-4326-9f93-4f84fa5b074c
-  2022-08-03 16:40:53 89973d15-8831-4326-9f93-4f84fa5b074c [INFO] main.go:73: sending the message to kafka: test kafka producer go!
-  2022/08/03 08:40:53.874318 Send OK topic:HelloTopic partition:6 offset:16 content:test kafka producer go
-  FC Invoke End RequestId: 89973d15-8831-4326-9f93-4f84fa5b074c
+
   ```
   
   - 登陆Kafka控制台，查看对应实例的对应Topic`消息详情`，找到对应分区，即可查询到相应消息。

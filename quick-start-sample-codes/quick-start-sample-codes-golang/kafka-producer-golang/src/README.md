@@ -84,7 +84,7 @@
 
 #### 4. 配置环境变量与实例生命周期回调
 
-在函数详情中的`函数配置`模块设置环境变量并在实例生命周期回调中开启Initializer 回调程序。
+在函数详情中的`函数配置`模块设置环境变量并在实例生命周期回调中开启Initializer与PreStop回调程序。
 
 其中环境变量：
 
@@ -111,10 +111,11 @@
  ```bash
 2022/07/31 04:27:48.315016 start
 FC Initialize Start RequestId: f1326a21-5f69-4090-8283-beb458b2d257
-2022-07-31 12:27:48 f1326a21-5f69-4090-8283-beb458b2d257 [INFO] main.go:34: Initializing the kafka config
+2022-07-31 12:27:48 f1326a21-5f69-4090-8283-beb458b2d257 [INFO] main.go:37: Initializing the kafka config
 FC Initialize End RequestId: f1326a21-5f69-4090-8283-beb458b2d257
 FC Invoke Start RequestId: 7e7931d4-3f62-452e-86a7-4f8190bbabb7
-2022-07-31 12:27:49 7e7931d4-3f62-452e-86a7-4f8190bbabb7 [INFO] main.go:54: sending the message to kafka: test go!
+2022-07-31 12:27:49 7e7931d4-3f62-452e-86a7-4f8190bbabb7 [INFO] main.go:57: sending the message to kafka: test go!
+2022-07-31 12:27:49 7e7931d4-3f62-452e-86a7-4f8190bbabb7 [INFO] main.go:72: Delivered message to topic HelloTopic [9] at offset 23
 FC Invoke End RequestId: 7e7931d4-3f62-452e-86a7-4f8190bbabb7
 
  ```
@@ -163,7 +164,8 @@ FC Initialize Start RequestId: 85422744-98de-42a5-b9d6-67f3344f832d
 2022-07-31T04:37:27.149Z 85422744-98de-42a5-b9d6-67f3344f832d [INFO] main.go:37: Initializing the kafka config
 FC Initialize End RequestId: 85422744-98de-42a5-b9d6-67f3344f832d
 FC Invoke Start RequestId: 85422744-98de-42a5-b9d6-67f3344f832d
-2022-07-31T04:37:28.239Z 85422744-98de-42a5-b9d6-67f3344f832d [INFO] main.go:54: sending the message to kafka: test go!
+2022-07-31T04:37:28.239Z 85422744-98de-42a5-b9d6-67f3344f832d [INFO] main.go:57: sending the message to kafka: test go serverless devs!
+2022-07-31T04:37:28.249Z 85422744-98de-42a5-b9d6-67f3344f832d [INFO] main.go:72: Delivered message to topic HelloTopic [9] at offset 24
 FC Invoke End RequestId: 85422744-98de-42a5-b9d6-67f3344f832d
 
 Duration: 1001.97 ms, Billed Duration: 1002 ms, Memory Size: 128 MB, Max Memory Used: 16.16 MB

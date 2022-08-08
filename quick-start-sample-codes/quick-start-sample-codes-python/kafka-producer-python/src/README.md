@@ -71,7 +71,7 @@ zip code.zip -r ./*
 - BOOTSTRAP_SERVERS设置为Kafka实例详情内`接入点信息`对应的`默认接入点`地址。
 - TOPIC_NAME设置为相应发送消息到的Topic（需要在Kafka消息队列版中提前创建）
 
-Initializer设置为index.initialize；
+Initializer设置为index.initialize;
 
 层编辑添加之前构建好的依赖层。
 
