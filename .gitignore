@@ -3,8 +3,12 @@
 */.idea/
 */.s
 */*/.s
+*/*/*/.s
+*/*/*/*/.s
 */*.bak
 */*/*.bak
 */*/*.test
 java/*/target/
 .vscode
+node_modules
+package-lock.json
