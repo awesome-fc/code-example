@@ -1,6 +1,6 @@
-# python3 mysql 数据库示例
+# nodejs14 mysql 数据库示例
 
-快速部署一个 Python 3 的 Event 类型的读写 Mysql 数据库函数到阿里云函数计算。在本案例中提供公网方式连接到 RDS MySQL数据库。
+快速部署一个 nodejs14 的 Event 类型的读写 Mysql 数据库函数到阿里云函数计算。在本案例中提供公网方式连接到 RDS MySQL数据库。
 
 ## 前期准备
 使用该项目，推荐您拥有以下的产品权限 / 策略：
@@ -36,9 +36,9 @@
 
 ```shell
 # 安装依赖到 /code 目录
-cd code && pip3 install -r requirements.txt -t .
+cd code && npm install
 # 打包文件
-cd code && zip -r python3-mysql.zip *
+cd code && zip -r nodejs14-mysql.zip *
 ```
 
 创建函数并上传代码包
@@ -83,23 +83,28 @@ s deploy
   - 调用函数时收到的响应如下所示:
     ```bash
     ========= FC invoke Logs begin =========
-    FunctionCompute python3 runtime inited.
-    FC Initialize Start RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
-    FC Initialize End RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
-    FC Invoke Start RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
-    2022-03-31T02:57:49.693Z 28fa11ab-81da-4cd0-b050-xxxxxxxxxx [INFO] (3, 'wanger', 38)
-    FC Invoke End RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
-    Duration: 18.42 ms, Billed Duration: 19 ms, Memory Size: 128 MB, Max Memory Used: 34.80 MB
+    FC Invoke Start RequestId: 3a4cbdd0-f500-49ec-aaef-2cc7e9d4xxxx
+    2022-08-03T03:51:00.216Z 3a4cbdd0-f500-49ec-aaef-2cc7e9d4xxxx [verbose] INSERT I} changedRows: 0ue,
+    2022-08-03T03:51:00.246Z 3a4cbdd0-f500-49ec-aaef-2cc7e9d4xxxx [verbose] [ RowDataPacket { id: 3, name: 'wnager', age: 38 } ]
+    FC Invoke End RequestId: 3a4cbdd0-f500-49ec-aaef-2cc7e9d4xxxx
+    Duration: 134.35 ms, Billed Duration: 135 ms, Memory Size: 128 MB, Max Memory Used: 54.50 MB
     ========= FC invoke Logs end =========
+    FC Invoke instanceId: c-62e9f001-7f555b42921c4979xxxx
     FC Invoke Result:
-    user: (3, 'wanger', 38)
+    [{"id":3,"name":"wnager","age":38}]
     End of method: invoke
       ```
 - 端对端测试
   - 登陆 FC 控制台并测试函数
   - 控制台返回结果如下所示:
     ```bash
-    {name=wanger, id=3, age=38}
+    [
+      {
+        "id": 3,
+        "name": "wnager",
+        "age": 38
+      }
+    ]
     ```
 ## 数据库访问限制
   - 使用云数据库时，一般都会有访问控制，需要[设置 IP 白名单](https://help.aliyun.com/document_detail/96118.html),本案例作为测试，可以将白名单配置成 0.0.0.0/0。（不要在生产环境使用!)。
@@ -114,13 +119,13 @@ s deploy
 ## 常见问题
 - 未设置白名单，MySQL 网址或端口设置错误
     ```bash
-     "errorMessage": "(2003, \"Can't connect to MySQL server on 'rm-uf67i8axxxxxxxxxx.mysql.rds.aliyuncs.com' (timed out)\")",
+     "errorMessage": "getaddrinfo ENOTFOUND rm-uf6rrxxxxxxxxxxxxxxxx.mysql.rds.aliyuncs.com"
     ```
 - MySQL 用户名、密码错误
     ```bash
-     "errorMessage": "(1045, \"Access denied for user 'fc1'@'120.xx.xx.xx' (using password: YES)\")"
+     "errorMessage": "ER_ACCESS_DENIED_ERROR: Access denied for user'fc1'@'120.xx.xx.xx' (using password: YES)\")"
     ```
 - MySQL 数据库名称错误
     ```bash
-     "errorMessage": "(1049, \"Unknown database 'users1'\")"
-    ```     
+     "errorMessage": "ER_BAD_DB_ERROR: Unknown database 'users1'"
+    ```         

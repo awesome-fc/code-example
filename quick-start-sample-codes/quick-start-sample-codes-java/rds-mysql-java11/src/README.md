@@ -1,6 +1,6 @@
-# python3 mysql 数据库示例
+# java11 mysql示例
 
-快速部署一个 Python 3 的 Event 类型的读写 Mysql 数据库函数到阿里云函数计算。在本案例中提供公网方式连接到 RDS MySQL数据库。
+快速部署一个 java11 的 Event 类型的读写 Mysql 数据库函数到阿里云函数计算。在本案例中提供公网方式连接到 RDS MySQL数据库。
 
 ## 前期准备
 使用该项目，推荐您拥有以下的产品权限 / 策略：
@@ -26,39 +26,51 @@
 - 使用其它 MySQL 数据库
   - 需要提供正确的数据库 URL 地址、数据库名称、用户、密码，用于连接数据库
 
-<codepre id="codepre">
-
 ## 快速开始
-
 ### 方式一、使用控制台创建
 
-#### 1. 安装依赖和部署代码包
+#### 1. 编译打包
 
 ```shell
-# 安装依赖到 /code 目录
-cd code && pip3 install -r requirements.txt -t .
+# 编译部署
+mvn package
 # 打包文件
-cd code && zip -r python3-mysql.zip *
+cd target && zip -r java11-mysql.zip *
 ```
 
-创建函数并上传代码包
+#### 2. 创建函数
+选择服务（或创建服务）后，单击创建函数，如图所示
+- 选择 `从零开始创建`
+- 填入函数名称
+- 选择运行环境 java11/java8
+- 选择函数触发方式：通过事件请求触发
+- 其他设置使用默认
 
-#### 2. 设置initializer/preStop回调函数配置和环境变量配置
+
+
+> 详细创建函数流程见文档: [使用控制台创建函数](https://help.aliyun.com/document_detail/51783.html)
+
+#### 3. 设置initializer/preStop回调函数配置和环境变量配置
 
 回调函数配置
-![img_1.png](assets/20220331110743.jpg)
+![img_1.png](assets/20220411105111.jpg)
 
 环境变量配置
-![img_2.png](assets/20220331111048.jpg)
 
-#### 3. 调用测试
-![img_3.png](assets/20220331111218.jpg)
+![img_2.png](assets/20220411105312.jpg)
+
+#### 4. 测试函数
+
+返回结果如下所示
+```bash
+{name=wanger, id=3, age=5}
+```
 
 ### 方式二、使用 Serverless Devs 工具编译部署
 
 #### 1. 修改 s.yaml 配置
-  - 根据需要修改 access 配置
-  - 修改 environmentVariables 配置，填入 MYSQL_USER, MYSQL_PASSWORD, MYSQL_ENDPOING, MYSQL_PORT 和 MYSQL_DBNAME
+- 根据需要修改 access 配置
+- 修改 environmentVariables 配置，填入 JDBC_URL, JDBC_USER 和 JDBC_PASSWORD
 
 环境变量
 
@@ -72,8 +84,7 @@ cd code && zip -r python3-mysql.zip *
 
 #### 2. 部署
 
-```bash
-
+```shell
 s deploy
 ```
 
@@ -83,23 +94,26 @@ s deploy
   - 调用函数时收到的响应如下所示:
     ```bash
     ========= FC invoke Logs begin =========
-    FunctionCompute python3 runtime inited.
-    FC Initialize Start RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
-    FC Initialize End RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
-    FC Invoke Start RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
-    2022-03-31T02:57:49.693Z 28fa11ab-81da-4cd0-b050-xxxxxxxxxx [INFO] (3, 'wanger', 38)
-    FC Invoke End RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
-    Duration: 18.42 ms, Billed Duration: 19 ms, Memory Size: 128 MB, Max Memory Used: 34.80 MB
+    FC Initialize Start RequestId: 9fe60072-7fe2-4f62-9d13-xxxxxxx
+    [Name] Register [com.aliyun.serverless.runtime.classloader.FunctionClassLoader@58372a00] as [com.aliyun.serverless.runtime.classloader.FunctionClassLoader@com.aliyun.serverless.runtime.classloader.FunctionClassLoader@/code/HelloFCJava-1.0-SNAPSHOT.jar/code/original-HelloFCJava-1.0-SNAPSHOT.jar]: hash [8bbd2e0] (normal mode)
+    2022-07-19 04:21:54.577 [INFO] [9fe60072-7fe2-4f62-9d13-62fc04156f77] database connection time cost: 397ms
+    FC Initialize End RequestId: 9fe60072-7fe2-4f62-9d13-xxxxxxx
+    FC Invoke Start RequestId: 7581b7c4-bb40-4690-90d6-xxxxxxx
+    2022-07-19 04:21:59.539 [INFO] [7581b7c4-bb40-4690-90d6-xxxxxxx] Success - 1 rows affected.
+    2022-07-19 04:21:59.613 [INFO] [7581b7c4-bb40-4690-90d6-xxxxxxx] get user: {name=wanger, id=3, age=5}
+    FC Invoke End RequestId: 7581b7c4-bb40-4690-90d6-xxxxxxx
+    Duration: 108.03 ms, Billed Duration: 109 ms, Memory Size: 128 MB, Max Memory Used: 109.13 MB
     ========= FC invoke Logs end =========
+    FC Invoke instanceId: c-62d63161-a82af772bxxxxxxx
     FC Invoke Result:
-    user: (3, 'wanger', 38)
+    {name=wanger, id=3, age=5}
     End of method: invoke
       ```
 - 端对端测试
   - 登陆 FC 控制台并测试函数
   - 控制台返回结果如下所示:
     ```bash
-    {name=wanger, id=3, age=38}
+    {name=wanger, id=3, age=5}
     ```
 ## 数据库访问限制
   - 使用云数据库时，一般都会有访问控制，需要[设置 IP 白名单](https://help.aliyun.com/document_detail/96118.html),本案例作为测试，可以将白名单配置成 0.0.0.0/0。（不要在生产环境使用!)。
@@ -108,19 +122,21 @@ s deploy
     参考文档：[配置网络](https://help.aliyun.com/document_detail/72959.html)
     - 公网方式
     参考文档：[配置固定公网IP地址](https://help.aliyun.com/document_detail/410740.html)
+  - 本示例不是连接池方式，若要使用连接池，可以参考文档 [Connection Pooling with Connector/J](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-usagenotes-j2ee-concepts-connection-pooling.html)
+
 
 本应用仅作为学习和参考使用，您可以基于本项目进行二次开发和完善，实现自己的业务逻辑
 
 ## 常见问题
 - 未设置白名单，MySQL 网址或端口设置错误
     ```bash
-     "errorMessage": "(2003, \"Can't connect to MySQL server on 'rm-uf67i8axxxxxxxxxx.mysql.rds.aliyuncs.com' (timed out)\")",
+     "errorMessage": "Communications link failure\n\nThe last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server."
     ```
 - MySQL 用户名、密码错误
     ```bash
-     "errorMessage": "(1045, \"Access denied for user 'fc1'@'120.xx.xx.xx' (using password: YES)\")"
+     "errorMessage": "Access denied for user 'fc'@'120.76.207.131' (using password: YES)"
     ```
 - MySQL 数据库名称错误
     ```bash
-     "errorMessage": "(1049, \"Unknown database 'users1'\")"
-    ```     
+     "errorMessage": "Unknown database 'users1'"
+     ```
