@@ -1,0 +1,38 @@
+{
+  "statefulConfig": {
+    "functionId": "d7f0b564-6681-4e9b-aeec-76899e3c6213",
+    "functionName": "oss-trigger-event-function-java",
+    "description": "hello world by serverless devs",
+    "runtime": "java11",
+    "handler": "example.App::handleRequest",
+    "timeout": 60,
+    "initializer": "",
+    "initializationTimeout": 60,
+    "codeSize": 4215007,
+    "codeChecksum": "13152088902385548043",
+    "memorySize": 128,
+    "gpuMemorySize": null,
+    "environmentVariables": {},
+    "createdTime": "2022-07-21T03:00:40Z",
+    "lastModifiedTime": "2022-07-22T08:04:07Z",
+    "instanceConcurrency": 1,
+    "instanceSoftConcurrency": null,
+    "customContainerConfig": null,
+    "caPort": null,
+    "instanceType": "e1",
+    "layers": null,
+    "instanceLifecycleConfig": {
+      "preFreeze": {
+        "handler": "",
+        "timeout": 3
+      },
+      "preStop": {
+        "handler": "",
+        "timeout": 3
+      }
+    },
+    "customDNS": null,
+    "customRuntimeConfig": null,
+    "name": "oss-trigger-event-function-java"
+  }
+}

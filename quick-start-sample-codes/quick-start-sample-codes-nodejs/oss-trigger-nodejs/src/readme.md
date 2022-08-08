@@ -1,20 +1,20 @@
-# oss-trigger-fc-event-java11 帮助文档
+# oss-trigger-fc-event-nodejs14 帮助文档
 
 <p align="center" class="flex justify-center">
     <a href="https://www.serverless-devs.com" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=oss-trigger-fc-event-java11&type=packageType">
+    <img src="http://editor.devsapp.cn/icon?package=oss-trigger-fc-event-nodejs14&type=packageType">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=oss-trigger-fc-event-java11" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=oss-trigger-fc-event-java11&type=packageVersion">
+  <a href="http://www.devsapp.cn/details.html?name=oss-trigger-fc-event-nodejs14" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=oss-trigger-fc-event-nodejs14&type=packageVersion">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=oss-trigger-fc-event-java11" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=oss-trigger-fc-event-java11&type=packageDownload">
+  <a href="http://www.devsapp.cn/details.html?name=oss-trigger-fc-event-nodejs14" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=oss-trigger-fc-event-nodejs14&type=packageDownload">
   </a>
 </p>
 
 <description>
 
-快速部署一个 Java 11 的 Event 类型的 OSS trigger 函数到阿里云函数计算。
+快速部署一个 Node.js 14 的 Event 类型的 OSS trigger 函数到阿里云函数计算。
 
 </description>
 
@@ -24,25 +24,24 @@
 
 | 服务/业务 | 函数计算 |
 | --- |  --- |
-| 权限/策略 | AliyunFCFullAccess |
+| 权限/策略 | AliyunFCFullAccess |  
 
 使用该项目，您需要准备好以下资源：
 
 | 服务/业务 | OSS                             |
 | --- |---------------------------------|
-| 资源/创建 | OSS Bucket                      |
+| 资源/创建 | OSS Bucket                      |  
 | 资源/上传 | 图片文件 (JPEG, PNG) 上传至 OSS Bucket |
 
 | 服务/业务 | 访问控制(RAM) |
 | --- |  --- |
-| 资源/创建 | 确保 AliyunFCDefaultRole 存在，该权限内容可以参考[这里](https://help.aliyun.com/document_detail/181589.html) |
-
+| 资源/创建 | 确保 AliyunFCDefaultRole 存在，该权限内容可以参考[这里](https://help.aliyun.com/document_detail/181589.html) |  
 
 <codepre id="codepre">
 
 # 代码 & 预览
 
-- [ :smiley_cat:  源代码](https://github.com/devsapp/start-fc/blob/main/event-function/oss-trigger-fc-event-java11)
+- [ :smiley_cat:  源代码](https://github.com/devsapp/start-fc/blob/main/event-function/oss-trigger-fc-event-nodejs14)
 - 为了能够成功部署本样例代码，您在部署过程中需要提供以下参数：
   - 地域 (region): 您需要通过这个参数配置您函数计算服务需要部署的地域，默认值为 cn-hangzhou (杭州)。
     - 为您提供的地域选项为：
@@ -66,7 +65,7 @@
       - us-east-1 (弗吉尼亚)
       - ap-south-1 (孟买)
   - 服务名 (service name): 您需要给您的函数计算服务进行命名，服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间，默认值为 oss-trigger-quick-start。
-  - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 oss-trigger-event-function-java。
+  - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 oss-triger-event-function-java。
   - OSS Bucket 资源所在区域 (oss bucket region): 您需要提供您上述资源准备中创建的 OSS bucket 的所在区域，地域选项同上述 region 参数。默认值 cn-hangzhou (杭州)
   - 账户ID (account id): 您需要提供主账户的 ID，以便函数计算获悉您 OSS bucket 的位置。
   - Bucket 名 (bucket name): 您需要提供您创建的 OSS bucket 的名称。
@@ -79,16 +78,15 @@
 
 <appcenter>
 
--  :fire:  通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=oss-trigger-fc-event-java11) ，
-   [![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=oss-trigger-fc-event-java11)  该应用。
+-  :fire:  通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=oss-trigger-fc-event-nodejs14) ，
+   [![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=oss-trigger-fc-event-nodejs14)  该应用。
 
-- </appcenter>
-
+</appcenter>
 - 通过 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 进行部署：
   - [安装 Serverless Devs Cli 开发者工具](https://www.serverless-devs.com/serverless-devs/install) ，并进行[授权信息配置](https://www.serverless-devs.com/fc/config) ；
-  - 初始化项目：`s init oss-trigger-fc-event-java11 -d oss-trigger-fc-event-java11`
+  - 初始化项目：`s init oss-trigger-fc-event-nodejs14 -d oss-trigger-fc-event-nodejs14`
   - 填入在以上模块介绍的参数
-  - 进入项目，并进行项目部署：`cd oss-trigger-fc-event-java11 && s deploy -y`
+  - 进入项目，并进行项目部署：`cd oss-trigger-fc-event-nodejs14 && s deploy -y`
 
 - 代码测试
   - 运行 `s cli fc-event oss` 生成 OSS Trigger 的 Event 样例参数
@@ -147,7 +145,7 @@
         "size": 122539
      },
   }
-   "region": "${regionName}",
+  "region": "${regionName}",
   ```
   - 使用测试样例进行触发测试，运行 `s cli fc invoke --service-name ${serviceNamme} --function-name ${functionName} --event-file event-template/oss-event.json --region ${regionName}`
   - 执行成功后您可以查询 OSS bucket，备份图片会被放入 copy 文件夹中。

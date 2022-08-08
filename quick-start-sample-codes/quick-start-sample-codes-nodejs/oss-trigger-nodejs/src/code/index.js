@@ -32,6 +32,7 @@ exports.handler = async function (event, context, callback) {
     let bucketName = events[0].oss.bucket.name;
 
     // 连接目标OSS
+    // Connect to the target OSS
     const client = new OSS({
         region: region,
         accessKeyId: accessKeyId,
@@ -45,14 +46,16 @@ exports.handler = async function (event, context, callback) {
     console.dir(events);
 
     // 从OSS中获取文件buffer
+    // Get file buffer from OSS
     let objectBuffer = await getBuffer(client, objectName);
     // 将文件buffer进行备份到OSS中
-    await putBuffer(client, objectBuffer, 'copy-' + objectName)
+    await putBuffer(client, objectBuffer, 'copy/' + objectName)
 
     callback(null, "done");
 }
 
 // 从OSS中下载文件
+// Download files from OSS
 async function putBuffer(client, objectBuffer, objectName) {
     try {
         console.log("上传文件备份:" + objectName);
@@ -64,6 +67,7 @@ async function putBuffer(client, objectBuffer, objectName) {
 }
 
 // 上传文件到OSS中
+// Upload files to OSS
 async function getBuffer(client, objectName) {
     try {
         console.log("下载:" + objectName);

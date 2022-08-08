@@ -1,0 +1,37 @@
+{
+  "statefulConfig": {
+    "serviceName": "oss-trigger-quick-start",
+    "description": "hello world by serverless devs",
+    "role": "acs:ram::1431999136518149:role/aliyunfcdefaultrole",
+    "logConfig": {
+      "project": "",
+      "logstore": "",
+      "enableRequestMetrics": false,
+      "enableInstanceMetrics": false,
+      "logBeginRule": "None"
+    },
+    "serviceId": "14be8fc4-0a69-420b-858a-6d9b354cdb37",
+    "createdTime": "2022-07-20T10:40:34Z",
+    "lastModifiedTime": "2022-07-22T08:04:07Z",
+    "vpcConfig": {
+      "vpcId": "",
+      "vSwitchIds": [],
+      "securityGroupId": "",
+      "role": "",
+      "anytunnelViaENI": null
+    },
+    "internetAccess": true,
+    "nasConfig": {
+      "userId": -1,
+      "groupId": -1,
+      "mountPoints": []
+    },
+    "vendorConfig": null,
+    "tracingConfig": {
+      "type": null,
+      "params": null,
+      "jaegerConfig": null
+    },
+    "name": "oss-trigger-quick-start"
+  }
+}

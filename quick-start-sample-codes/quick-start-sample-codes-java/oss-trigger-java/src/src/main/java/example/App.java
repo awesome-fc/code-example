@@ -41,6 +41,7 @@ public class App implements StreamRequestHandler {
 
         JSONObject events = JSONArray.parseObject(jsons);
         // 取出首个事件
+        // Get the first event
         JSONObject event = JSON.parseArray(events.getString("events").toString()).getJSONObject(0);
 
         JSONObject oss = event.getJSONObject("oss");
@@ -48,13 +49,17 @@ public class App implements StreamRequestHandler {
         String region = event.getString("region");
         String bucketName = oss.getJSONObject("bucket").getString("name");
         // Endpoint必须填写Bucket所在地域对应的Endpoint。以华东1（杭州）为例，Endpoint填写为https://oss-cn-hangzhou.aliyuncs.com。
-        String endpoint = "https://oss-" + region + ".aliyuncs.com";
+        // Endpoint must be the endpoint of bucket's region.For instance of hangzhou, the endpoint should be https://oss-cn-hangzhou.aliyuncs.com.
+        String endpoint = "https://oss-" + region + "-internal.aliyuncs.com";
 
         // 获取密钥信息，执行前，确保函数所在的服务配置了角色信息，并且角色需要拥有AliyunOSSFullAccess权限
+        // Obtain the key information. Before executing, make sure that the service where the function is located is configured with role information, and the role needs to have the AliyunOSSFullAccess permission.
         // 建议直接使用AliyunFCDefaultRole 角色
+        // It is recommended to use AliyunFCDefaultRole directly
         Credentials creds = context.getExecutionCredentials();
 
         // 创建OSSClient实例。
+        // Create the OSSClient instance
         OSS ossClient = new OSSClientBuilder().build(endpoint, creds.getAccessKeyId(), creds.getAccessKeySecret(), creds.getSecurityToken());
 
         OSSObject file = ossClient.getObject(bucketName, objectName);
@@ -64,11 +69,14 @@ public class App implements StreamRequestHandler {
             throw new FileNotFoundException();
         }
         // 依次填写Bucket名称（例如exampleBucket）和Object完整路径（例如exampleDir/exampleObject.txt）。Object完整路径中不能包含Bucket名称。
+        // Fill in the Bucket name (for example, exampleBucket) and the full object path (for example, exampleDir/exampleObject.txt) in sequence. The bucket name cannot be included in the full path of Object.
         ossClient.putObject(bucketName, "copy/" + objectName, file.getObjectContent());
 
         // 关闭文件
+        // Close the file
         file.close();
         // 关闭OSSClient
+        // Close the OSSClient
         ossClient.shutdown();
 
         outputStream.write(new String("done").getBytes());

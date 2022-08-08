@@ -82,7 +82,7 @@
 -  :fire:  通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=oss-trigger-fc-event-java11) ，
    [![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=oss-trigger-fc-event-java11)  该应用。
 
-- </appcenter>
+</appcenter>
 
 - 通过 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 进行部署：
   - [安装 Serverless Devs Cli 开发者工具](https://www.serverless-devs.com/serverless-devs/install) ，并进行[授权信息配置](https://www.serverless-devs.com/fc/config) ；
