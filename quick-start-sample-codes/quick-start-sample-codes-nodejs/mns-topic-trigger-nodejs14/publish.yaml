@@ -1,0 +1,119 @@
+Type: Application
+Name: mns-topic-trigger-fc-event-nodejs14
+Version: dev
+Provider:
+  - 阿里云
+Description: 快速部署一个 具备 mns topic 触发器 Event 类型的函数到阿里云函数计算。
+HomePage: https://github.com/devsapp/start-fc  
+Tags:
+  - 函数计算
+  - 新手入门
+Category: 新手入门
+Service:
+  函数计算:
+    Authorities:
+      - AliyunFCFullAccess
+      - AliyunMNSFullAccess
+    Runtime: nodejs14
+Parameters:
+  type: object
+  additionalProperties: false # 不允许增加其他属性
+  required: # 必填项
+    - region
+    - serviceName
+    - functionName
+    - accountId
+    - topicRegion
+    - topicName
+    - notifyContentFormat
+    - notifyStrategy
+  properties:
+    region:
+      title: 地域
+      type: string
+      default: cn-hangzhou
+      description: 创建应用所在的地区
+      enum:
+        - cn-beijing
+        - cn-hangzhou
+        - cn-shanghai
+        - cn-qingdao
+        - cn-zhangjiakou
+        - cn-huhehaote
+        - cn-shenzhen
+        - cn-chengdu
+        - cn-hongkong
+        - ap-southeast-1
+        - ap-southeast-2
+        - ap-southeast-3
+        - ap-southeast-5
+        - ap-northeast-1
+        - eu-central-1
+        - eu-west-1
+        - us-west-1
+        - us-east-1
+        - ap-south-1
+    serviceName:
+      title: 服务名
+      type: string
+      default: mns-topic-trigger-quick-start
+      description: 服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间
+    functionName:
+      title: 函数名
+      type: string
+      default: mns-topic-trigger-event-function-nodejs14
+      description: 函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间
+    accountId:
+      title: 主账号ID
+      type: string
+      description: 拥有 MNS 主题资源的主账号ID
+    topicRegion:
+      title: MNS 地域
+      type: string
+      default: cn-hangzhou
+      description: MNS 主题所在的地区
+      enum:
+        - cn-beijing
+        - cn-hangzhou
+        - cn-shanghai
+        - cn-qingdao
+        - cn-zhangjiakou
+        - cn-huhehaote
+        - cn-shenzhen
+        - cn-chengdu
+        - cn-hongkong
+        - ap-southeast-1
+        - ap-southeast-2
+        - ap-southeast-3
+        - ap-southeast-5
+        - ap-northeast-1
+        - eu-central-1
+        - eu-west-1
+        - us-west-1
+        - us-east-1
+        - ap-south-1
+    topicName:
+      title: MNS 主题名称
+      type: string
+      description: 同即将创建的函数同一地域下的已经创建的主题名称。
+    filterTag:
+      title: 消息过滤标签
+      type: string
+      default: ''
+      description: 填写消息过滤标签,可以设置为空值
+    notifyContentFormat:
+      title: Event 格式
+      type: string
+      default: JSON
+      description: 选择 JSON 或 STREAM 事件格式
+      enum:
+        - JSON
+        - STREAM
+    notifyStrategy:
+      title: 重试策略
+      type: string
+      default: BACKOFF_RETRY
+      description: 接收消息失败后的重试策略
+      enum:
+        - BACKOFF_RETRY
+        - EXPONENTIAL_DECAY_RETRY

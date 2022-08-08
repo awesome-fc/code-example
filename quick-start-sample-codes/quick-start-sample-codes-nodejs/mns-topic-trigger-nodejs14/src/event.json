@@ -1,0 +1,10 @@
+{
+  "TopicOwner":"topic account id",
+  "Message":"mock mns message",
+  "Subscriber":"subscriber account id",
+  "PublishTime":1658235558094,
+  "SubscriptionName":"test-5bf13c7e",
+  "MessageMD5":"652BF0E6297840015247C3xxxxxxx",
+  "TopicName":"fc-example",
+  "MessageId":"3405CA51807661353B3xxxxxxxx"
+}
