@@ -94,7 +94,7 @@ s invoke -e '{
 ```bash
 ========= FC invoke Logs begin =========
 FC Invoke Start RequestId: bb1f5703-7e9c-4494-8582-2cad07dbf9f7
-[Name] Register [com.aliyun.serverless.runtime.classloader.FunctionClassLoader@58372a00] as [com.aliyun.serverless.runtime.classloader.FunctionClassLoader@com.aliyun.serverless.runtime.classloader.FunctionClassLoader@/code/HelloFCJavaKafka-1.0-SNAPSHOT.jar/code/original-HelloFCJavaKafka-1.0-SNAPSHOT.jar]: hash [d4d9f0d4] (normal mode)
+[Name] Register [com.aliyun.serverless.runtime.classloader.FunctionClassLoader@58372a00] as [com.aliyun.serverless.runtime.classloader.FunctionClassLoader@com.aliyun.serverless.runtime.classloader.FunctionClassLoader@/code/HelloFCJava-1.0-SNAPSHOT.jar/code/original-HelloFCJava-1.0-SNAPSHOT.jar]: hash [d4d9f0d4] (normal mode)
 2022-07-30 08:53:46.510 [INFO] [bb1f5703-7e9c-4494-8582-2cad07dbf9f7] triggerTime: 2022-07-29T10:02:58Z
 2022-07-30 08:53:46.510 [INFO] [bb1f5703-7e9c-4494-8582-2cad07dbf9f7] triggerName: nodejs14-timer
 2022-07-30 08:53:46.510 [INFO] [bb1f5703-7e9c-4494-8582-2cad07dbf9f7] payload: TestPayload
