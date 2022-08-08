@@ -28,8 +28,6 @@ vars: # 全局变量
     name: "{{ serviceName }}"
     description: 'sls trigger by serverless devs'
     role: "acs:ram::{{ accountId }}:role/AliyunFCDefaultRole"
-  env:
-    triggerInterval: {{ triggerInterval }}
   trigger:
     logProject: "{{ logProject }}"
     sourceLogstore: "{{ sourceLogstore }}"
@@ -58,7 +56,6 @@ services:
         handler: main
         memorySize: 256
         timeout: 600
-        environmentVariables: ${vars.env}
       triggers:
         - name: sls-trigger-test
           type: log
