@@ -55,6 +55,10 @@ services:
         timeout: 60
         initializationTimeout: 20
         initializer: "true"
+        instanceLifecycleConfig:
+          preStop:
+            handler: "true"
+            timeout: 30
         environmentVariables:
           BOOTSTRAP_SERVERS: "{{bootstrapServers}}"       # 设置成你自己的Kafka接入点
           TOPIC_NAME: "{{topicName}}"   # 设置成要发送消息的Topic
