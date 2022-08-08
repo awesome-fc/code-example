@@ -2,13 +2,13 @@
 
 <p align="center" class="flex justify-center">
     <a href="https://www.serverless-devs.com" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=FCToODPSSamplePython3&type=packageType">
+    <img src="http://editor.devsapp.cn/icon?package=timer-trigger-fc-event-golang&type=packageType">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=FCToODPSSamplePython3" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=FCToODPSSamplePython3&type=packageVersion">
+  <a href="http://www.devsapp.cn/details.html?name=timer-trigger-fc-event-golang" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=timer-trigger-fc-event-golang&type=packageVersion">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=FCToODPSSamplePython3" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=FCToODPSSamplePython3&type=packageDownload">
+  <a href="http://www.devsapp.cn/details.html?name=timer-trigger-fc-event-golang" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=timer-trigger-fc-event-golang&type=packageDownload">
   </a>
 </p>
 
@@ -49,8 +49,8 @@
       - us-west-1 (硅谷)
       - us-east-1 (弗吉尼亚)
       - ap-south-1 (孟买)
-  - 服务名 (service name): 您需要给您的函数计算服务进行命名，服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间，默认值为 kafka-trigger-quick-start。
-  - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 kafka-trigger-event-function-golang。
+  - 服务名 (service name): 您需要给您的函数计算服务进行命名，服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间，默认值为 timer-trigger-quick-start。
+  - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 timer-trigger-event-function-golang。
   - 时间触发器表达式(cronExpression): 您需要填写表达式以触发函数，时间触发器表达式支持两种设置：@every、cron 表达。如：@every 1m / @every 1h30m。
   - 输入内容(payLoad): 代表触发器事件本身的输入内容。
 
