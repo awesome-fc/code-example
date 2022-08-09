@@ -65,8 +65,8 @@
   - vpcId: 我们推荐您使用VPC访问Kafka，选择创建Kafka实例时使用的VPC。注意需要在函数计算支持的 az。
   - vswitchIds:  使用vpc中的vswitch id，用于内网访问 kafka，注意需要在函数计算支持的az。
   - securityGroupId:  kafka 实例所在 vpc 的安全组id，可在`云服务器 ECS`控制台`网络与安全`菜单项找到。
-  - Kafka接入点 (bootstrapServers): 您购买的Kafka实例的默认接入点，可以在实例详情中
-  - topicName: Kafka实例的topic name，此topic的数据生产会触发部署函数，需要您提前创建。
+  - Kafka接入点 (bootstrapServers): 您购买的Kafka实例的默认接入点，可以在实例详情中找到。
+  - topicName: Kafka实例中某个topic name，此topic的数据生产会触发部署函数，需要您提前创建。
 
 </codepre>
 
