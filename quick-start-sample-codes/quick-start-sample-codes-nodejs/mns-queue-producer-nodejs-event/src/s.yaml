@@ -15,7 +15,7 @@
 #   有问题快来钉钉群问一下吧：33947367
 # ------------------------------------
 edition: 1.0.0
-name: mns-queue-trigger-app
+name: mns-queue-producer-app
 # access 是当前应用所需要的密钥信息配置：
 # 密钥配置可以参考：https://www.serverless-devs.com/serverless-devs/command/config
 # 密钥使用顺序可以参考：https://www.serverless-devs.com/serverless-devs/tool#密钥使用顺序与规范
@@ -23,13 +23,10 @@ access: "{{ access }}"
 
 vars: # 全局变量
   region: "{{ region }}"
-  accountId: "{{ accountId }}"
   service:
     name: "{{ serviceName }}"
     description: 'mns queue trigger by serverless devs'
-    role: "acs:ram::{{ accountId }}:role/AliyunFCDefaultRole"  
-  queueName: "{{ queueName }}"
-  isBase64Decode: {{ isBase64Decode }}
+    role: "acs:ram::${config(AccountID)}:role/AliyunFCDefaultRole" 
 
 services:
   osstrigger: # 业务名称/模块名称
@@ -43,22 +40,14 @@ services:
       service: ${vars.service}
       function:
         name: "{{ functionName }}"
-        description: 'mns queue trigger event function by serverless devs'
+        description: 'mns queue producer event function by serverless devs'
         runtime: nodejs14
         codeUri: ./code
         handler: index.handler
         memorySize: 128
         timeout: 60
-      triggers:  
-        - name: EBMNS       
-          type: eventbridge        
-          config:      
-            triggerEnable: true
-            asyncInvocationType: false
-            eventRuleFilterPattern: '{"source":["MNS-${this.props.function.name}-EBMNS"]}' 
-            eventSourceConfig:
-              eventSourceType: MNS
-              eventSourceParameters:
-                sourceMNSParameters:
-                  QueueName: ${vars.queueName}
-                  IsBase64Decode: ${vars.isBase64Decode}
+        initializationTimeout: 20
+        initializer: index.initialize
+        environmentVariables:
+          MNS_ENDPOINT: "{{ mnsEndpoint }}" # 设置MNS访问地址
+          MNS_QUEUE_NAME: "{{ mnsQueueName }}" # 设置MNS队列名称
