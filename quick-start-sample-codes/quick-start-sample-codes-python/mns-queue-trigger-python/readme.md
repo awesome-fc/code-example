@@ -62,7 +62,7 @@
         - us-west-1 (硅谷)
         - us-east-1 (弗吉尼亚)
         - ap-south-1 (孟买)
-    - 服务名 (service name): 您需要给您的函数计算服务进行命名，服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间，默认值为 mns-queue-trigger-quick-start。
+    - 服务名 (service name): 您需要给您的函数计算服务进行命名，服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间，默认值为 quick-start-sample-codes。
     - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 mns-queue-trigger-event-function-python。
     - 账户ID (account id): 您需要提供主账户的 ID。
     - 队列名 (queue name): 您需要提供您创建的 MNS queue 的名称。
