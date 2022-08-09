@@ -15,7 +15,7 @@
 #   有问题快来钉钉群问一下吧：33947367
 # ------------------------------------
 edition: 1.0.0
-name: rds-mysql-app
+name: mns-topic-producer-app
 # access 是当前应用所需要的密钥信息配置：
 # 密钥配置可以参考：https://www.serverless-devs.com/serverless-devs/command/config
 # 密钥使用顺序可以参考：https://www.serverless-devs.com/serverless-devs/tool#密钥使用顺序与规范
@@ -25,45 +25,37 @@ vars: # 全局变量
   region: "{{ region }}"
   service:
     name: "{{ serviceName }}"
-    description: 'rds mysql http service by serverless devs'
+    description: 'mns topic producer by serverless devs'
+    role: "acs:ram::${config(AccountID)}:role/AliyunFCDefaultRole" 
 
 services:
   osstrigger: # 业务名称/模块名称
     component:  fc # 组件名称，Serverless Devs 工具本身类似于一种游戏机，不具备具体的业务能力，组件类似于游戏卡，用户通过向游戏机中插入不同的游戏卡实现不同的功能，即通过使用不同的组件实现不同的具体业务能力
     actions:
-      pre-deploy:
-        - run: GO111MODULE=on go mod vendor
-          path: ./code
-        - run: GOOS=linux CGO_ENABLED=0 go build -o target/main main.go
-          path: ./code
+     pre-deploy:
+       - run: npm install
+         path: ./code
     props:
       region: ${vars.region}              # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
       service: ${vars.service}
       function:
         name: "{{ functionName }}"
-        description: 'mysql http function by serverless devs'
-        runtime: go1
-        codeUri: ./code/target
-        handler: main
+        description: 'mns topic trigger http function by serverless devs'
+        runtime: nodejs14
+        codeUri: ./code
+        handler: index.handler
         memorySize: 128
         timeout: 60
         initializationTimeout: 20
-        initializer: "true"
-        instanceLifecycleConfig:
-          preStop:
-            handler: "true"
-            timeout: 20
+        initializer: index.initialize
         environmentVariables:
-          MYSQL_USER: "{{ mysqlUser }}"                           
-          MYSQL_PASSWORD: "{{ mysqlPassword }}"
-          MYSQL_ENDPOING: "{{ mysqlUrl }}" 
-          MYSQL_PORT: "{{ mysqlPort }}"  
-          MYSQL_DBNAME: "{{ mysqlDatabase }}"
-      triggers:  
-        - name: httpTrigger    
-          type: http    
-          # qualifier: LATEST    
-          config:      
-            authType: anonymous      
-            methods:        
+          MNS_ENDPOINT: "{{ mnsEndpoint }}" # 设置MNS访问地址
+          MNS_TOPIC_NAME: "{{ mnsTopicName }}" # 设置MNS主题名称
+      triggers:
+        - name: httpTrigger
+          type: http
+          config:
+            authType: anonymous
+            methods:
+              - GET
               - POST
