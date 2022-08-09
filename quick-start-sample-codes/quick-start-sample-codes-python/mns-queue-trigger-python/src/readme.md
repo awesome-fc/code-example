@@ -1,20 +1,20 @@
-# mns-queue-trigger-fc-event-python3 帮助文档
+# mns-queue-trigger-python3 帮助文档
 
 <p align="center" class="flex justify-center">
     <a href="https://www.serverless-devs.com" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=mns-queue-trigger-fc-event-python3&type=packageType">
+    <img src="http://editor.devsapp.cn/icon?package=mns-queue-trigger-python3&type=packageType">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=mns-queue-trigger-fc-event-python3" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=mns-queue-trigger-fc-event-python3&type=packageVersion">
+  <a href="http://www.devsapp.cn/details.html?name=mns-queue-trigger-python3" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=mns-queue-trigger-python3&type=packageVersion">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=mns-queue-trigger-fc-event-python3" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=mns-queue-trigger-fc-event-python3&type=packageDownload">
+  <a href="http://www.devsapp.cn/details.html?name=mns-queue-trigger-python3" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=mns-queue-trigger-python3&type=packageDownload">
   </a>
 </p>
 
 <description>
 
-快速部署一个 Python 3.6 的 Event 类型的 MNS Queue trigger 函数到阿里云函数计算。
+快速部署一个由 Python3.6 实现的消息队列 MNS 触发器（队列模型）示例函数到阿里云函数计算。
 
 </description>
 
@@ -39,7 +39,7 @@
 
 # 代码 & 预览
 
-- [ :smiley_cat:  源代码](https://github.com/devsapp/start-fc/blob/main/event-function/mns-queue-trigger-fc-event-python3)
+- [ :smiley_cat:  源代码](https://github.com/devsapp/start-fc/blob/main/event-function/mns-queue-trigger-python3)
 - 为了能够成功部署本样例代码，您在部署过程中需要提供以下参数：
     - 地域 (region): 您需要通过这个参数配置您函数计算服务需要部署的地域，默认值为 cn-hangzhou (杭州)。
       - 为您提供的地域选项为：
@@ -76,19 +76,19 @@
 
 <appcenter>
 
--  :fire:  通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-trigger-fc-event-python3) ，
-[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-trigger-fc-event-python3)  该应用。 
+-  :fire:  通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-trigger-python3) ，
+[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-trigger-python3)  该应用。 
 
 </appcenter>
 
 - 通过 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 进行部署：
     - [安装 Serverless Devs Cli 开发者工具](https://www.serverless-devs.com/serverless-devs/install) ，并进行[授权信息配置](https://www.serverless-devs.com/fc/config) ；
-    - 初始化项目：`s init mns-queue-trigger-fc-event-python3 -d mns-queue-trigger-fc-event-python3` 
+    - 初始化项目：`s init mns-queue-trigger-python3 -d mns-queue-trigger-python3` 
     - 填入在以上模块介绍的参数
-    - 进入项目，并进行项目部署：`cd mns-queue-trigger-fc-event-python3 && s deploy -y`
+    - 进入项目，并进行项目部署：`cd mns-queue-trigger-python3 && s deploy -y`
   
-- 本地调试
-  - 运行 `s invoke --event-file event.json` 进行本地调试
+- 使用 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 调试
+  - 运行 `s invoke --event-file event.json` 进行调试
   - 文件 event.json 中的内容为模拟事件内容。
     ```bash
     {
@@ -126,7 +126,7 @@
     mns_queue trigger event = b'{  "id":"c2g71017-6f65-fhcf-a814-a396fc8d****",  "source":"MNS-Function-mnstrigger",  "specversion":"1.0",  "type":"mns:Queue:SendMessage",  "datacontenttype":"application/json; charset=utf-8",  "subject":"acs:mns:cn-hangzhou:164901546557****:queues/zeus",  "time":"2021-04-08T06:28:17.093Z",  "aliyunaccountid":"1649015465574023",  "aliyunpublishtime":"2021-10-15T07:06:34.028Z",  "aliyunoriginalaccountid":"164901546557****",  "aliyuneventbusname":"MNS-Function-mnstrigger",  "aliyunregionid":"cn-chengdu",  "aliyunpublishaddr":"42.120.XX.XX",  "data":{      "requestId":"606EA3074344430D4C81****",      "messageId":"C6DB60D1574661357FA227277445****",      "messageBody":"TEST"  }}'
     End of method: invoke
       ```
-- 端对端测试
+- 通过控制台调试
   - 登陆 MNS 控制台向队列发送一条消息
   ![img_1.jpg](https://cdn.jsdelivr.net/gh/penghuima/ImageBed@master/img/blog_file/PicGo-Github-ImgBed20220802120226.jpg)
   - 登陆函数计算控制台，找到刚才部署的函数，查看 `调用日志`, 如果没有开通日志请点击一键开通
