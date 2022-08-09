@@ -1,23 +1,25 @@
-# rds-mysql-fc-event-python3 帮助文档
+# rds-mysql-fc-event-nodejs14 帮助文档
 
 <p align="center" class="flex justify-center">
     <a href="https://www.serverless-devs.com" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=rds-mysql-fc-event-python3&type=packageType">
+    <img src="http://editor.devsapp.cn/icon?package=rds-mysql-fc-event-nodejs14&type=packageType">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=rds-mysql-fc-event-python3" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=rds-mysql-fc-event-python3&type=packageVersion">
+  <a href="http://www.devsapp.cn/details.html?name=rds-mysql-fc-event-nodejs14" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=rds-mysql-fc-event-nodejs14&type=packageVersion">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=rds-mysql-fc-event-python3" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=rds-mysql-fc-event-python3&type=packageDownload">
+  <a href="http://www.devsapp.cn/details.html?name=rds-mysql-fc-event-nodejs14" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=rds-mysql-fc-event-nodejs14&type=packageDownload">
   </a>
 </p>
 
 <description>
 
-快速部署一个 Python 3 的 Event 类型的读写 Mysql 数据库函数到阿里云函数计算。在本案例中提供公网方式连接到 RDS MySQL数据库。
+快速部署一个 Nodejs 14 的 Event 类型的读写 Mysql 数据库函数到阿里云函数计算。在本案例中提供公网方式连接到 RDS MySQL数据库。
+
 </description>
 
 ## 前期准备
+
 使用该项目，推荐您拥有以下的产品权限 / 策略：
 
 | 服务/业务 | 函数计算 |     
@@ -45,7 +47,7 @@
 
 # 代码 & 预览
 
-- [ :smiley_cat:  源代码](https://github.com/devsapp/start-fc/blob/main/event-function/rds-mysql-fc-event-python3)
+- [ :smiley_cat:  源代码](https://github.com/devsapp/start-fc/blob/main/event-function/rds-mysql-fc-event-nodejs14)
 - 为了能够成功部署本样例代码，您在部署过程中需要提供以下参数：
     - 地域 (region): 您需要通过这个参数配置您函数计算服务需要部署的地域，默认值为 cn-hangzhou (杭州)。
       - 为您提供的地域选项为：
@@ -69,13 +71,12 @@
         - us-east-1 (弗吉尼亚)
         - ap-south-1 (孟买)
     - 服务名 (service name): 您需要给您的函数计算服务进行命名，服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间，默认值为 rds-mysql-quick-start。
-    - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 rds-mysql-event-function-python。
+    - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 rds-mysql-event-function-nodejs。
     - MySQL 地址 (mysql url):  MySQL 地址,可登陆RDS控制台->实例列表->基本信息->网络类型->外网地址 查看，用于连接数据库。
     - MySQL 端口号 (mysql port):  MySQL 端口号,默认3306。
     - MySQL 数据库名称 (mysql database name):  MySQL 数据库名,可登陆RDS控制台->实例列表->数据库管理->数据库名称 查看，用于连接数据库。
     - MySQL 用户名 (mysql user): MySQL 用户,可登陆RDS控制台->实例列表->账号管理->用户账号 查看，用于连接数据库。
     - MySQL 密码 (mysql password):  MySQL 密码,可登陆RDS控制台->实例列表->账号管理->用户账号 查看，用于连接数据库。
-
 </codepre>
 
 <deploy>
@@ -84,17 +85,17 @@
 
 <appcenter>
 
--  :fire:  通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=rds-mysql-fc-event-python3) ，
-[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=rds-mysql-fc-event-python3)  该应用。 
+-  :fire:  通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=rds-mysql-fc-event-nodejs14) ，
+[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=rds-mysql-fc-event-nodejs14)  该应用。 
 
 </appcenter>
 
 - 通过 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 进行部署：
     - [安装 Serverless Devs Cli 开发者工具](https://www.serverless-devs.com/serverless-devs/install) ，并进行[授权信息配置](https://www.serverless-devs.com/fc/config) ；
-    - 初始化项目：`s init rds-mysql-fc-event-python3 -d rds-mysql-fc-event-python3` 
+    - 初始化项目：`s init rds-mysql-fc-event-nodejs14 -d rds-mysql-fc-event-nodejs14` 
     - 填入在以上模块介绍的参数
-    - 进入项目，并进行项目部署：`cd rds-mysql-fc-event-python3 && s deploy -y`
-  
+    - 进入项目，并进行项目部署：`cd rds-mysql-fc-event-nodejs14 && s deploy -y`
+
 ## 应用详情
 - 环境变量
 
@@ -104,30 +105,34 @@
 | MYSQL_PORT | String | 必填 | 3306 |   数据库端口 | 
 | MYSQL_DBNAME | String | 必填 | test |   数据库名称 | 
 | MYSQL_USER | String | 必填 | fc |   数据库用户名 |  
-| MYSQL_PASSWORD | String | 必填 | xxxxxxxx |   数据库密码 |  
-
+| MYSQL_PASSWORD | String | 必填 | xxxxxxxx |   数据库密码 |    
 - 使用 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 调试
   - 运行 `s invoke ` 进行远程调试
   - 调用函数时收到的响应如下所示:
     ```bash
     ========= FC invoke Logs begin =========
-    FunctionCompute python3 runtime inited.
-    FC Initialize Start RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
-    FC Initialize End RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
-    FC Invoke Start RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
-    2022-03-31T02:57:49.693Z 28fa11ab-81da-4cd0-b050-xxxxxxxxxx [INFO] (3, 'wanger', 38)
-    FC Invoke End RequestId: 28fa11ab-81da-4cd0-b050-xxxxxxxxxx
-    Duration: 18.42 ms, Billed Duration: 19 ms, Memory Size: 128 MB, Max Memory Used: 34.80 MB
+    FC Invoke Start RequestId: 3a4cbdd0-f500-49ec-aaef-2cc7e9d4xxxx
+    2022-08-03T03:51:00.216Z 3a4cbdd0-f500-49ec-aaef-2cc7e9d4xxxx [verbose] INSERT I} changedRows: 0ue,
+    2022-08-03T03:51:00.246Z 3a4cbdd0-f500-49ec-aaef-2cc7e9d4xxxx [verbose] [ RowDataPacket { id: 3, name: 'wnager', age: 38 } ]
+    FC Invoke End RequestId: 3a4cbdd0-f500-49ec-aaef-2cc7e9d4xxxx
+    Duration: 134.35 ms, Billed Duration: 135 ms, Memory Size: 128 MB, Max Memory Used: 54.50 MB
     ========= FC invoke Logs end =========
+    FC Invoke instanceId: c-62e9f001-7f555b42921c4979xxxx
     FC Invoke Result:
-    user: (3, 'wanger', 38)
+    [{"id":3,"name":"wnager","age":38}]
     End of method: invoke
       ```
 - 端对端测试
   - 登陆 FC 控制台并测试函数
   - 控制台返回结果如下所示:
     ```bash
-    {name=wanger, id=3, age=38}
+    [
+      {
+        "id": 3,
+        "name": "wnager",
+        "age": 38
+      }
+    ]
     ```
 - 数据库访问限制
   - 使用云数据库时，一般都会有访问控制，需要[设置 IP 白名单](https://help.aliyun.com/document_detail/96118.html),本案例作为测试，可以将白名单配置成 0.0.0.0/0。（不要在生产环境使用!)。
@@ -138,23 +143,23 @@
     参考文档：[配置固定公网IP地址](https://help.aliyun.com/document_detail/410740.html)
 
 本应用仅作为学习和参考使用，您可以基于本项目进行二次开发和完善，实现自己的业务逻辑
-</deploy>
 
-<appdetail id="flushContent">
+</deploy>
 
 # 常见问题
 - 未设置白名单，MySQL 网址或端口设置错误
     ```bash
-     "errorMessage": "(2003, \"Can't connect to MySQL server on 'rm-uf67i8axxxxxxxxxx.mysql.rds.aliyuncs.com' (timed out)\")",
+     "errorMessage": "getaddrinfo ENOTFOUND rm-uf6rrxxxxxxxxxxxxxxxx.mysql.rds.aliyuncs.com"
     ```
 - MySQL 用户名、密码错误
     ```bash
-     "errorMessage": "(1045, \"Access denied for user 'fc1'@'120.xx.xx.xx' (using password: YES)\")"
+     "errorMessage": "ER_ACCESS_DENIED_ERROR: Access denied for user'fc1'@'120.xx.xx.xx' (using password: YES)\")"
     ```
 - MySQL 数据库名称错误
     ```bash
-     "errorMessage": "(1049, \"Unknown database 'users1'\")"
-    ```     
+     "errorMessage": "ER_BAD_DB_ERROR: Unknown database 'users1'"
+    ```         
+<appdetail id="flushContent">
 
 </appdetail>
 
