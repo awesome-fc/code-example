@@ -25,7 +25,7 @@ vars: # 全局变量
   region: "{{ region }}"
   service:
     name: "{{ serviceName }}"
-    description: 'mns queue trigger by serverless devs'
+    description: 'mns queue demo by serverless devs'
     role: "acs:ram::${config(AccountID)}:role/AliyunFCDefaultRole" 
 
 services:

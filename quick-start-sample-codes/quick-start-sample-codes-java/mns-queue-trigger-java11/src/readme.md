@@ -1,20 +1,20 @@
-# mns-queue-trigger-fc-event-java11 帮助文档
+# mns-queue-trigger-java11 帮助文档
 
 <p align="center" class="flex justify-center">
     <a href="https://www.serverless-devs.com" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=mns-queue-trigger-fc-event-java11&type=packageType">
+    <img src="http://editor.devsapp.cn/icon?package=mns-queue-trigger-java11&type=packageType">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=mns-queue-trigger-fc-event-java11" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=mns-queue-trigger-fc-event-java11&type=packageVersion">
+  <a href="http://www.devsapp.cn/details.html?name=mns-queue-trigger-java11" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=mns-queue-trigger-java11&type=packageVersion">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=mns-queue-trigger-fc-event-java11" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=mns-queue-trigger-fc-event-java11&type=packageDownload">
+  <a href="http://www.devsapp.cn/details.html?name=mns-queue-trigger-java11" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=mns-queue-trigger-java11&type=packageDownload">
   </a>
 </p>
 
 <description>
 
-快速部署一个 JAVA 11 的 Event 类型的 MNS Queue trigger 函数到阿里云函数计算。
+快速部署一个由 Java11 实现的消息服务MNS(队列模型-消费者)触发器函数到阿里云函数计算。
 
 </description>
 
@@ -39,7 +39,7 @@
 
 # 代码 & 预览
 
-- [ :smiley_cat:  源代码](https://github.com/devsapp/start-fc/blob/main/event-function/mns-queue-trigger-fc-event-java11)
+- [ :smiley_cat:  源代码](https://github.com/devsapp/start-fc/blob/main/event-function/mns-queue-trigger-java11)
 - 为了能够成功部署本样例代码，您在部署过程中需要提供以下参数：
     - 地域 (region): 您需要通过这个参数配置您函数计算服务需要部署的地域，默认值为 cn-hangzhou (杭州)。
       - 为您提供的地域选项为：
@@ -65,8 +65,8 @@
     - 服务名 (service name): 您需要给您的函数计算服务进行命名，服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间，默认值为 mns-queue-trigger-quick-start。
     - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 mns-queue-trigger-event-function-java。
     - 账户ID (account id): 您需要提供主账户的 ID。
-    - 队列名 (queue name): 您需要提供您创建的 MNS queue 的名称。
-    - 解码（base64 decode）: 您选择是否自动解码队列中的消息内容，true 即自动解码。
+    - MNS 队列名 (queue name): 您需要提供您创建的 MNS queue 的名称。
+    - 是否解码（base64 decode）: 您选择是否自动解码队列中的消息内容，true 即自动解码。
 
 </codepre>
 
@@ -76,19 +76,19 @@
 
 <appcenter>
 
--  :fire:  通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-trigger-fc-event-java11) ，
-[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-trigger-fc-event-java11)  该应用。 
+-  :fire:  通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-trigger-java11) ，
+[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-trigger-java11)  该应用。
 
 </appcenter>
 
 - 通过 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 进行部署：
     - [安装 Serverless Devs Cli 开发者工具](https://www.serverless-devs.com/serverless-devs/install) ，并进行[授权信息配置](https://www.serverless-devs.com/fc/config) ；
-    - 初始化项目：`s init mns-queue-trigger-fc-event-java11 -d mns-queue-trigger-fc-event-java11` 
+    - 初始化项目：`s init mns-queue-trigger-java11 -d mns-queue-trigger-java11`
     - 填入在以上模块介绍的参数
-    - 进入项目，并进行项目部署：`cd mns-queue-trigger-fc-event-java11 && s deploy -y`
+    - 进入项目，并进行项目部署：`cd mns-queue-trigger-java11 && s deploy -y`
   
-- 本地调试
-  - 运行 `s invoke --event-file event.json` 进行本地调试
+- 使用 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 调试
+  - 运行 `s invoke --event-file event.json` 进行调试
   - 文件 event.json 中的内容为模拟事件内容。
     ```bash
     {
@@ -115,31 +115,37 @@
   - 调用函数时收到的响应如下所示:
     ```bash
     ========= FC invoke Logs begin =========
-    FC Invoke Start RequestId: de6a8ccd-488c-4dac-a129-xxxxxxxx
-    2022-07-25 12:31:07.234 [INFO] [de6a8ccd-488c-4dac-a129-xxxxxxxx] Input data: {  "id": "2C5424F2807661357FC66F46XXXXX",  "source": "MNS-java11-mns-queue-trigger-mns-queue-trigger-1",  "specversion": "1.0",  "type": "mns:Queue:SendMessage",  "datacontenttype": "application/json;charset=utf-8",  "subject": "acs:mns:cn-hangzhou:${AccountID}:queues/fc-example",  "time": "2022-07-22T06:34:27.9Z",  "aliyunaccountid": "${AccountID}",  "aliyunpublishtime": "2022-07-22T06:34:27.943Z",  "aliyunoriginalaccountid": "${AccountID}",  "aliyuneventbusname": "MNS-java11-mns-queue-trigger-mns-queue-trigger-1",  "aliyunregionid": "cn-hangzhou",  "aliyunpublishaddr": "172.20.xx.xx",  "data": {    "requestId": "62DA44F3373832393xxxxxx",    "messageId": "2C5424F2807661357FC66xxxxxx",    "messageBody": "bW9jayBtbnMgcXVldWUgbWVzc2FnZQ=="  }}
-    2022-07-25 12:31:07.237 [INFO] [de6a8ccd-488c-4dac-a129-xxxxxxxx] mns message: MnsQueueMessageFromEB{id='2C5424F2807661357FC66F46XXXXX', source='MNS-java11-mns-queue-trigger-mns-queue-trigger-1', specversion='1.0', type='mns:Queue:SendMessage', datacontenttype='application/json;charset=utf-8', subject='acs:mns:cn-hangzhou:${AccountID}:queues/fc-example', time='2022-07-22T06:34:27.9Z', aliyunaccountid='${AccountID}', aliyunpublishtime='2022-07-22T06:34:27.943Z', aliyunoriginalaccountid='${AccountID}', aliyuneventbusname='MNS-java11-mns-queue-trigger-mns-queue-trigger-1', aliyunregionid='cn-hangzhou', aliyunpublishaddr='172.20.xx.xx', data={requestId='62DA44F3373832393xxxxxx', messageId='2C5424F2807661357FC66xxxxxx', messageBody='bW9jayBtbnMgcXVldWUgbWVzc2FnZQ=='}}
-    2022-07-25 12:31:07.238 [INFO] [de6a8ccd-488c-4dac-a129-xxxxxxxx] publish time:2022-07-22T06:34:27.943
-    2022-07-25 12:31:07.238 [INFO] [de6a8ccd-488c-4dac-a129-xxxxxxxx] message trigger time cost:PT77H56M39.29524S
-    FC Invoke End RequestId: de6a8ccd-488c-4dac-a129-xxxxxxxx
-    Duration: 5.87 ms, Billed Duration: 6 ms, Memory Size: 256 MB, Max Memory Used: 105.04 MB
+    FC Invoke Start RequestId: 7dff8919-840c-4c74-a637-************
+    2022-08-09 12:38:19.120 [INFO] [7dff8919-840c-4c74-a637-************] Input data: {  "id":"c2g71017-6f65-fhcf-a814-a396fc8d****",  "source":"MNS-Function-mnstrigger",  "specversion":"1.0",  "type":"mns:Queue:SendMessage",  "datacontenttype":"application/json; charset=utf-8",  "subject":"acs:mns:cn-hangzhou:164901546557****:queues/zeus",  "time":"2021-04-08T06:28:17.093Z",  "aliyunaccountid":"16490154********",  "aliyunpublishtime":"2021-10-15T07:06:34.028Z",  "aliyunoriginalaccountid":"164901546557****",  "aliyuneventbusname":"MNS-Function-mnstrigger",  "aliyunregionid":"cn-chengdu",  "aliyunpublishaddr":"42.120.XX.XX",  "data":{      "requestId":"606EA3074344430D4C81****",      "messageId":"C6DB60D1574661357FA227277445****",      "messageBody":"bW9jayBtbnMgcXVldWUgbWVzc2FnZQo="  }}
+    2022-08-09 12:38:19.124 [INFO] [7dff8919-840c-4c74-a637-************] mns message: MnsQueueMessageFromEB{id='c2g71017-6f65-fhcf-a814-a396fc8d****', source='MNS-Function-mnstrigger', specversion='1.0', type='mns:Queue:SendMessage', datacontenttype='application/json; charset=utf-8', subject='acs:mns:cn-hangzhou:164901546557****:queues/zeus', time='2021-04-08T06:28:17.093Z', aliyunaccountid='16490154********', aliyunpublishtime='2021-10-15T07:06:34.028Z', aliyunoriginalaccountid='164901546557****', aliyuneventbusname='MNS-Function-mnstrigger', aliyunregionid='cn-chengdu', aliyunpublishaddr='42.120.XX.XX', data={requestId='606EA3074344430D4C81****', messageId='C6DB60D1574661357FA227277445****', messageBody='bW9jayBtbnMgcXVldWUgbWVzc2FnZQo='}}
+    2022-08-09 12:38:19.124 [INFO] [7dff8919-840c-4c74-a637-************] publish time:2021-10-15T07:06:34.028
+    2022-08-09 12:38:19.124 [INFO] [7dff8919-840c-4c74-a637-************] message trigger time cost:PT7157H31M45.096442S
+    FC Invoke End RequestId: 7dff8919-840c-4c74-a637-************
+
+    Duration: 6.10 ms, Billed Duration: 7 ms, Memory Size: 128 MB, Max Memory Used: 53.31 MB
     ========= FC invoke Logs end =========
-    FC Invoke instanceId: c-62de8bc3-a6ffb00d74e4xxxxxxxx
+
+    FC Invoke instanceId: c-62f25516-366d33f8cd914e0f8fcd
+
     FC Invoke Result:
     mock mns queue message
+
+
+
     End of method: invoke
       ```
-- 端对端测试
+- 通过控制台调试
   - 登陆 MNS 控制台向队列发送一条消息
   ![img_1.jpg](https://cdn.jsdelivr.net/gh/penghuima/ImageBed@master/img/blog_file/PicGo-Github-ImgBed20220802120226.jpg)
   - 登陆函数计算控制台，找到刚才部署的函数，查看 `调用日志`, 如果没有开通日志请点击一键开通
   - 函数日志内容如下所示:
     ```bash
-    FC Invoke Start RequestId: 2C5424F280767FBA7FFB7FEXXXXXX
-    2022-07-25 12:01:08.459 [INFO] [2C5424F280767FBA7FFB7FEXXXXXX] Input data: {"id":"2C5424F280767FBA7FFB7FEXXXXXX","source":"MNS-java11-mns-queue-trigger-mns-queue-trigger-1","specversion":"1.0","type":"mns:Queue:SendMessage","datacontenttype":"application/json;charset=utf-8","subject":"acs:mns:cn-hangzhou:${accountID}:queues/fc-example","time":"2022-07-25T12:01:07.673Z","aliyunaccountid":"${accountID}","aliyunpublishtime":"2022-07-25T12:01:07.788Z","aliyunoriginalaccountid":"${accountID}","aliyuneventbusname":"MNS-java11-mns-queue-trigger-mns-queue-trigger-1","aliyunregionid":"cn-hangzhou","aliyunpublishaddr":"172.20.xxx.xx","data":{"requestId":"62DE86034545391xxxxxxxx","messageId":"2C5424F280767FBA7FFB7FE44Axxxxxx","messageBody":"bW9jayBtbnMgcXVldWUgbWVzc2FnZQ=="}}
-    2022-07-25 12:01:08.986 [INFO] [2C5424F280767FBA7FFB7FEXXXXXX] mns message: MnsQueueMessageFromEB{id='2C5424F280767FBA7FFB7FEXXXXXX', source='MNS-java11-mns-queue-trigger-mns-queue-trigger-1', specversion='1.0', type='mns:Queue:SendMessage', datacontenttype='application/json;charset=utf-8', subject='acs:mns:cn-hangzhou:${accountID}:queues/fc-example', time='2022-07-25T12:01:07.673Z', aliyunaccountid='${accountID}', aliyunpublishtime='2022-07-25T12:01:07.788Z', aliyunoriginalaccountid='${accountID}', aliyuneventbusname='MNS-java11-mns-queue-trigger-mns-queue-trigger-1', aliyunregionid='cn-hangzhou', aliyunpublishaddr='172.20.xxx.xx', data={requestId='62DE86034545391xxxxxxxx', messageId='2C5424F280767FBA7FFB7FE44Axxxxxx', messageBody='bW9jayBtbnMgcXVldWUgbWVzc2FnZQ=='}}
-    2022-07-25 12:01:08.991 [INFO] [2C5424F280767FBA7FFB7FEXXXXXX] publish time:2022-07-25T12:01:07.788
-    2022-07-25 12:01:08.992 [INFO] [2C5424F280767FBA7FFB7FEXXXXXX] message trigger time cost:PT1.203067S
-    FC Invoke End RequestId: 2C5424F280767FBA7FFB7FEXXXXXX
+    FC Invoke Start RequestId: AC1A0123461A42A579932D9C********
+    2022-08-09 12:34:11.248 [INFO] [AC1A0123461A42A579932D9C********] Input data: {"id":"AC1A0123461A42A579932D9C********","source":"MNS-mns-queue-trigger-java11-t1-EBMNS","specversion":"1.0","type":"mns:Queue:SendMessage","datacontenttype":"application/json;charset=utf-8","subject":"acs:mns:cn-huhehaote:****************:queues/fc-example","time":"2022-08-09T12:34:11.065Z","aliyunaccountid":"****************","aliyunpublishtime":"2022-08-09T12:34:11.235Z","aliyunoriginalaccountid":"****************","aliyuneventbusname":"MNS-mns-queue-trigger-java11-t1-EBMNS","aliyunregionid":"cn-huhehaote","aliyunpublishaddr":"10.53.**.**","data":{"requestId":"62F254433130358F045141A2","messageId":"AC1A0123461A42A579932D9C********","messageBody":"demo_message_body"}}
+    2022-08-09 12:34:11.254 [INFO] [AC1A0123461A42A579932D9C********] mns message: MnsQueueMessageFromEB{id='AC1A0123461A42A579932D9C********', source='MNS-mns-queue-trigger-java11-t1-EBMNS', specversion='1.0', type='mns:Queue:SendMessage', datacontenttype='application/json;charset=utf-8', subject='acs:mns:cn-huhehaote:****************:queues/fc-example', time='2022-08-09T12:34:11.065Z', aliyunaccountid='****************', aliyunpublishtime='2022-08-09T12:34:11.235Z', aliyunoriginalaccountid='****************', aliyuneventbusname='MNS-mns-queue-trigger-java11-t1-EBMNS', aliyunregionid='cn-huhehaote', aliyunpublishaddr='10.53.**.**', data={requestId='62F254433130358F045141A2', messageId='AC1A0123461A42A579932D9C********', messageBody='demo_message_body'}}
+    2022-08-09 12:34:11.254 [INFO] [AC1A0123461A42A579932D9C********] publish time:2022-08-09T12:34:11.235
+    2022-08-09 12:34:11.255 [INFO] [AC1A0123461A42A579932D9C********] message trigger time cost:PT0.019821S
+    FC Invoke End RequestId: AC1A0123461A42A579932D9C********
     ```
 </deploy>
 

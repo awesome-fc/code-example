@@ -77,13 +77,13 @@
 <appcenter>
 
 -  :fire:  通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-trigger-nodejs) ，
-[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-trigger-nodejs)  该应用。 
+[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-trigger-nodejs)  该应用。
 
 </appcenter>
 
 - 通过 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 进行部署：
     - [安装 Serverless Devs Cli 开发者工具](https://www.serverless-devs.com/serverless-devs/install) ，并进行[授权信息配置](https://www.serverless-devs.com/fc/config) ；
-    - 初始化项目：`s init mns-queue-trigger-nodejs -d mns-queue-trigger-nodejs` 
+    - 初始化项目：`s init mns-queue-trigger-nodejs -d mns-queue-trigger-nodejs`
     - 填入在以上模块介绍的参数
     - 进入项目，并进行项目部署：`cd mns-queue-trigger-nodejs && s deploy -y`
   

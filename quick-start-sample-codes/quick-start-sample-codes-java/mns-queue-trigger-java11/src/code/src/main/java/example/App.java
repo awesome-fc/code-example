@@ -44,16 +44,14 @@ public class App implements StreamRequestHandler {
             context.getLogger().info("message trigger time cost:"+d);
 
             // 在此处添加消息处理逻辑
-            // TODO
 
             // 事件中的消息默认是base64编码的，需要进行解码
             // 若希望自动解码，可在 s.yaml 中设置 IsBase64Decode: true
-            outputStream.write(Base64.getDecoder().decode(mnsMessage.getData().getMessageBody()));
+            outputStream.write(mnsMessage.getData().getMessageBody().getBytes());
         } catch (Exception ex) {
             context.getLogger().error("mns message is not in json format.");
             outputStream.write(res.getBytes());
             throw new RuntimeException(ex.getMessage());
         }
     }
-
 }
