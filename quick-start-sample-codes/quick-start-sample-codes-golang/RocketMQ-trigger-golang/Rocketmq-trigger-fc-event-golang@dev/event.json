@@ -1,0 +1,11 @@
+{
+  "id": "878ai13h-1c70-h35i-14a7-7h3jaid2gj0f",
+  "type": "ui:Created:PostObject",
+  "dataschema": "http://taobao.com/item.json",
+  "subject": "my:subject",
+  "data": {
+    "body": "Hello eventbridge trigger !",
+    "number": 100
+  },
+  "source": "my.event"
+}

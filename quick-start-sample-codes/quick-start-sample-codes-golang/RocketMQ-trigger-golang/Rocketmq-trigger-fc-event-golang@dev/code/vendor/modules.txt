@@ -1,0 +1,8 @@
+# github.com/aliyun/fc-runtime-go-sdk v0.2.1
+## explicit; go 1.16
+github.com/aliyun/fc-runtime-go-sdk/fc
+github.com/aliyun/fc-runtime-go-sdk/fc/messages
+github.com/aliyun/fc-runtime-go-sdk/fccontext
+# github.com/thedevsaddam/gojsonq/v2 v2.5.2
+## explicit; go 1.13
+github.com/thedevsaddam/gojsonq/v2
