@@ -1,0 +1,91 @@
+Type: Application
+Name: kafka-producer-fc-event-java11
+Provider:
+  - 阿里云
+Version: dev
+Description: 快速部署一个可以生产消息至 Kafka 的函数到阿里云函数计算
+HomePage: https://github.com/devsapp/start-fc
+Tags:
+  - 函数计算
+  - 新手入门
+Category: 新手入门
+Service:
+  函数计算:
+    Runtime: Java11
+    Authorities:
+      - AliyunFCFullAccess
+      - AliyunKafkaFullAccess
+      - AliyunVPCReadOnlyAccess
+Parameters:
+  type: object
+  additionalProperties: false # 不允许增加其他属性
+  required: # 必填项
+    - region
+    - serviceName
+    - functionName
+    - vpcId
+    - securityGroupId
+    - vswitchIds
+    - bootstrapServers
+    - topicName
+  properties:
+    region:
+      title: 地域
+      type: string
+      default: cn-hangzhou
+      description: 创建应用所在的地区
+      enum:
+        - cn-beijing
+        - cn-hangzhou
+        - cn-shanghai
+        - cn-qingdao
+        - cn-zhangjiakou
+        - cn-huhehaote
+        - cn-shenzhen
+        - cn-chengdu
+        - cn-hongkong
+        - ap-southeast-1
+        - ap-southeast-2
+        - ap-southeast-3
+        - ap-southeast-5
+        - ap-northeast-1
+        - eu-central-1
+        - eu-west-1
+        - us-west-1
+        - us-east-1
+        - ap-south-1
+    serviceName:
+      title: 服务名
+      type: string
+      default: kafka-producer-quick-start
+      description: 服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间
+    functionName:
+      title: 函数名
+      type: string
+      default: kafka-producer-event-function-java11
+      description: 数据预处理函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间
+    vpcId:
+      title: kafka 实例所在 vpc id
+      type: string
+      default: vpc-******
+      description: VPC id。请注意需要填写函数计算支持的 az
+    vswitchIds:
+      title: kafka 实例所在 vswitchId
+      type: string
+      default: vsw-*****
+      description: vpc 中 vswitch id, 用于内网访问 kafka, 请注意需要填写函数计算支持的 az
+    securityGroupId:
+      title: kafka 实例所在 vpc 的 security group id
+      type: string
+      default: sg-*****
+      description: vpc 下安全组 id, 用于内网访问 kafka
+    bootstrapServers:
+      title: kafka 接入点
+      type: string
+      default: alikafka-*****
+      description: kafka 默认接入点, 可通过控制台获取
+    topicName:
+      title: kafka topic name
+      type: string
+      default: topic-a
+      description: kafka 实例的 topic name, 此topic的数据生产会触发部署函数
