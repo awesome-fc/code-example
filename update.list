@@ -47,3 +47,15 @@ quick-start-sample-codes/quick-start-sample-codes-java/rds-mysql-java11
 quick-start-sample-codes/quick-start-sample-codes-java/rds-mysql-http-java11
 quick-start-sample-codes/quick-start-sample-codes-golang/rds-mysql-golang
 quick-start-sample-codes/quick-start-sample-codes-golang/rds-mysql-http-golang
+quick-start-sample-codes/quick-start-sample-codes-golang/kafka-producer-golang
+quick-start-sample-codes/quick-start-sample-codes-java/kafka-producer-java
+quick-start-sample-codes/quick-start-sample-codes-nodejs/kafka-producer-nodejs
+quick-start-sample-codes/quick-start-sample-codes-python/kafka-producer-python
+quick-start-sample-codes/quick-start-sample-codes-golang/kafka-trigger-golang
+quick-start-sample-codes/quick-start-sample-codes-java/kafka-trigger-java
+quick-start-sample-codes/quick-start-sample-codes-nodejs/kafka-trigger-nodejs
+quick-start-sample-codes/quick-start-sample-codes-python/kafka-trigger-python
+quick-start-sample-codes/quick-start-sample-codes-golang/timer-trigger-golang
+quick-start-sample-codes/quick-start-sample-codes-java/timer-trigger-java
+quick-start-sample-codes/quick-start-sample-codes-nodejs/timer-trigger-nodejs
+quick-start-sample-codes/quick-start-sample-codes-python/timer-trigger-python
