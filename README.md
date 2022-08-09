@@ -1,14 +1,27 @@
 
 # 简介
 本仓库是函数计算各 runtime 相关的示例和最佳实践建议。
-- Python runtime 代码开发文档: [Python runtime](https://help.aliyun.com/document_detail/74753.html) 。
-- Nodejs runtime 代码开发文档: [Nodejs runtime](https://help.aliyun.com/document_detail/74754.html) 。
-- Java runtime 代码开发文档: [Java runtime](https://help.aliyun.com/document_detail/74755.html) 。
-- Golang runtime 代码开发文档: [Golang runtime](https://help.aliyun.com/document_detail/323505.html) 。
-- Custom runtime 代码开发文档: [Custom runtime](https://help.aliyun.com/document_detail/132042.html) 。
+- [Python Runtime 代码开发](https://help.aliyun.com/document_detail/74753.html)
+- [Nodejs Runtime 代码开发](https://help.aliyun.com/document_detail/74754.html)
+- [PHP Runtime 代码开发](https://help.aliyun.com/document_detail/89028.html)
+- [Java Runtime 代码开发](https://help.aliyun.com/document_detail/74755.html)
+- [Golang Runtime 代码开发](https://help.aliyun.com/document_detail/323505.html)
+- [C# Runtime 代码开发](https://help.aliyun.com/document_detail/112377.html)
+- [Custom Runtime 代码开发](https://help.aliyun.com/document_detail/132044.html) 。
+
+> 注意： 标准Runtime python/nodejs/java/php/golang 与 custom runtime python/nodejs/golang 是不同的运行时。
+
+## 函数计算快速开始代码示例（FC Quick Start samples）
+
+
+| 示例名称                          | 运行时  | 类型  | 第三方服务  | 介绍                                                         |
+| --------------------------------- | ------- | ------- | ----------- | ------------------------------------------------------------ |
+| mns-queue-producer-python3-event | python3.6 | 事件请求处理程序(Event Handler) | 消息队列MNS(队列模型) | 快速部署一个由 Python3.6 事件类型实现的消息服务MNS(队列模型-生产者)示例函数到阿里云函数计算。 |
+| mns-queue-producer-python3-http | python3.6 | HTTP请求处理程序（HTTP Handler） |  消息队列MNS(队列模型) |       快速部署一个由 Python3.6 事件类型实现的消息服务MNS(队列模型-生产者)示例函数到阿里云函数计算。|
+| mns-queue-trigger-python |  python3.6 | MNS队列触发器（By EventBridge） | 消息队列 MNS(队列模型) | 快速部署一个由 Python3.6 实现的消息服务MNS(队列模型-消费者)触发器函数到阿里云函数计算。 |
+| | | |  | |
 
 ## FC Runtime 示例
-> 注意： python/nodejs/golang runtime 与 custom python/nodejs/golang runtime 是不同的运行时，custom runtime 文档请参考 [Custom runtime](https://help.aliyun.com/document_detail/132044.html) 。
 
 - python
     - python3-mysql: 使用initializer和preStop回调函数的mysql示例程序。
@@ -22,7 +35,7 @@
     - java11-mysql: 使用initializer和preStop回调函数的mysql示例程序。
 - golang
     - golang-oss: 当上传图片至 oss ,触发函数自动缩放图片并重新回传至oss 。
-    
+  
 
 ## Custom Runtime 示例
 

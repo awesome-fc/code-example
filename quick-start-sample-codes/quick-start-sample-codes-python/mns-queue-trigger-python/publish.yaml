@@ -3,8 +3,8 @@ Name: mns-queue-trigger-python3
 Version: dev
 Provider:
   - 阿里云
-Description: 快速部署一个具备 mns queue 触发器 Event 类型的图像处理函数到阿里云函数计算。
-HomePage: https://github.com/devsapp/start-fc  #这个就到时候对应 项目网站
+Description: 快速部署一个由 Python3.6 实现的消息服务MNS(队列模型-消费者)触发器函数到阿里云函数计算。
+HomePage: https://github.com/devsapp/start-fc 
 Tags:
   - 函数计算
   - 新手入门
