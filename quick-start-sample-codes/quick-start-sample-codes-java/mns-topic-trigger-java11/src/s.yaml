@@ -23,11 +23,10 @@ access: "{{ access }}"
 
 vars: # 全局变量
   region: "{{ region }}"
-  accountId: "{{ accountId }}"
   service:
     name: "{{ serviceName }}"
     description: 'mns topic trigger by serverless devs'
-    role: "acs:ram::{{ accountId }}:role/AliyunFCDefaultRole"   
+    role: "acs:ram::${config(AccountID)}:role/AliyunFCDefaultRole"   
   topicRegion: "{{ topicRegion }}"
   topicName: "{{ topicName }}"
   filterTag: "{{ filterTag }}"
@@ -39,8 +38,8 @@ services:
     component:  fc # 组件名称，Serverless Devs 工具本身类似于一种游戏机，不具备具体的业务能力，组件类似于游戏卡，用户通过向游戏机中插入不同的游戏卡实现不同的功能，即通过使用不同的组件实现不同的具体业务能力
     actions:
      pre-deploy:
-       - run: s build --use-docker
-         path: ./
+       - run: mvn package
+         path: ./code
     props:
       region: ${vars.region}              # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
       service: ${vars.service}
@@ -48,16 +47,16 @@ services:
         name: "{{ functionName }}"
         description: 'mns topic trigger event function by serverless devs'
         runtime: java11
-        codeUri: ./code
+        codeUri: ./code/target
         handler: example.App::handleRequest
         memorySize: 128
         timeout: 60
       triggers:
         - name: mns
           description: ''
-          sourceArn: acs:mns:${vars.topicRegion}:${vars.accountId}:/topics/${vars.topicName}
+          sourceArn: acs:mns:${vars.topicRegion}:${config(AccountID)}:/topics/${vars.topicName}
           type: mns_topic
-          role: acs:ram::${vars.accountId}:role/aliyunmnsnotificationrole
+          role: acs:ram::${config(AccountID)}:role/aliyunmnsnotificationrole
           qualifier: LATEST
           config:
             filterTag: ${vars.filterTag}

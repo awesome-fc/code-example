@@ -1,14 +1,14 @@
-# mns-topic-trigger-fc-event-golang 帮助文档
+# mns-topic-trigger-golang 帮助文档
 
 <p align="center" class="flex justify-center">
     <a href="https://www.serverless-devs.com" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=mns-topic-trigger-fc-event-golang&type=packageType">
+    <img src="http://editor.devsapp.cn/icon?package=mns-topic-trigger-golang&type=packageType">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=mns-topic-trigger-fc-event-golang" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=mns-topic-trigger-fc-event-golang&type=packageVersion">
+  <a href="http://www.devsapp.cn/details.html?name=mns-topic-trigger-golang" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=mns-topic-trigger-golang&type=packageVersion">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=mns-topic-trigger-fc-event-golang" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=mns-topic-trigger-fc-event-golang&type=packageDownload">
+  <a href="http://www.devsapp.cn/details.html?name=mns-topic-trigger-golang" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=mns-topic-trigger-golang&type=packageDownload">
   </a>
 </p>
 
@@ -40,7 +40,7 @@
 
 # 代码 & 预览
 
-- [ :smiley_cat:  源代码](https://github.com/devsapp/start-fc/blob/main/event-function/mns-topic-trigger-fc-event-golang)
+- [ :smiley_cat:  源代码](https://github.com/devsapp/start-fc/blob/main/event-function/mns-topic-trigger-golang)
 - 为了能够成功部署本样例代码，您在部署过程中需要提供以下参数：
     - 地域 (region): 您需要通过这个参数配置您函数计算服务需要部署的地域，默认值为 cn-hangzhou (杭州)。
       - 为您提供的地域选项为：
@@ -63,9 +63,8 @@
         - us-west-1 (硅谷)
         - us-east-1 (弗吉尼亚)
         - ap-south-1 (孟买)
-    - 服务名 (service name): 您需要给您的函数计算服务进行命名，服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间，默认值为 mns-topic-trigger-quick-start。
-    - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 mns-topic-trigger-event-function-golang。
-    - 账户ID (account id): 您需要提供主账户的 ID，以便函数计算获悉您 MNS 主题的位置。
+    - 服务名 (service name): 您需要给您的函数计算服务进行命名，服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间，默认值为 quick-start-sample-codes。
+    - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 mns-topic-trigger-golang。
     - MNS 主题资源所在区域 (mns topic region): 您需要提供您上述资源准备中创建的MNS 主题的所在区域，地域选项同上述 region 参数。默认值 cn-hangzhou (杭州)
     - 主题名 (topic name): 您需要提供您创建的 MNS topic 的名称。
     - 过滤标签 (filter tag): 可以跳过设置为空值，只有收到包含了此处设置的过滤标签字符串的消息时，才会触发函数执行。
@@ -80,16 +79,16 @@
 
 <appcenter>
 
--  :fire:  通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=mns-topic-trigger-fc-event-golang) ，
-[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=mns-topic-trigger-fc-event-golang)  该应用。 
+-  :fire:  通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=mns-topic-trigger-golang) ，
+[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=mns-topic-trigger-golang)  该应用。 
 
 </appcenter>
 
 - 通过 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 进行部署：
     - [安装 Serverless Devs Cli 开发者工具](https://www.serverless-devs.com/serverless-devs/install) ，并进行[授权信息配置](https://www.serverless-devs.com/fc/config) ；
-    - 初始化项目：`s init mns-topic-trigger-fc-event-golang -d mns-topic-trigger-fc-event-golang` 
+    - 初始化项目：`s init mns-topic-trigger-golang -d mns-topic-trigger-golang` 
     - 填入在以上模块介绍的参数
-    - 进入项目，并进行项目部署：`cd mns-topic-trigger-fc-event-golang && s deploy -y`
+    - 进入项目，并进行项目部署：`cd mns-topic-trigger-golang && s deploy -y`
   
 - 本地调试
   - 运行 `s invoke --event-file event.json` 进行本地调试
