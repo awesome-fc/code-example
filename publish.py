@@ -83,10 +83,10 @@ for eve_app in publish_list:
     # publish code.zip to oss
     os.chdir(workspace)
     try:
-        makefile = Path('%s/src/code/Makefile' % (eve_app))
+        makefile = Path('%s/src/Makefile' % (eve_app))
         if makefile.is_file():
             print("----------------------Makefile: ", makefile)
-            command = 'cd %s/src/code && make release' % (eve_app)
+            command = 'cd %s/src && make release' % (eve_app)
             print(command)
             child = subprocess.Popen(
                 command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, )
