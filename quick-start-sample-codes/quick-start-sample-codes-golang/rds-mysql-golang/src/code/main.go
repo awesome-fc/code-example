@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"github.com/aliyun/fc-runtime-go-sdk/fc"
+	"github.com/aliyun/fc-runtime-go-sdk/fccontext"
 	_ "github.com/go-sql-driver/mysql"
 )
 

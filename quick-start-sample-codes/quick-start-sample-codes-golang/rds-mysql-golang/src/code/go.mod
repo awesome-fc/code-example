@@ -1,4 +1,4 @@
-module main
+module github.com/awesome-fc/code-example/rds-mysql-golang
 
 go 1.17
 
