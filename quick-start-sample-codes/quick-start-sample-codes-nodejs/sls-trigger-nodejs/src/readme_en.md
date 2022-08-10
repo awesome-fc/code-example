@@ -36,7 +36,7 @@ To use this project, please prepare the following resources:
 
 | Service/Business | RAM |     
 | --- |  --- |   
-| Resource/Create | Make sure that AliyunFCDefaultRole already exists，which could refer to[here](https://help.aliyun.com/document_detail/181589.html) |  
+| Resource/Create | service role name should contain AliyunLogFullAccess permission |  
 
 
 <codepre id="codepre">
@@ -69,6 +69,7 @@ To use this project, please prepare the following resources:
     - service name: You need to name your Function Compute service. The service name can only contain letters, numbers, underscores, and dashes. Cannot start with a number or a dash.Length between 1-128.The default value is sls-trigger-quick-start.
     - function name: You need to name your function calculation function. The function name can only contain letters, numbers, underscores and dashes. Cannot start with a number or a dash. The length is between 1-64.The default value is sls-trigger-event-function-java.
     - account id: You need to provide the ID of the master account so that Function Compute can learn the location of your resource of SLS.
+    - service role name: You need to provide the name of the role in service config, which should contain AliyunLogFullAccess permission.
     - log project: You need to provide the name of the existed log project
     - source log store: You need to provide the name of the existed log store storing the source log data. The function would be triggered by the log data in the log store
     - max retry time: You need to provide the maximum number of retries on failed invocation. The range of the value is [0,100]

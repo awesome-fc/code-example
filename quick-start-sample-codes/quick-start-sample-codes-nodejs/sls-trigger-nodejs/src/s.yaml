@@ -27,7 +27,7 @@ vars: # 全局变量
   service:
     name: "{{ serviceName }}"
     description: 'sls trigger by serverless devs'
-    role: "acs:ram::{{ accountId }}:role/AliyunFCDefaultRole"
+    role: "acs:ram::{{ accountId }}:role/{{ serviceRoleName }}"
   env:
     triggerInterval: {{ triggerInterval }}
   trigger:
