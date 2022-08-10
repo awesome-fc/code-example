@@ -88,7 +88,7 @@
     - 进入项目，并进行项目部署：`cd mns-queue-producer-nodejs-http && s deploy -y`
   
 - 使用 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 调试
-  - 运行 `s invoke ` 进行远程调试
+  - 运行 `s invoke` 进行远程调试
   - 调用函数时收到的响应如下所示:
     ```bash
     ========= FC invoke Logs begin =========

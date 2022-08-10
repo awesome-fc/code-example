@@ -22,7 +22,6 @@ Parameters:
     - region
     - serviceName
     - functionName
-    - accountId
     - queueName
     - isBase64Decode
   properties:
