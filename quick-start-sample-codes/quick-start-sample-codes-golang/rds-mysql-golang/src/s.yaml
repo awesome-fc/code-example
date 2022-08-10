@@ -48,10 +48,10 @@ services:
         memorySize: 128
         timeout: 60
         initializationTimeout: 20
-        initializer: index.initialize
+        initializer: "true"
         instanceLifecycleConfig:
           preStop:
-            handler: index.pre_stop
+            handler: "true"
             timeout: 20
         environmentVariables:
           MYSQL_USER: "{{ mysqlUser }}"                           
