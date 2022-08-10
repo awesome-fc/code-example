@@ -36,7 +36,7 @@
 
 | 服务/业务 | 访问控制(RAM) |     
 | --- |  --- |   
-| 资源/创建 | 确保 AliyunFCDefaultRole 存在，该权限内容可以参考[这里](https://help.aliyun.com/document_detail/181589.html) |  
+| 资源/创建 | service role name, 服务配置角色，请确保该角色拥有 AliyunLogFullAccess 权限 |  
 
 <codepre id="codepre">
 
@@ -68,6 +68,7 @@
     - 服务名 (service name): 您需要给您的函数计算服务进行命名，服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间，默认值为 sls-trigger-quick-start。
     - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 sls-triger-event-function-java。
     - 账户ID (account id): 您需要提供主账户的 ID，以便函数计算获悉您 sls 资源的位置。
+    - 服务角色名（service role name）: 您需要提供服务的配置角色名称，请确保该角色拥有 AliyunLogFullAccess 权限
     - 日志项目名称 (log project): 您需要选择已创建的日志项目
     - 事件源日志库名称 (source log store): 您需要选择已创建的日志库提供事件源日志数据，触发器会定时从该日志仓库中订阅数据到函数服务进行自定义加工
     - 最大重试次数 (max retry time): 日志服务触发函数执行时，如果遇到错误，所允许的最大尝试次数，取值范围：[0,100]

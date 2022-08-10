@@ -24,6 +24,7 @@ Parameters:
     - serviceName
     - functionName
     - accountId
+    - serviceRoleName
     - logProject
     - sourceLogstore
     - maxRetryTime
@@ -69,6 +70,10 @@ Parameters:
       title: 主账号ID
       type: string
       description: 拥有 SLS LogProject 以及 LogStore 资源的主账号ID
+    serviceRoleName:
+      title: 服务角色名称
+      type: string
+      description: 为服务配置的角色名称，必须包含 AliyunLogFullAccess 权限
     logProject:
       title: 日志项目名称
       type: string
