@@ -1,21 +1,22 @@
-# mns-queue-producer-fc-event-java11 帮助文档
+# mns-queue-producer-java11-event 帮助文档
 
 <p align="center" class="flex justify-center">
     <a href="https://www.serverless-devs.com" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=mns-queue-producer-fc-event-java11&type=packageType">
+    <img src="http://editor.devsapp.cn/icon?package=mns-queue-producer-java11-event&type=packageType">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=mns-queue-producer-fc-event-java11" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=mns-queue-producer-fc-event-java11&type=packageVersion">
+  <a href="http://www.devsapp.cn/details.html?name=mns-queue-producer-java11-event" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=mns-queue-producer-java11-event&type=packageVersion">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=mns-queue-producer-fc-event-java11" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=mns-queue-producer-fc-event-java11&type=packageDownload">
+  <a href="http://www.devsapp.cn/details.html?name=mns-queue-producer-java11-event" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=mns-queue-producer-java11-event&type=packageDownload">
   </a>
 </p>
 
 <description>
 
-快速部署一个[消息服务MNS](https://help.aliyun.com/document_detail/27414.html) 队列模型生产者示例函数到阿里云函数计算，与函数计算中的 MNS 队列触发器一起实现了消息服务的生产者-消费者模型。其中MNS 队列触发器函数可查看应用 [mns-queue-trigger-fc-event-java11](http://www.devsapp.cn/details.html?name=mns-queue-trigger-fc-event-java11)
+快速部署一个由 Java 事件类型实现的[消息服务MNS](https://help.aliyun.com/document_detail/27414.html) (队列模型-生产者)示例函数到阿里云函数计算，与 MNS 队列触发器示例一起实现了MNS消息服务的生产者-消费者模型。其中 MNS 队列触发器函数可查看应用 [mns-queue-trigger-java11](http://www.devsapp.cn/details.html?name=mns-queue-trigger-java11)
 
+本示例支持的运行时: java11, java8
 </description>
 
 ## 前期准备
@@ -39,7 +40,7 @@
 
 # 代码 & 预览
 
-- [ :smiley_cat:  源代码](https://github.com/devsapp/start-fc/blob/main/event-function/mns-queue-producer-fc-event-java11)
+- [ :smiley_cat:  源代码](https://github.com/devsapp/start-fc/blob/main/event-function/mns-queue-producer-java11-event)
 - 为了能够成功部署本样例代码，您在部署过程中需要提供以下参数：
     - 地域 (region): 您需要通过这个参数配置您函数计算服务需要部署的地域，默认值为 cn-hangzhou (杭州)。
       - 为您提供的地域选项为：
@@ -63,9 +64,9 @@
         - us-east-1 (弗吉尼亚)
         - ap-south-1 (孟买)
     - 服务名 (service name): 您需要给您的函数计算服务进行命名，服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间，默认值为mns-queue-producer-quick-start。
-    - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 mns-queue-producer-event-function-java。
-    - 账户ID (account id): 您需要提供主账户的 ID。
-    - 队列名 (queue name): 您需要提供您创建的 MNS queue 的名称。
+    - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 mns-queue-producer-java11-event。
+    - MNS 接入点 (mns endpoint): 访问 mns 的 endpoint。更多信息请参考 [获取MNS接入点](https://help.aliyun.com/document_detail/27450.htm?spm=a2c4g.11186623.0.0.58ad3df61rQTlY#section-yhc-ix5-300)
+    - MNS 队列名 (queue name): 您需要提供您创建的 MNS queue 的名称。更多信息请参考 [创建队列](https://help.aliyun.com/document_detail/34417.html)
 
 </codepre>
 
@@ -75,19 +76,19 @@
 
 <appcenter>
 
--  :fire:  通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-producer-fc-event-java11) ，
-[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-producer-fc-event-java11)  该应用。 
+-  :fire:  通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-producer-java11-event) ，
+[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=mns-queue-producer-java11-event)  该应用。 
 
 </appcenter>
 
 - 通过 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 进行部署：
     - [安装 Serverless Devs Cli 开发者工具](https://www.serverless-devs.com/serverless-devs/install) ，并进行[授权信息配置](https://www.serverless-devs.com/fc/config) ；
-    - 初始化项目：`s init mns-queue-producer-fc-event-java11 -d mns-queue-producer-fc-event-java11` 
+    - 初始化项目：`s init mns-queue-producer-java11-event -d mns-queue-producer-java11-event` 
     - 填入在以上模块介绍的参数
-    - 进入项目，并进行项目部署：`cd mns-queue-producer-fc-event-java11 && s deploy -y`
+    - 进入项目，并进行项目部署：`cd mns-queue-producer-java11-event && s deploy -y`
   
-- 本地调试
-  - 运行 `s invoke ` 进行本地调试
+- 使用 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 调试
+  - 运行 `s invoke ` 进行远程调试
   - 调用函数时收到的响应如下所示:
     ```bash
     ========= FC invoke Logs begin =========
@@ -105,7 +106,7 @@
     Send message succ, message id:2C5424F2807661357F986A8494E42B07, message body:demo_message_body
     End of method: invoke
       ```
-- 端对端测试
+- 通过控制台调试
   - 登陆 FC 控制台并测试函数
   - 控制台返回结果如下所示:
     ```bash

@@ -8,7 +8,9 @@
 */*.bak
 */*/*.bak
 */*/*.test
+*/*/*/src/s_dev.yaml
 java/*/target/
+*/*/*/src/code/target
 .vscode
 node_modules
 package-lock.json

@@ -24,7 +24,7 @@ public class App implements StreamRequestHandler, FunctionInitializer, PreStopHa
     @Override
     public void initialize(Context context) throws IOException {
         String MNS_ENDPOINT = System.getenv("MNS_ENDPOINT");
-        String MNS_QUEUE = System.getenv("MNS_QUEUE");
+        String MNS_QUEUE = System.getenv("MNS_QUEUE_NAME");
         String accessKeyId = context.getExecutionCredentials().getAccessKeyId();
         String accessKeySecret = context.getExecutionCredentials().getAccessKeySecret();
         if (accessKeyId.length() == 0 || accessKeySecret.length() == 0) {
@@ -32,12 +32,12 @@ public class App implements StreamRequestHandler, FunctionInitializer, PreStopHa
             context.getLogger().error(initErrorMessage);
             return;
         }
-        if (MNS_ENDPOINT.length() == 0) {
+        if (MNS_ENDPOINT == null || MNS_ENDPOINT.length() == 0) {
             initErrorMessage = "mns endpoint is not set";
             context.getLogger().error(initErrorMessage);
             return;
         }
-        if (MNS_QUEUE.length() == 0) {
+        if (MNS_QUEUE == null || MNS_QUEUE.length() == 0) {
             initErrorMessage = "mns queue is not set";
             context.getLogger().error(initErrorMessage);
             return;
@@ -84,11 +84,9 @@ public class App implements StreamRequestHandler, FunctionInitializer, PreStopHa
             ce.printStackTrace();
             throw new RuntimeException(ce.getMessage());
         } catch (ServiceException se) {
-            if (se.getErrorCode().equals("QueueNotExist"))
-            {
-                context.getLogger().error("Queue is not exist.Please create before use");
-            } else if (se.getErrorCode().equals("TimeExpired"))
-            {
+            if (se.getErrorCode().equals("QueueNotExist")) {
+                context.getLogger().error("Queue is not exist. Please create before use");
+            } else if (se.getErrorCode().equals("TimeExpired")) {
                 context.getLogger().error("The request is time expired. Please check your local machine timeclock");
             }
             se.printStackTrace();
