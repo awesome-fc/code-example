@@ -23,35 +23,33 @@ access: "{{ access }}"
 
 vars: # 全局变量
   region: "{{ region }}"
-  accountId: "{{ accountId }}"
   service:
     name: "{{ serviceName }}"
     description: 'mns queue producer by serverless devs'
-    role: "acs:ram::{{ accountId }}:role/AliyunFCDefaultRole" 
-  queueName: "{{ queueName }}"
+    role: "acs:ram::${config(AccountID)}:role/AliyunFCDefaultRole" 
 
 services:
-  osstrigger: # 业务名称/模块名称
+  hello-world: # 业务名称/模块名称
     component:  fc # 组件名称，Serverless Devs 工具本身类似于一种游戏机，不具备具体的业务能力，组件类似于游戏卡，用户通过向游戏机中插入不同的游戏卡实现不同的功能，即通过使用不同的组件实现不同的具体业务能力
     actions:
       pre-deploy:
-        - run: GO111MODULE=on go mod vendor
+        - run: GO111MODULE=on go mod download
           path: ./code
-        - run: GOOS=linux CGO_ENABLED=0 go build -o target/main main.go
+        - run: GO111MODULE=on GOOS=linux CGO_ENABLED=0 GOARCH=amd64 go build -o target/main main.go
           path: ./code
     props:
       region: ${vars.region}              # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
       service: ${vars.service}
       function:
         name: "{{ functionName }}"
-        description: 'mns queue trigger event function by serverless devs'
+        description: 'mns queue trigger function by serverless devs'
         runtime: go1
         codeUri: ./code/target
         handler: main
         memorySize: 128
         timeout: 60
         initializationTimeout: 20
-        initializer: index.initialize
+        initializer: "true"
         environmentVariables:
-          MnsEndpoint: "http://${vars.accountId}.mns.${vars.region}.aliyuncs.com" # 设置MNS访问地址
-          QueueName: ${vars.queueName} # 设置MNS队列名称
+          MNS_ENDPOINT: "{{ mnsEndpoint }}" # 设置MNS访问地址
+          MNS_QUEUE_NAME: "{{ mnsQueueName }}" # 设置MNS队列名称

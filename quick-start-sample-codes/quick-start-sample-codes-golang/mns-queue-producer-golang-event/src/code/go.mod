@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/aliyun/aliyun-mns-go-sdk v1.0.2
-	github.com/aliyun/fc-runtime-go-sdk v0.2.1
+	github.com/aliyun/fc-runtime-go-sdk v0.2.2
 )
 
 require (
