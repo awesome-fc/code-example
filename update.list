@@ -27,10 +27,10 @@ quick-start-sample-codes/quick-start-sample-codes-golang/mns-topic-trigger-golan
 quick-start-sample-codes/quick-start-sample-codes-java/mns-topic-trigger-java11
 quick-start-sample-codes/quick-start-sample-codes-nodejs/mns-topic-trigger-nodejs14
 quick-start-sample-codes/quick-start-sample-codes-python/mns-topic-trigger-python
-quick-start-sample-codes/quick-start-sample-codes-golang/mns-topic-producer-golang
-quick-start-sample-codes/quick-start-sample-codes-java/mns-topic-producer-java11
-quick-start-sample-codes/quick-start-sample-codes-nodejs/mns-topic-producer-nodejs14
-quick-start-sample-codes/quick-start-sample-codes-python/mns-topic-producer-python
+quick-start-sample-codes/quick-start-sample-codes-golang/mns-topic-producer-golang-event
+quick-start-sample-codes/quick-start-sample-codes-java/mns-topic-producer-java11-event
+quick-start-sample-codes/quick-start-sample-codes-nodejs/mns-topic-producer-nodejs14-event
+quick-start-sample-codes/quick-start-sample-codes-python/mns-topic-producer-python-event
 quick-start-sample-codes/quick-start-sample-codes-golang/mongodb-golang
 quick-start-sample-codes/quick-start-sample-codes-java/mongodb-java
 quick-start-sample-codes/quick-start-sample-codes-nodejs/mongodb-nodejs14
