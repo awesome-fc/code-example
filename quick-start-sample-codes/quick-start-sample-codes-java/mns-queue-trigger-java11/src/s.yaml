@@ -43,7 +43,7 @@ services:
         name: "{{ functionName }}"
         description: 'mns queue trigger function by serverless devs'
         runtime: java11
-        codeUri: ./code/target
+        codeUri: ./code/target/HelloFCJava-1.0-SNAPSHOT.jar
         handler: example.App::handleRequest
         memorySize: 128
         timeout: 60
