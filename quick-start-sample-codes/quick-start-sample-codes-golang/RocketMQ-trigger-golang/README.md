@@ -126,7 +126,7 @@
 
         ```
 - 端对端测试
-    - 运用golang的mq-http-go-sdk向RocketMQ消息队列发送消息,参考代码[sendMessage](https://github.com/awesome-fc/code-example/tree/master/quick-start-sample-codes/quick-start-sample-codes-golang/RocketMQ-trigger-golang/src/SendMessage),需要用户配置域名和ak等信息
+    - 运用golang的mq-http-go-sdk向RocketMQ消息队列发送消息,参考代码[sendMessage](./src/sendMessage),需要用户配置域名和ak等信息
     - 登陆函数计算控制台，找到刚才部署的函数，查看 `调用日志`, 如果没有开通日志请点击一键开通
     - 函数日志内容如下所示:
       ```bash
