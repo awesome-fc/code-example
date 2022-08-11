@@ -3,10 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
+
 	"github.com/aliyun/aliyun-mns-go-sdk"
 	"github.com/aliyun/fc-runtime-go-sdk/fc"
 	"github.com/aliyun/fc-runtime-go-sdk/fccontext"
-	"os"
 )
 
 var (

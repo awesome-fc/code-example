@@ -72,7 +72,7 @@ cd target && zip -r java11-mysql.zip *
 环境变量
 
 | 参数名称 | 参数类型 | 是否必填 | 例子 |   参数含义 | 
-| --- |  --- |  --- | --- | --- | --- | 
+| --- |  --- |  --- | --- | --- |
 | MYSQL_ENDPOING | String | 必填 | rm-uf6rrswxxxxxxxxxxxx.mysql.rds.aliyuncs.com |   数据库网址，用于连接数据库 |
 | MYSQL_PORT | String | 必填 | 3306 |   数据库端口 | 
 | MYSQL_DBNAME | String | 必填 | test |   数据库名称 | 

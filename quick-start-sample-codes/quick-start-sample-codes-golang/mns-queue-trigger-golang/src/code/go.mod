@@ -1,4 +1,4 @@
-module main
+module github.com/awesome-fc/code-example/mns-queue-trigger-golang
 
 go 1.17
 
