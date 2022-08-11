@@ -28,9 +28,10 @@ public class App implements StreamRequestHandler, FunctionInitializer, PreStopHa
 
     @Override
     public void initialize(Context context) throws IOException {
-        JDBC_URL = System.getenv("JDBC_URL");
-        JDBC_USER = System.getenv("JDBC_USER");
-        JDBC_PASSWORD = System.getenv("JDBC_PASSWORD");
+        // jdbc:mysql://<hostname>:<port>/<db>
+        JDBC_URL = "jdbc:mysql://"+System.getenv("MYSQL_ENDPOING")+":"+System.getenv("MYSQL_PORT")+"/"+System.getenv("MYSQL_DBNAME");
+        JDBC_USER = System.getenv("MYSQL_USER");
+        JDBC_PASSWORD = System.getenv("MYSQL_PASSWORD");
         long start = System.currentTimeMillis();
         try {
             // The newInstance() call is a work around for some

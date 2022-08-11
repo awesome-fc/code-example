@@ -52,7 +52,8 @@ services:
             handler: example.App::preStop
             timeout: 60
         environmentVariables:
-          # jdbc:mysql://<hostname>:<port>/<db>
-          JDBC_URL: jdbc:mysql://{{ mysqlUrl }}:{{ mysqlPort }}/{{ mysqlDatabase }} # 设置mysql数据库配置
-          JDBC_USER: "{{ mysqlUser }}"                             # 设置mysql数据库配置
-          JDBC_PASSWORD: "{{ mysqlPassword }}"                            # 设置mysql数据库配置
+          MYSQL_USER: "{{ mysqlUser }}"                           
+          MYSQL_PASSWORD: "{{ mysqlPassword }}"
+          MYSQL_ENDPOING: "{{ mysqlUrl }}" 
+          MYSQL_PORT: "{{ mysqlPort }}"  
+          MYSQL_DBNAME: "{{ mysqlDatabase }}"

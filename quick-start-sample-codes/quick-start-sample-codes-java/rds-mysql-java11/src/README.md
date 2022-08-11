@@ -76,9 +76,11 @@ cd target && zip -r java11-mysql.zip *
 
 | 参数名称 | 参数类型 | 是否必填 | 例子 |   参数含义 | 
 | --- |  --- |  --- | --- | --- |
-| JDBC_URL | String | 必填 | jdbc:mysql://{hostname}:{port}/{db} |   数据库网址，用于连接数据库 |
-| JDBC_USER | String | 必填 | fc |   数据库用户名 |  
-| JDBC_PASSWORD | String | 必填 | xxxxxxxx |   数据库密码 |   
+| MYSQL_ENDPOING | String | 必填 | rm-uf6rrswxxxxxxxxxxxx.mysql.rds.aliyuncs.com |   数据库网址，用于连接数据库 |
+| MYSQL_PORT | String | 必填 | 3306 |   数据库端口 | 
+| MYSQL_DBNAME | String | 必填 | test |   数据库名称 | 
+| MYSQL_USER | String | 必填 | fc |   数据库用户名 |  
+| MYSQL_PASSWORD | String | 必填 | xxxxxxxx |   数据库密码 |     
 
 #### 2. 部署
 
