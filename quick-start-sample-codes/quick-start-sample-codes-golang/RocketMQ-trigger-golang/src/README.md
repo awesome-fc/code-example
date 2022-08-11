@@ -64,11 +64,12 @@
             - ap-south-1 (孟买)
     - 服务名 (service name): 您需要给您的函数计算服务进行命名，服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间，默认值为 Rocketmq-trigger-quick-start。
     - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 Rocketmq-trigger-event-function-golang。
-    - 账户ID (account id): 您需要提供主账户的 ID。 
-    - InstanceId: 您需要提供同即将创建的函数同一地域下的已经创建的 RocketMQ实例ID 
-    - Topic: 您需要提供RocketMQ中的Topic 名称 
-    - Offset: 您需要提供消息的消费位点 
-    - GroupID: 您需要提供订阅消息的GroupID
+    - 账户ID (account id): 您需要提供主账户的 ID。
+    - 实例ID (InstanceId): 您需要提供同即将创建的函数同一地域下的已经创建的 RocketMQ实例ID
+    - 话题名 (Topic name): 您需要提供RocketMQ中的Topic 名称,Topic名称不能超过64个字符
+    - 过滤标签 (Tag): 您可以选择设置消息的过滤标签，默认为空
+    - 消费位点 (Offset): 您需要提供消息的消费位点,取值说明如下:CONSUME_FROM_LAST_OFFSET：从最新位点开始消费;CONSUME_FROM_FIRST_OFFSET：从最早位点开始消费;CONSUME_FROM_TIMESTAMP：从指定时间点的位点开始消费。
+    - 组ID (GroupID): 您需要提供订阅消息的GroupID,推荐使用http的GroupID
 
 </codepre>
 
@@ -99,8 +100,8 @@
         "dataschema": "http://taobao.com/item.json",
         "subject": "my:subject",
         "data": {
-        "body": "Hello eventbridge trigger !",
-        "number": 100
+          "body": "Hello eventbridge trigger !",
+          "number": 100
         },
         "source": "my.event"
        }
@@ -110,7 +111,7 @@
       ========= FC invoke Logs begin =========
       2022/08/09 06:48:24.037161 start
       FC Invoke Start RequestId: 291cbfd2-015f-4876-8253-054fcd8c83bc
-      2022-08-09T06:48:24.06Z 291cbfd2-015f-4876-8253-054fcd8c83bc [INFO] main.go:16: event:  {"data":{"body":"Hello eventbridge trigger !","number":100},"dataschema":"http://taobao.com/item.json","id":"878ai13h-1c70-h35i-14a7-7h3jaid2gj0f","source":"my.event","subject":"my:subject","type":"ui:Created:PostObject"}
+      2022-08-09T06:48:24.06Z 291cbfd2-015f-4876-8253-054fcd8c83bc [INFO] main.go:16: event:  {"data":{"body":"Hello eventbridge trigger !","number":100},"dataschema":"http://taobao.com/item.json","source":"my.event","subject":"my:subject","type":"ui:Created:PostObject"}
       FC Invoke End RequestId: 291cbfd2-015f-4876-8253-054fcd8c83bc
 
       Duration: 1.54 ms, Billed Duration: 2 ms, Memory Size: 128 MB, Max Memory Used: 9.70 MB
@@ -125,13 +126,12 @@
 
         ```
 - 端对端测试
-    - 运用golang的mq-http-go-sdk向RocketMQ消息队列发送消息
+    - 运用golang的mq-http-go-sdk向RocketMQ消息队列发送消息,参考代码[sendMessage](./sendMessage),需要用户配置域名和ak等信息
     - 登陆函数计算控制台，找到刚才部署的函数，查看 `调用日志`, 如果没有开通日志请点击一键开通
     - 函数日志内容如下所示:
       ```bash
       FC Invoke Start RequestId: 2F65CABC000E681A95152C6FED57659A
-      2022-08-09T07:05:42.428Z 2F65CABC000E681A95152C6FED57659A [INFO] main.go:16: event:  {"aliyunaccountid":"1431999136518149","aliyuneventbusname":"RocketMQ-RocketMQ-event-function-golang-EBRocketMQ","aliyunoriginalaccountid":"1431999136518149","aliyunpublishaddr":"172.17.3.64","aliyunpublishtime":"2022-08-09T07:05:42.415Z","aliyunregionid":"cn-shanghai","data":{"body":"i am yusha 24  years old!","msgId":"2F65CABC000E681A95152C6FED57659A","systemProperties":{"CONSUME_START_TIME":"1660028742094","KEYS":"62F2073C3743330E00B6E55F","MAX_OFFSET":"1","MIN_OFFSET":"0","MSG_REGION":"cn-shanghai","REAL_QID":"2","REAL_TOPIC":"MQ_INST_1431999136518149_BYLThj9G%yusha_demo","TAGS":"demo","TIMER_DEQUEUE_MS":"1660028742094","TIMER_ENQUEUE_MS":"1660028732000","TIMER_OUT_MS":"1660028741000","TRACE_ON":"true","UNIQ_KEY":"2F65CABC000E681A95152C6FED57659A","__FQN_TOPIC":"MQ_INST_1431999136518149_BYLThj9G%yusha_demo","__MESSAGE_DECODED_TIME":"1660028742094"},"topic":"yusha_demo","userProperties":{"BODY_MD5":"74C422F8284F47631D47CD3E5595D8EE","TIMER_DELIVER_MS":"1660028742000","__BORNHOST":"47.101.202.188","__STARTDELIVERTIME":"1660028742000","a":"1"}},"datacontenttype":"application/json;charset=utf-8","id":"2F65CABC000E681A95152C6FED57659A","source":"RocketMQ-RocketMQ-event-function-golang-EBRocketMQ","specversion":"1.0","subject":"acs:mq:cn-shanghai:1431999136518149:MQ_INST_1431999136518149_BYLThj9G%yusha_demo","time":"2022-08-09T07:05:32.759Z","type":"mq:Topic:SendMessage"}
-      FC Invoke End RequestId: 2F65CABC000E681A95152C6FED57659A
+      2022-08-09T07:05:42.428Z 2F65CABC000E681A95152C6FED57659A [INFO] main.go:16: event:  {"aliyunaccountid":"1431999xxxxxxx","aliyuneventbusname":"RocketMQ-RocketMQ-event-function-golang-EBRocketMQ","aliyunoriginalaccountid":"1431999xxxxxxxx","aliyunpublishaddr":"172.17.3.64","aliyunpublishtime":"2022-08-09T07:05:42.415Z","aliyunregionid":"cn-shanghai","data":{"body":"i am yusha 24  years old!","msgId":"2F65CABC000E681A95152C6FED57659A"}}
       ```
 </deploy>
 
