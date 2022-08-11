@@ -1,2 +1,2 @@
 release:
-	cd ./code && rm -rf ./target && pwd && mvn clean package
+	cd ./code && mvn clean package && cp .target/oss-trigger-1.0-SNAPSHOT-jar-with-dependencies.jar ./target/code.jar
