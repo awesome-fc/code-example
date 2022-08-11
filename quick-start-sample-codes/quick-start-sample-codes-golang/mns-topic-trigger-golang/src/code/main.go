@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+
 	"github.com/aliyun/fc-runtime-go-sdk/events"
 	"github.com/aliyun/fc-runtime-go-sdk/fc"
 	"github.com/aliyun/fc-runtime-go-sdk/fccontext"

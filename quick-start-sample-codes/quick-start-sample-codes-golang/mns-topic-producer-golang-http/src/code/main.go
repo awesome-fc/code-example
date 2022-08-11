@@ -3,11 +3,12 @@ package main
 import (
 	"context"
 	"fmt"
+	"net/http"
+	"os"
+
 	"github.com/aliyun/aliyun-mns-go-sdk"
 	"github.com/aliyun/fc-runtime-go-sdk/fc"
 	"github.com/aliyun/fc-runtime-go-sdk/fccontext"
-	"net/http"
-	"os"
 )
 
 var (

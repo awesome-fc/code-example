@@ -1,4 +1,4 @@
-module main
+module github.com/awesome-fc/code-example/mns-queue-producer-golang-event
 
 go 1.17
 
