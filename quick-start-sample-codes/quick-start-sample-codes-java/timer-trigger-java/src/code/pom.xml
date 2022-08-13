@@ -2,10 +2,10 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>example</groupId>
-  <artifactId>HelloFCJava</artifactId>
+  <artifactId>TimerFCJava</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>HelloFCJava</name>
+  <name>TimerFCJava</name>
 
   <dependencies>
     <dependency>

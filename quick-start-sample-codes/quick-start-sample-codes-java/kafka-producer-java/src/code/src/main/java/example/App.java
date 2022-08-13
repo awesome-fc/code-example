@@ -60,8 +60,13 @@ public class App implements StreamRequestHandler, FunctionInitializer {
         // Flush the internel queue, wait for message deliveries before return
         producer.flush();
 
-        RecordMetadata recordMetadata = metadataFuture.get();
-        context.getLogger().info("Produce ok: " + recordMetadata.toString() + "\n Payload: " + value);
-        outputStream.write(("Produce ok: " + recordMetadata.toString() + "\n Payload: " + value).getBytes());
+        try {
+            RecordMetadata recordMetadata = metadataFuture.get();
+            context.getLogger().info("Produce ok: " + recordMetadata.toString() + "\n Payload: " + value);
+            outputStream.write(("Produce ok: " + recordMetadata.toString() + "\n Payload: " + value).getBytes());
+        } catch(Exception e) {
+             context.getLogger().error("Send message to kafka fail: " + e.toString());
+             outputStream.write(("Produce fail: " + e.toString()).getBytes());
+        }  
     }
 }

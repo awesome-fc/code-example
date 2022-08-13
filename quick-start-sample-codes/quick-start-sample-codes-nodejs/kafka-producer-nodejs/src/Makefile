@@ -1,4 +1,2 @@
 release:
-	cd ./code
-	rm -rf ./node_modules
-	npm install
+	cd ./code && rm -rf ./node_modules && npm install
