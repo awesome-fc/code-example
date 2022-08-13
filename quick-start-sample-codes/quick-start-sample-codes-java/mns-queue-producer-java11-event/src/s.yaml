@@ -42,7 +42,7 @@ services:
         name: "{{ functionName }}"
         description: 'mns queue producer function by serverless devs'
         runtime: java11
-        codeUri: ./code/target
+        codeUri: ./code/target/HelloFCJava-1.0-SNAPSHOT.jar
         handler: example.App::handleRequest
         memorySize: 256
         timeout: 60
