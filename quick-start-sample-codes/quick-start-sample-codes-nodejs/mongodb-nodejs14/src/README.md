@@ -32,7 +32,7 @@ db.users.insert([
   {"name": "张三", "age": 18},
   {"name": "李四", "age": 20}
 ])
-
+```
 </table>
 
 <codepre id="codepre">
