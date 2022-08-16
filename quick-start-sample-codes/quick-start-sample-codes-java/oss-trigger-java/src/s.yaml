@@ -45,7 +45,7 @@ services:
         description: 'oss trigger event function by serverless devs'
         runtime: java11
         codeUri: ./code/target/oss-trigger-1.0-SNAPSHOT-jar-with-dependencies.jar
-        handler: example.App::handRequest
+        handler: example.App::handleRequest
         memorySize: 128
         timeout: 60
       triggers:
