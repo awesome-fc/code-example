@@ -1,4 +1,4 @@
-# RocketMQ-trigger-fc-event-golang 帮助文档
+# RocketMQ-trigger-fc-event-python 帮助文档
 
 <p align="center" class="flex justify-center">
     <a href="https://www.serverless-devs.com" class="ml-1">
@@ -63,7 +63,7 @@
             - us-east-1 (弗吉尼亚)
             - ap-south-1 (孟买)
     - 服务名 (service name): 您需要给您的函数计算服务进行命名，服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间，默认值为 Rocketmq-trigger-quick-start。
-    - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 Rocketmq-trigger-event-function-golang。
+    - 函数名 (function name): 您需要给您的函数计算函数进行命名，函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-64 之间。默认值为 Rocketmq-trigger-event-function-python。
     - 账户ID (account id): 您需要提供主账户的 ID。
     - 实例ID (InstanceId): 您需要提供同即将创建的函数同一地域下的已经创建的 RocketMQ实例ID
     - 话题名 (Topic name): 您需要提供RocketMQ中的Topic 名称,Topic名称不能超过64个字符
