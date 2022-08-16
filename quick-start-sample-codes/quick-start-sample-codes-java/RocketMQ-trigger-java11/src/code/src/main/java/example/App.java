@@ -25,14 +25,11 @@ public class App implements StreamRequestHandler {
         }
         String jsons = result.toString(StandardCharsets.UTF_8.name());
 
-        JSONObject events = JSONArray.parseObject(jsons);
-        // 取出首个事件
-        JSONObject event = JSON.parseArray(events.getString("events").toString()).getJSONObject(0);
-
+        JSONObject event = JSONArray.parseObject(jsons);
         JSONObject eventdata = event.getJSONObject("data");
-        String messageBody = (String) eventdata.getInnerMap().get("body");
-        outputStream.write(messageBody);
+        String messageBody = eventdata.getString("body");
+        logger.info("message body: " + messageBody);
+        outputStream.write(messageBody.getBytes());
 
-        outputStream.write(new String("done").getBytes());
     }
 }

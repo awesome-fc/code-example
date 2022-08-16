@@ -35,7 +35,7 @@ services:
     actions:
       pre-deploy:
         - run: mvn clean package
-          path: ./
+          path: ./code
     props:
       region: ${vars.region}              # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
       service: ${vars.service}
