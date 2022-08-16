@@ -26,7 +26,7 @@ services:
     actions: # 自定义执行逻辑，关于actions 的使用，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#行为描述
       pre-deploy:
         # Linux
-        - run: CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build main.go
+        - run: go mod tidy && CGO_ENABLED=1 GOOS=linux GOARCH=amd64 CGO_LDFLAGS="-static" go build main.go
           path: ./code
         # Mac 确保安装此Linux编译工具链-> brew install FiloSottile/musl-cross/musl-cross
         # - run: CGO_ENABLED=1 GOOS=linux GOARCH=amd64 CC=x86_64-linux-musl-gcc CGO_LDFLAGS="-static" go build -a -v -tags musl
