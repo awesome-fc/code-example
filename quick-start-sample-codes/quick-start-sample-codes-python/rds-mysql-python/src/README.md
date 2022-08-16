@@ -63,7 +63,7 @@ cd code && zip -r python3-mysql.zip *
 环境变量
 
 | 参数名称 | 参数类型 | 是否必填 | 例子 |   参数含义 | 
-| --- |  --- |  --- | --- | --- | --- | 
+| --- |  --- |  --- | --- | --- |
 | MYSQL_ENDPOING | String | 必填 | rm-uf6rrswxxxxxxxxxxxx.mysql.rds.aliyuncs.com |   数据库网址，用于连接数据库 |
 | MYSQL_PORT | String | 必填 | 3306 |   数据库端口 | 
 | MYSQL_DBNAME | String | 必填 | test |   数据库名称 | 
@@ -78,8 +78,8 @@ s deploy
 ```
 
 #### 3. 调用测试
-- 本地调试
-  - 运行 `s invoke ` 进行本地调试
+- 使用 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 调试
+  - 运行 `s invoke ` 进行远程调试
   - 调用函数时收到的响应如下所示:
     ```bash
     ========= FC invoke Logs begin =========

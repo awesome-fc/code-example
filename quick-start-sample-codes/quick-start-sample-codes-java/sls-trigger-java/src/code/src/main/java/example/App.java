@@ -2,20 +2,20 @@ package example;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import com.aliyun.fc.runtime.*;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import com.aliyun.openservices.log.Client;
-import com.aliyun.openservices.log.response.GetLogsResponse;
-import com.aliyun.openservices.log.common.QueriedLog;
-import com.aliyun.openservices.log.common.LogItem;
 import com.aliyun.openservices.log.exception.LogException;
 import com.aliyun.openservices.log.common.auth.DefaultCredentails;
-
-import java.util.Vector;
+import com.aliyun.openservices.log.request.PullLogsRequest;
+import com.aliyun.openservices.log.response.PullLogsResponse;
+import com.aliyun.openservices.log.common.LogGroupData;
+import com.aliyun.openservices.log.common.LogItem;
+import com.aliyun.openservices.log.common.LogContent;
 
 /**
  * 本代码样例主要实现以下功能:
@@ -44,23 +44,18 @@ public class App implements StreamRequestHandler {
 
         JSONObject event = JSONArray.parseObject(jsons);
 
-        // 从 event 中获取 cursorTime，该字段表示本次函数调用包括的数据中，最后一条日志到达日志服务的服务器端的 unix_timestamp
-        // Get cursorTime from event, where cursorTime indicates that in the data of the invocation, the unix timestamp of the last log arrived at log store
-        int cursorTime = Integer.parseInt(event.getString("cursorTime"));
-
-        // 从 event.source 中获取日志项目名称、日志仓库名称以及日志服务访问 endpoint
-        // Get the name of log project, the name of log store and the endpoint of sls from event.source
+        // 从 event.source 中获取日志项目名称、日志仓库名称、日志服务访问 endpoint、日志起始游标、日志终点游标以及分区 id
+        // Get the name of log project, the name of log store, the endpoint of sls, begin cursor, end cursor and shardId from event.source
         JSONObject sls = event.getJSONObject("source");
 
         String endpoint = sls.getString("endpoint");
         String projectName = sls.getString("projectName");
         String logstoreName = sls.getString("logstoreName");
+        String beginCursor = sls.getString("beginCursor");
+        String endCursor = sls.getString("endCursor");
+        int shardId = Integer.parseInt(sls.getString("shardId"));
 
-        // 从环境变量中获取目标日志仓库名称以及触发时间间隔，该环境变量可在 s.yml 中配置
-        // Get interval of trigger from environment variables, which was configured via s.yaml
-        int triggerInterval = Integer.parseInt(System.getenv("triggerInterval"));
 
-        // 获取密钥信息，执行前，确保函数所在的服务配置了角色信息，并且角色需要拥有AliyunSLSFullAccess权限
         Credentials creds = context.getExecutionCredentials();
 
         // 初始化 sls 客户端
@@ -68,30 +63,35 @@ public class App implements StreamRequestHandler {
         DefaultCredentails credsOfSLS = new DefaultCredentails(creds.getAccessKeyId(), creds.getAccessKeySecret(), creds.getSecurityToken());
         Client client = new Client(endpoint, credsOfSLS, null);
 
-
-        Vector<LogItem> logItems = new Vector<LogItem>();
         try {
-            // 从源日志库中读取日志
-            // Read data from source logstore
-            int toTime = cursorTime;
-            int fromTime = toTime - triggerInterval;
-            GetLogsResponse getLogsResponse = client.GetLogs(projectName, logstoreName, fromTime, toTime, "", "");
-            context.getLogger().info("Read log data count:" + getLogsResponse.GetCount());
-            context.getLogger().info("from time is: " + fromTime);
-            context.getLogger().info("to time is: " + toTime);
-            for (QueriedLog log : getLogsResponse.GetLogs()) {
-                LogItem item = log.GetLogItem();
-                context.getLogger().info("log time: " + item.mLogTime);
-                context.getLogger().info("Jsonstring: " + item.ToJsonString());
+            while (true) {
+                PullLogsRequest request = new PullLogsRequest(projectName, logstoreName, shardId, 100, beginCursor, endCursor);
+                PullLogsResponse response = client.pullLogs(request);
+                int logCount = response.getCount();
+                if (logCount == 0) {
+                    break;
+                }
+                context.getLogger().info("get " + logCount + " log group from " + logstoreName);
+                List<LogGroupData> logGroups = response.getLogGroups();
+                for (LogGroupData logGroup : logGroups) {
+
+                    for (LogItem log : logGroup.GetAllLogs()) {
+                        context.getLogger().info("LogTime:" + log.GetTime());
+                        List<LogContent> contents = log.GetLogContents();
+                        for (LogContent content : contents) {
+                            context.getLogger().info(content.GetKey() + ":" + content.GetValue());
+                        }
+                    }
+                }
+                beginCursor = response.getNextCursor();;
             }
         } catch (LogException e) {
-            context.getLogger().error("Read log data failed");
+            context.getLogger().error("Pull log data failed");
             context.getLogger().error("err code: " + e.GetErrorCode());
             context.getLogger().error("err message: " + e.GetErrorMessage());
             context.getLogger().error("err requestId: " + e.GetErrorCode());
             System.exit(-1);
         }
-
 
         outputStream.write(new String("success").getBytes());
     }

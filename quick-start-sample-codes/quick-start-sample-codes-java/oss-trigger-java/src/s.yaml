@@ -36,7 +36,7 @@ services:
     actions:
       pre-deploy:
         - run: mvn package
-          path: ./
+          path: ./code
     props:
       region: ${vars.region}              # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
       service: ${vars.service}
@@ -44,8 +44,8 @@ services:
         name: "{{ functionName }}"
         description: 'oss trigger event function by serverless devs'
         runtime: java11
-        codeUri: ./target/oss-trigger-1.0-SNAPSHOT-jar-with-dependencies.jar
-        handler: example.App::handRequest
+        codeUri: ./code/target/oss-trigger-1.0-SNAPSHOT-jar-with-dependencies.jar
+        handler: example.App::handleRequest
         memorySize: 128
         timeout: 60
       triggers:

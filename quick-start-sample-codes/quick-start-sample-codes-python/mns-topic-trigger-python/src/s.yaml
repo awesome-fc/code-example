@@ -23,11 +23,10 @@ access: "{{ access }}"
 
 vars: # 全局变量
   region: "{{ region }}"
-  accountId: "{{ accountId }}"
   service:
     name: "{{ serviceName }}"
     description: 'mns topic trigger by serverless devs'
-    role: "acs:ram::{{ accountId }}:role/AliyunFCDefaultRole"   
+    role: "acs:ram::${config(AccountID)}:role/AliyunFCDefaultRole"   
   topicRegion: "{{ topicRegion }}"
   topicName: "{{ topicName }}"
   filterTag: "{{ filterTag }}"
@@ -55,9 +54,9 @@ services:
       triggers:
         - name: mns
           description: ''
-          sourceArn: acs:mns:${vars.topicRegion}:${vars.accountId}:/topics/${vars.topicName}
+          sourceArn: acs:mns:${vars.topicRegion}:${config(AccountID)}:/topics/${vars.topicName}
           type: mns_topic
-          role: acs:ram::${vars.accountId}:role/aliyunmnsnotificationrole
+          role: acs:ram::${config(AccountID)}:role/aliyunmnsnotificationrole
           qualifier: LATEST
           config:
             filterTag: ${vars.filterTag}

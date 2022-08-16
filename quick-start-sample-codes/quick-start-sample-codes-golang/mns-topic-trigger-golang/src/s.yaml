@@ -23,11 +23,10 @@ access: "{{ access }}"
 
 vars: # 全局变量
   region: "{{ region }}"
-  accountId: "{{ accountId }}"
   service:
     name: "{{ serviceName }}"
     description: 'mns topic trigger by serverless devs'
-    role: "acs:ram::{{ accountId }}:role/AliyunFCDefaultRole"   
+    role: "acs:ram::${config(AccountID)}:role/AliyunFCDefaultRole"   
   topicRegion: "{{ topicRegion }}"
   topicName: "{{ topicName }}"
   filterTag: "{{ filterTag }}"
@@ -41,7 +40,7 @@ services:
       pre-deploy:
         - run: GO111MODULE=on go mod vendor
           path: ./code
-        - run: GOOS=linux CGO_ENABLED=0 go build -o target/main main.go
+        - run: GO111MODULE=on GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o target/main main.go
           path: ./code
     props:
       region: ${vars.region}              # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
@@ -57,9 +56,9 @@ services:
       triggers:
         - name: mns
           description: ''
-          sourceArn: acs:mns:${vars.topicRegion}:${vars.accountId}:/topics/${vars.topicName}
+          sourceArn: acs:mns:${vars.topicRegion}:${config(AccountID)}:/topics/${vars.topicName}
           type: mns_topic
-          role: acs:ram::${vars.accountId}:role/aliyunmnsnotificationrole
+          role: acs:ram::${config(AccountID)}:role/aliyunmnsnotificationrole
           qualifier: LATEST
           config:
             filterTag: ${vars.filterTag}
