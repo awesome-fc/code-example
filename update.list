@@ -59,3 +59,7 @@ quick-start-sample-codes/quick-start-sample-codes-golang/timer-trigger-golang
 quick-start-sample-codes/quick-start-sample-codes-java/timer-trigger-java
 quick-start-sample-codes/quick-start-sample-codes-nodejs/timer-trigger-nodejs
 quick-start-sample-codes/quick-start-sample-codes-python/timer-trigger-python
+quick-start-sample-codes/quick-start-sample-codes-golang/RocketMQ-trigger-golang
+quick-start-sample-codes/quick-start-sample-codes-java/RocketMQ-trigger-java11
+quick-start-sample-codes/quick-start-sample-codes-nodejs/RocketMQ-trigger-nodejs14
+quick-start-sample-codes/quick-start-sample-codes-python/RocketMQ-trigger-python
