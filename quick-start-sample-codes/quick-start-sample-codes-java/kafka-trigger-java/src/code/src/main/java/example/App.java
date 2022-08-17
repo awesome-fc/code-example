@@ -33,6 +33,7 @@ public class App implements StreamRequestHandler{
       context.getLogger().info("Event: " + eventString);
 
       // A rude way to deal with the string like this ["JsonObject"]->JsonObject
+      // caution: this way can only deal with one event!
       String eventJsonString = eventString.substring(2, eventString.length() - 2);
       // Deal with Escape Character
       JSONObject event = JSON.parseObject(StringEscapeUtils.unescapeJava(eventJsonString));

@@ -103,8 +103,6 @@ c-62e7d193-7580ef827d4a4c9f89042022-08-01 21:15:26FC Invoke End RequestId: 68516
 
 - Modify region, serviceName, functionName (set the same region as the Kafka instance).
 
-- Modify vpcConfig, and fill in the VPC ID, security group ID (which can be found in the `Network and Security` menu item of the **ECS** console) and vSwitchID corresponding to the Kafka instance.
-
 - Modify the triggers configuration, fill in the Kafka InstanceId, ConsumerGroup, and Topic of the trigger function (all need to be created in advance), and finally set the consumption location to the latest location (latest) or the earliest location (earliest).
 
  #### 2. Install dependencies and deploy
