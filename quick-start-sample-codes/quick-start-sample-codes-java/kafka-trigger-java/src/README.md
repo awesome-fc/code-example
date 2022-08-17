@@ -97,8 +97,6 @@ c-62e7c2d2-c36b80589fb24d8484812022-08-01 20:10:59FC Invoke End RequestId: ad215
 
 - 修改region、serviceName、functionName (设置和Kafka实例相同的region)。
 
-- 修改vpcConfig，将Kafka实例对应的VPC ID、安全组ID（可在**云服务器 ECS**控制台`网络与安全`菜单项找到）、vSwitchID填入。
-
 - 修改 triggers 配置，填入触发函数的Kafka InstanceId、ConsumerGroup和Topic（均需提前创建），最后设置消费位点为最新位点(latest)或最早位点(earliest)。
 
 
