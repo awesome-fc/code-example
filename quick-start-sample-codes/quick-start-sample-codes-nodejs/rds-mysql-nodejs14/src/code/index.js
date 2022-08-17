@@ -7,7 +7,7 @@ var connection;
 exports.initialize = (context, callback) => {
   console.log('initializing');
   connection = mysql.createConnection({
-    host: process.env.MYSQL_ENDPOING,
+    host: process.env.MYSQL_ENDPOINT,
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     port: process.env.MYSQL_PORT,

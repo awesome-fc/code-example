@@ -44,7 +44,7 @@ services:
         environmentVariables:
           MYSQL_USER: "xxx"       # 设置mysql数据库配置
           MYSQL_PASSWORD: "xxx"   # 设置mysql数据库配置
-          MYSQL_ENDPOING: "xxx"   # 设置mysql数据库配置
+          MYSQL_ENDPOINT: "xxx"   # 设置mysql数据库配置
           MYSQL_PORT:  "3306"     # 设置mysql数据库配置
           MYSQL_DBNAME: "xxx"     # 设置mysql数据库配置
         initializationTimeout: 20

@@ -6,7 +6,7 @@ function initialize($context) {
     global $conn;
     $user = getenv("MYSQL_USER");
     $password = getenv("MYSQL_PASSWORD");
-    $endpoint = getenv("MYSQL_ENDPOING");
+    $endpoint = getenv("MYSQL_ENDPOINT");
     $port = intval(getenv("MYSQL_PORT"));
     $dbname = getenv("MYSQL_DBNAME");
 
