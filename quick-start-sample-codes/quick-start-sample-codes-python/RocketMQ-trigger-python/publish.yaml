@@ -1,6 +1,6 @@
 Type: Application
 Name: Rocketmq-trigger-fc-event-python
-Version: 0.1.1
+Version: 0.1.2
 Provider:
   - 阿里云
 Description: 快速部署一个具备 Rocketmq 触发器 Event 类型的处理函数到阿里云函数计算。
@@ -84,6 +84,14 @@ Parameters:
       type : string
       default: CONSUME_FROM_LAST_OFFSET
       description: 消息的消费位点,取值说明如下:CONSUME_FROM_LAST_OFFSET：从最新位点开始消费;CONSUME_FROM_FIRST_OFFSET：从最早位点开始消费;CONSUME_FROM_TIMESTAMP：从指定时间点的位点开始消费
+      enum:
+        - CONSUME_FROM_LAST_OFFSET
+        - CONSUME_FROM_FIRST_OFFSET
+        - CONSUME_FROM_TIMESTAMP
+    Timestamp:
+      title : 时间戳
+      type :  string
+      description: 时间戳，仅当参数Offset取值为CONSUME_FROM_TIMESTAMP时，该参数有效
     GroupID:
       title : group id
       type : string

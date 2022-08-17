@@ -62,8 +62,8 @@ services:
                 sourceRocketMQParameters:
                   RegionId : "{{ region}}"
                   InstanceId : "{{ InstanceId}}"
-                  Tag :
+                  Tag : "{{ Tag }}"
                   Topic : "{{ Topic }}"
                   Offset : "{{ Offset }}"
-                  Timestamp : 1234567          #只有在offset为CONSUME_FROM_TIMESTAMP时，该参数有效，其余情况下任意设置
+                  Timestamp : {{Timestamp}}         #只有在offset为CONSUME_FROM_TIMESTAMP时，该参数有效，其余情况下任意设置
                   GroupID : "{{ GroupID}}"
