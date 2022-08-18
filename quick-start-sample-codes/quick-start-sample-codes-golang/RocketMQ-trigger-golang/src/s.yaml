@@ -56,6 +56,9 @@ services:
             triggerEnable: true
             asyncInvocationType: false
             eventRuleFilterPattern: '{}'
+            eventSinkConfig:
+              deliveryOption:
+                Mode: event-streaming
             eventSourceConfig:
               eventSourceType: RocketMQ
               eventSourceParameters:
