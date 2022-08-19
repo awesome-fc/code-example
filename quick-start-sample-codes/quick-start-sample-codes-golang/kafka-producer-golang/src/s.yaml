@@ -19,21 +19,21 @@ name: hello-world-app
 # access 是当前应用所需要的密钥信息配置：
 # 密钥配置可以参考：https://www.serverless-devs.com/serverless-devs/command/config
 # 密钥使用顺序可以参考：https://www.serverless-devs.com/serverless-devs/tool#密钥使用顺序与规范
-access: default # 设置成你自己的密钥信息
+access: "{{access}}" # 设置成你自己的密钥信息
 
 services:
   fc-example:
     actions: # 自定义执行逻辑，关于actions 的使用，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#行为描述
       pre-deploy:
         # Linux
-        - run: go mod tidy && CGO_ENABLED=1 GOOS=linux GOARCH=amd64 CGO_LDFLAGS="-static" go build main.go
+        - run: go mod tidy && CGO_ENABLED=1 GOOS=linux GOARCH=amd64 CGO_LDFLAGS="-static" go build -o target/main main.go
           path: ./code
         # Mac 确保安装此Linux编译工具链-> brew install FiloSottile/musl-cross/musl-cross
-        # - run: CGO_ENABLED=1 GOOS=linux GOARCH=amd64 CC=x86_64-linux-musl-gcc CGO_LDFLAGS="-static" go build -a -v -tags musl
+        # - run: CGO_ENABLED=1 GOOS=linux GOARCH=amd64 CC=x86_64-linux-musl-gcc CGO_LDFLAGS="-static" go build -o target/main main.go -a -v -tags musl
         #   path: ./code
 
         # Windows / Mac (use docker)
-        # - run: docker run -v $(pwd):/go/src/gocode -w /go/src/gocode --entrypoint='' karalabe/xgo-latest /bin/bash -c "CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build main.go"
+        # - run: docker run -v $(pwd):/go/src/gocode -w /go/src/gocode --entrypoint='' karalabe/xgo-latest /bin/bash -c "CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -o target/main main.go"
         #   path: ./code
     component: fc
     props:
@@ -49,7 +49,7 @@ services:
         name: "{{functionName}}"
         description: 'kafka producer by serverless devs'
         runtime: go1
-        codeUri: ./code
+        codeUri: ./code/target
         handler: main
         memorySize: 128
         timeout: 60
