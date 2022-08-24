@@ -19,14 +19,14 @@ name: hello-world-app
 # access 是当前应用所需要的密钥信息配置：
 # 密钥配置可以参考：https://www.serverless-devs.com/serverless-devs/command/config
 # 密钥使用顺序可以参考：https://www.serverless-devs.com/serverless-devs/tool#密钥使用顺序与规范
-access: default # 设置成你自己的密钥信息
+access: "{{access}}" # 设置成你自己的密钥信息
 
 services:
   fc-example:
     actions: # 自定义执行逻辑，关于actions 的使用，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#行为描述
       pre-deploy:
         - run: mvn clean package
-          path: ./
+          path: ./code
     component: fc
     props:
       region: "{{region}}"
@@ -36,7 +36,7 @@ services:
         name: "{{functionName}}"
         description: 'timer trigger by serverless devs'
         runtime: java11
-        codeUri: ./target
+        codeUri: ./code/target/TimerFCJava-1.0-SNAPSHOT.jar
         handler: example.App::handleRequest
         memorySize: 128
         timeout: 60
