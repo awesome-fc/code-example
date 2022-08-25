@@ -66,17 +66,14 @@ Parameters:
     instanceId:
       title: kafka 实例id
       type: string
-      default: alikafka_XXXXX
       description: kafka 实例id, 可在 kafka 控制台获取
     topicName:
       title: kafka topic name
       type: string
-      default: topic-a
       description: kafka 实例的 topic name, 此topic的数据生产会触发部署函数
     consumerGroup:
       title: kafka consumer group
       type: string
-      default: consumer-a
       description: kafka 实例的消费组, 数据由此 Group 消费
     offsetReset:
       title: kafka offsetReset
