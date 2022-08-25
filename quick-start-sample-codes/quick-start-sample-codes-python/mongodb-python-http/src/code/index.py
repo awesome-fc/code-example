@@ -2,6 +2,7 @@
 import logging
 import pymongo
 import os
+from urllib import parse
 
 logger = logging.getLogger()
 
@@ -28,7 +29,10 @@ def parse_query(query_str):
 def handler(environ, start_response):
     query_dict = parse_query(environ['QUERY_STRING'])
     collection = client[os.environ['MONGO_DATABASE']]['users']
-    res = collection.find_one({"name": query_dict['name']})
+    res = collection.find_one({
+            "name": parse.unquote(query_dict['name'])
+        }
+    )
     status = '200 OK'
     response_headers = [('Content-type', 'application/json')]
     start_response(status, response_headers)
