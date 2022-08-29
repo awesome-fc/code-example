@@ -30,12 +30,6 @@ mvn clean package
 
 推荐在Kafka实例相同Region创建服务。
 
-创建服务时在`高级选项`中`服务角色`选择AliyunFcDefaultRole（如没有则根据提示创建相应角色），并开启`允许访问VPC`，选取创建Kafka实例时所选择的`专有网络`、`交换机`与对应的`安全组(Kafka实例部署后自动创建)`。
-
-![CreateService.png](assets/CreateService.png)
-
-
-
  #### 3. 创建函数
 
  选择服务（或创建服务）后，单击创建函数，如图所示
@@ -48,9 +42,7 @@ mvn clean package
 
  > 详细创建函数流程见文档: [使用控制台创建函数](https://help.aliyun.com/document_detail/51783.html)
 
-
-
- #### 4. 配置EventBridge（未来可以在创建函数时配置）
+ #### 4. 配置EventBridge（未来可以在创建函数时在触发器设置中配置）
 
 在EventBridge控制台(https://eventbridge.console.aliyun.com/)，选择`事件流`，`创建事件流`：
 

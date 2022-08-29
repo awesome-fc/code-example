@@ -31,12 +31,6 @@ mvn clean package
 
 It is recommended to create services in the same Region of the Kafka instance.
 
-When creating a service, select AliyunFcDefaultRole in `Service Role` in `Advanced Options` (if not, create a corresponding role according to the prompts), and enable `Allow access to VPC`, and select `VPC' and `Switch when creating a Kafka instance. ` and the corresponding `security group (created automatically after the Kafka instance is deployed)`.
-
-![CreateService.png](assets/CreateService.png)
-
-
-
  #### 3. Create function
 
  After selecting a service (or creating a service), click Create Function as shown
