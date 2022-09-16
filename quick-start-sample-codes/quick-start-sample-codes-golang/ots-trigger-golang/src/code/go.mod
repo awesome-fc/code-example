@@ -3,7 +3,7 @@ module main
 go 1.18
 
 require (
-	github.com/aliyun/fc-runtime-go-sdk v0.2.3-0.20220915112314-0e92d2d867ee
+	github.com/aliyun/fc-runtime-go-sdk v0.2.4
 	github.com/fxamacker/cbor/v2 v2.4.0
 )
 
