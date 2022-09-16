@@ -56,6 +56,6 @@ services:
         environmentVariables:
           MYSQL_USER: "{{ mysqlUser }}"                           
           MYSQL_PASSWORD: "{{ mysqlPassword }}"
-          MYSQL_ENDPOING: "{{ mysqlUrl }}" 
+          MYSQL_ENDPOINT: "{{ mysqlUrl }}" 
           MYSQL_PORT: "{{ mysqlPort }}"  
           MYSQL_DBNAME: "{{ mysqlDatabase }}"

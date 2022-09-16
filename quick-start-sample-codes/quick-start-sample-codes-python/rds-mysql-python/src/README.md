@@ -58,13 +58,13 @@ cd code && zip -r python3-mysql.zip *
 
 #### 1. 修改 s.yaml 配置
   - 根据需要修改 access 配置
-  - 修改 environmentVariables 配置，填入 MYSQL_USER, MYSQL_PASSWORD, MYSQL_ENDPOING, MYSQL_PORT 和 MYSQL_DBNAME
+  - 修改 environmentVariables 配置，填入 MYSQL_USER, MYSQL_PASSWORD, MYSQL_ENDPOINT, MYSQL_PORT 和 MYSQL_DBNAME
 
 环境变量
 
 | 参数名称 | 参数类型 | 是否必填 | 例子 |   参数含义 | 
 | --- |  --- |  --- | --- | --- |
-| MYSQL_ENDPOING | String | 必填 | rm-uf6rrswxxxxxxxxxxxx.mysql.rds.aliyuncs.com |   数据库网址，用于连接数据库 |
+| MYSQL_ENDPOINT | String | 必填 | rm-uf6rrswxxxxxxxxxxxx.mysql.rds.aliyuncs.com |   数据库网址，用于连接数据库 |
 | MYSQL_PORT | String | 必填 | 3306 |   数据库端口 | 
 | MYSQL_DBNAME | String | 必填 | test |   数据库名称 | 
 | MYSQL_USER | String | 必填 | fc |   数据库用户名 |  

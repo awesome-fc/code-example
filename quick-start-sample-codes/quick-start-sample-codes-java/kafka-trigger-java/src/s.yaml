@@ -19,7 +19,7 @@ name: hello-world-app
 # access 是当前应用所需要的密钥信息配置：
 # 密钥配置可以参考：https://www.serverless-devs.com/serverless-devs/command/config
 # 密钥使用顺序可以参考：https://www.serverless-devs.com/serverless-devs/tool#密钥使用顺序与规范
-access: default # 设置成你自己的密钥信息
+access: "{{access}}" # 设置成你自己的密钥信息
 
 vars: # 全局变量
   region: "{{region}}"
@@ -29,22 +29,17 @@ services:
     actions: # 自定义执行逻辑，关于actions 的使用，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#行为描述
       pre-deploy:
         - run: mvn clean package
-          path: ./
+          path: ./code
     component: fc
     props:
       region: ${vars.region}
       service: 
         name: "{{serviceName}}"
-        vpcConfig:
-          vpcId: "{{vpcId}}" # Kafka实例所在的VPC ID
-          securityGroupId: "{{securityGroupId}}" # 安全组Id
-          vswitchIds:
-            - "{{vswitchIds}}" # Kafka实例所在的vSwitch ID
       function:
         name: "{{functionName}}"
         description: 'kafka trigger by serverless devs'
         runtime: java11
-        codeUri: ./target/FCJavaKafkaTrigger-1.0-SNAPSHOT.jar
+        codeUri: ./code/target/FCJavaKafkaTrigger-1.0-SNAPSHOT.jar
         handler: example.App::handleRequest
         memorySize: 128
         timeout: 60
@@ -67,3 +62,4 @@ services:
                   Topic: "{{topicName}}" # 需要提前创建
                   ConsumerGroup: "{{consumerGroup}}" # 需要提前创建
                   OffsetReset: "{{offsetReset}}" # latest or earliest
+                  Network: "Default" # 所用网络类型（非必填项），可选值有 PublicNetwork 以及 Default，前者表示使用自建 vpc 网络，后者表示使用默认公网

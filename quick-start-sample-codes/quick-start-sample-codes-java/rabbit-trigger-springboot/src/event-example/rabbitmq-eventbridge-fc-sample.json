@@ -1,0 +1,24 @@
+[
+  {
+    "data":{
+        "envelope":{
+            "deliveryTag":2,
+            "redeliver":false,
+            "exchange":"test-exchange",
+            "routingKey":"test-binding"
+        },
+        "props":{
+            "messageId":"d720c348-ed4b-471c-8c97-d3a3e6afdb3e"
+        },
+        "body":"消息发送Body010"
+    },
+    "id":"d720c348-ed4b-471c-8c97-d3a3e6afdb3e",
+    "source":"acs:amqp",
+    "specversion":"1.0",
+    "type":"amqp:Queue:SendMessage",
+    "datacontenttype":"application/json; charsetu003dutf-8",
+    "time":"2022-08-19T09:55:53.460Z",
+    "subject":"acs:amqp:cn-qingdao:123:/instances/amqp-cn-xxx/vhosts/test-test/queues/test-test",
+    "aliyunaccountid":"123"
+  }
+]

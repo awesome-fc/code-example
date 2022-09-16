@@ -14,7 +14,7 @@ def initialize(context):
     try:
         connection = pymysql.connect(
             # Replace it with your host name.
-            host=os.environ['MYSQL_ENDPOING'],
+            host=os.environ['MYSQL_ENDPOINT'],
             # Replace it with your port number.
             port=int(os.environ['MYSQL_PORT']),
             # Replace it with your username.

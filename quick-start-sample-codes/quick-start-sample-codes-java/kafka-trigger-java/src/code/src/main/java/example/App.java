@@ -30,23 +30,21 @@ public class App implements StreamRequestHandler{
          result.write(buffer, 0, length);
       }
       String eventString = result.toString(StandardCharsets.UTF_8.name());
-      context.getLogger().info("Event: " + eventString);
+      context.getLogger().info("Whole Event: " + eventString);
 
-      // A rude way to deal with the string like this ["JsonObject"]->JsonObject
-      String eventJsonString = eventString.substring(2, eventString.length() - 2);
-      // Deal with Escape Character
-      JSONObject event = JSON.parseObject(StringEscapeUtils.unescapeJava(eventJsonString));
+      JSONArray jsonArray = JSONArray.parseArray(eventString);
 
-      // Get the data field
-      JSONObject eventData = event.getJSONObject("data");
+      for(int i = 0; i < jsonArray.size(); i++) {
+         JSONObject event = JSONObject.parseObject(jsonArray.getString(i));
 
-      String topic = eventData.getString("topic");
-      String value = eventData.getString("value");
+         // Get the data field
+         JSONObject eventData = event.getJSONObject("data");
+         String topic = eventData.getString("topic");
+         String value = eventData.getString("value");
 
-      context.getLogger().info("Kafka Topic: " + topic);
-      context.getLogger().info("Message Value: " + value);
-
-      outputStream.write(("Produce ok, Topic: " + topic + " Value: " + value).getBytes());
+         context.getLogger().info("Message " + i + " Kafka Topic: " + topic);
+         context.getLogger().info("Message " + i + " Message Value: " + value);
+         outputStream.write(("Get Message " + i + ", Topic: " + topic + " Value: " + value).getBytes());
+      }
    }
-        
 }

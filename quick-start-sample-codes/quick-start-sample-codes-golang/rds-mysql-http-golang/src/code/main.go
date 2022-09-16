@@ -36,7 +36,7 @@ func handleError(w http.ResponseWriter, err error) error {
 func initialize(ctx context.Context) {
 	dbUser := os.Getenv("MYSQL_USER")
 	dbPassword := os.Getenv("MYSQL_PASSWORD")
-	dbEndpoint := os.Getenv("MYSQL_ENDPOING")
+	dbEndpoint := os.Getenv("MYSQL_ENDPOINT")
 	dbPort := os.Getenv("MYSQL_PORT")
 	dbName := os.Getenv("MYSQL_DBNAME")
 	mySqlConfig := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", dbUser, dbPassword, dbEndpoint, dbPort, dbName)

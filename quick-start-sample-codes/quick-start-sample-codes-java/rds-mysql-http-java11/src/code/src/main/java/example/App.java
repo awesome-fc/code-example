@@ -33,7 +33,7 @@ public class App implements HttpRequestHandler, FunctionInitializer, PreStopHand
     @Override
     public void initialize(Context context) throws IOException {
         // jdbc:mysql://<hostname>:<port>/<db>
-        JDBC_URL = "jdbc:mysql://"+System.getenv("MYSQL_ENDPOING")+":"+System.getenv("MYSQL_PORT")+"/"+System.getenv("MYSQL_DBNAME");
+        JDBC_URL = "jdbc:mysql://"+System.getenv("MYSQL_ENDPOINT")+":"+System.getenv("MYSQL_PORT")+"/"+System.getenv("MYSQL_DBNAME");
         JDBC_USER = System.getenv("MYSQL_USER");
         JDBC_PASSWORD = System.getenv("MYSQL_PASSWORD");
         long start = System.currentTimeMillis();
