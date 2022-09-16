@@ -1,10 +1,10 @@
-module github.com/awesome-fc/code-example/mns-queue-producer-golang-http
+module code-example/quick-start-sample-codes/quick-start-sample-codes-golang/RocketMQ-producer-golang/src/code
 
 go 1.17
 
 require (
-	github.com/aliyun/aliyun-mns-go-sdk v1.0.2
-	github.com/aliyun/fc-runtime-go-sdk v0.2.2
+	github.com/aliyun/fc-runtime-go-sdk v0.2.3
+	github.com/aliyunmq/mq-http-go-sdk v1.0.3
 )
 
 require (
@@ -14,5 +14,5 @@ require (
 	github.com/gogap/stack v0.0.0-20150131034635-fef68dddd4f8 // indirect
 	github.com/klauspost/compress v1.15.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
-	github.com/valyala/fasthttp v1.38.0 // indirect
+	github.com/valyala/fasthttp v1.40.0 // indirect
 )
