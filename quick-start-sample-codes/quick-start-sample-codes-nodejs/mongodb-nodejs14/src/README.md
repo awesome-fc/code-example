@@ -67,8 +67,8 @@ db.users.insert([
 | serviceName  | String   | 选填     | start-nodejs14-mongodb                                | 函数服务名称名     |
 | functionName | String   | 选填     | start-nodejs14-mongodb                                | 函数名称           |
 | roleArn      | String   | 必填     | acs:*ram*::\<accountId>:role/aliyuncdnserverlessdevsrole | 函数执行角色       |
-| endpoint     | String   | 必填     | mongodb://xxxxxxxx | MongoDB 数据库地址 |  |
-| instanceName     | String   | 必填     | table-instance                                           | 数据库名         |
+| MONGO_URL     | String   | 必填     | mongodb://xxxxxxxx | MongoDB 数据库地址 |  |
+| MONGO_DATABASE     | String   | 必填     | table-instance                                           | 数据库名         |
 
 ### 调用测试
 

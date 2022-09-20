@@ -36,12 +36,6 @@ zip code.zip -r ./*
 
 It is recommended to create services in the same Region of the Kafka instance.
 
-When creating a service, select AliyunFcDefaultRole in `Service Role` in `Advanced Options` (if not, create a corresponding role according to the prompts), and enable `Allow access to VPC`, and select `VPC' and `Switch when creating a Kafka instance. ` and the corresponding `security group (created automatically after the Kafka instance is deployed)`.
-
-![CreateService.png](assets/CreateService.png)
-
-
-
  #### 3. Create function
 
  After selecting a service (or creating a service), click Create Function as shown
@@ -102,8 +96,6 @@ c-62e7d193-7580ef827d4a4c9f89042022-08-01 21:15:26FC Invoke End RequestId: 68516
  #### 1. Modify s.yaml configuration
 
 - Modify region, serviceName, functionName (set the same region as the Kafka instance).
-
-- Modify vpcConfig, and fill in the VPC ID, security group ID (which can be found in the `Network and Security` menu item of the **ECS** console) and vSwitchID corresponding to the Kafka instance.
 
 - Modify the triggers configuration, fill in the Kafka InstanceId, ConsumerGroup, and Topic of the trigger function (all need to be created in advance), and finally set the consumption location to the latest location (latest) or the earliest location (earliest).
 

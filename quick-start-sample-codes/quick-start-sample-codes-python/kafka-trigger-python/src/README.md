@@ -36,12 +36,6 @@ zip code.zip -r ./*
 
 推荐在Kafka实例相同Region创建服务。
 
-创建服务时在`高级选项`中`服务角色`选择AliyunFcDefaultRole（如没有则根据提示创建相应角色），并开启`允许访问VPC`，选取创建Kafka实例时所选择的`专有网络`、`交换机`与对应的`安全组(Kafka实例部署后自动创建)`。
-
-![CreateService.png](assets/CreateService.png)
-
-
-
  #### 3. 创建函数
 
  选择服务（或创建服务）后，单击创建函数，如图所示
@@ -56,8 +50,7 @@ zip code.zip -r ./*
  > 详细创建函数流程见文档: [使用控制台创建函数](https://help.aliyun.com/document_detail/51783.html)
 
 
-
- #### 4. 配置EventBridge（未来可以在创建函数时配置）
+ #### 4. 配置EventBridge（未来可以在创建函数时在触发器设置中配置）
 
 在EventBridge控制台(https://eventbridge.console.aliyun.com/)，选择`事件流`，`创建事件流`：
 
@@ -103,8 +96,6 @@ c-62e79ddf-94afbf16df544183aa3d2022-08-01 17:33:20FC Invoke End RequestId: 83188
  #### 1. 修改 s.yaml 配置
 
 - 修改region、serviceName、functionName (设置和Kafka实例相同的region)。
-
-- 修改vpcConfig，将Kafka实例对应的VPC ID、安全组ID（可在**云服务器 ECS**控制台`网络与安全`菜单项找到）、vSwitchID填入。
 
 - 修改 triggers 配置，填入触发函数的Kafka InstanceId、ConsumerGroup和Topic（均需提前创建），最后设置消费位点为最新位点(latest)或最早位点(earliest)。
 

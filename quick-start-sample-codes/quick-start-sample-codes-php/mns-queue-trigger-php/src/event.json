@@ -1,0 +1,20 @@
+{
+  "id":"c2g71017-6f65-fhcf-a814-a396fc8d****",
+  "source":"MNS-Function-mnstrigger",
+  "specversion":"1.0",
+  "type":"mns:Queue:SendMessage",
+  "datacontenttype":"application/json; charset=utf-8",
+  "subject":"acs:mns:cn-hangzhou:164901546557****:queues/zeus",
+  "time":"2021-04-08T06:28:17.093Z",
+  "aliyunaccountid":"16490154********",
+  "aliyunpublishtime":"2021-10-15T07:06:34.028Z",
+  "aliyunoriginalaccountid":"164901546557****",
+  "aliyuneventbusname":"MNS-Function-mnstrigger",
+  "aliyunregionid":"cn-chengdu",
+  "aliyunpublishaddr":"42.120.XX.XX",
+  "data":{
+      "requestId":"606EA3074344430D4C81****",
+      "messageId":"C6DB60D1574661357FA227277445****",
+      "messageBody":"bW9jayBtbnMgcXVldWUgbWVzc2FnZQo"
+  }
+}

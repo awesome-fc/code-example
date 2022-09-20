@@ -27,7 +27,7 @@ INSERT INTO `users` (`id`, `name`, `age`) VALUES
 
 #### 1. 修改 s.yaml 配置
 - 根据需要修改 access 配置
-- 修改 environmentVariables 配置，填入 MYSQL_USER, MYSQL_PASSWORD, MYSQL_ENDPOING, MYSQL_PORT 和 MYSQL_DBNAME
+- 修改 environmentVariables 配置，填入 MYSQL_USER, MYSQL_PASSWORD, MYSQL_ENDPOINT, MYSQL_PORT 和 MYSQL_DBNAME
 - 使用 initialize 和 prestop 回调，需要在 s.yaml 中配置
 
 ```yaml
