@@ -16,7 +16,7 @@ def initialize(context):
     instanceID = os.getenv('INSTANCEID')
     topic = os.getenv('TOPIC')
     mq_client = MQClient(endpoint, access_key_id, access_key_secret, security_token)
-    msg_producer = mq_client.get_roducer(instanceID, topic)
+    msg_producer = mq_client.get_producer(instanceID, topic)
 
 
 def handler(event, context):
