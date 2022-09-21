@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "aliyunmq/mq-http-sdk": "latest"
+    "@aliyunmq/mq-http-sdk": "latest"
   }
 }
