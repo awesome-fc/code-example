@@ -4,13 +4,17 @@
 */.s
 */*/.s
 */*/*/.s
+*/*/*/bin
+*/*/*/obj
 */*/*/*/.s
 */*.bak
 */*/*.bak
 */*/*.test
+*/*/s_dev.yml
 */*/*/src/s_dev.yaml
 java/*/target/
 */*/*/src/code/target
 .vscode
 node_modules
 package-lock.json
+*/*/target
