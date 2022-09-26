@@ -18,8 +18,6 @@ func HandleRequest(ctx context.Context, event interface{}) (string, error) {
 	accessKey := fctx.Credentials.AccessKeyId
 	secretKey := fctx.Credentials.AccessKeySecret
 	stsToken := fctx.Credentials.SecurityToken
-	fmt.Println(accessKey)
-	fmt.Println(secretKey)
 	endpoint := os.Getenv("ROCKETMQ_ENDPOINT")
 	topic := os.Getenv("TOPIC")
 	instanceID := os.Getenv("INSTANCEID")
