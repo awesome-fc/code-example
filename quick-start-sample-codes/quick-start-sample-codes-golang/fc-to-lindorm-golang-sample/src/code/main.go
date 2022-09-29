@@ -17,7 +17,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/aliyun/fc-runtime-go-sdk/events"
 	"github.com/aliyun/fc-runtime-go-sdk/fc"
 	avatica "github.com/apache/calcite-avatica-go/v5"
 )
@@ -39,7 +38,7 @@ func initialize(ctx context.Context) {
 	db = sql.OpenDB(conn)
 }
 
-func HandleRequest(ctx context.Context, event events.OssEvent) (string, error) {
+func HandleRequest(ctx context.Context) (string, error) {
 	if db == nil {
 		return "", fmt.Errorf("lindorm connection not initialized.")
 	}

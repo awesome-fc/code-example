@@ -28,7 +28,7 @@
 
 | 服务/业务 | 函数计算 |     
 | --- |  --- |   
-| 权限/策略 | AliyunFCFullAccess</br>AliyunLindormFullAccess |     
+| 权限/策略 | AliyunFCFullAccess</br>AliyunLindormFullAccess</br>AliyunVPCFullAccess |     
 
 
 ### 资源准备
