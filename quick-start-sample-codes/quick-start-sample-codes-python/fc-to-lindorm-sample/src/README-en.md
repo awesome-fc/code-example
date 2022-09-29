@@ -28,7 +28,7 @@ Using this item, verify that your operational account has the following product 
 
 | Service              | Function Compute                                                     |     
 |----------------------|----------------------------------------------------------------------|   
-| permissions/policies | AliyunFCFullAccess</br>AliyunLindormFullAccess |     
+| permissions/policies | AliyunFCFullAccess</br>AliyunLindormFullAccess</br>AliyunVPCFullAccess |     
 
 ### Resource Preparation
 
