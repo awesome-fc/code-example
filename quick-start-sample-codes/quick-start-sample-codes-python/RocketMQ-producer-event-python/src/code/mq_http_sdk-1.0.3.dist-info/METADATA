@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: mq-http-sdk
+Version: 1.0.3
+Summary: Aliyun Message Queue(MQ) Http Python SDK
+Home-page: https://github.com/aliyunmq/mq-http-python-sdk
+Author: aliyunmq
+Author-email: 
+License: MIT
+Platform: UNKNOWN
+
+
+    Provides http interfaces to Aliyun Message Queue(MQ) Service.
+
+
