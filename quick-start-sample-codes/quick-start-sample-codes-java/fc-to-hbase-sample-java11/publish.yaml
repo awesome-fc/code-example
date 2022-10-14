@@ -1,0 +1,89 @@
+Type: Application
+Name: FCToHBaseJava11
+Version: 0.0.1
+Provider:
+  - 阿里云
+Description: 在阿里云函数计算上快速部署一个可以在 Hbase 宽表引擎上建表插入数据的函数。
+HomePage: https://github.com/devsapp/start-fc
+Tags:
+  - 函数计算
+  - 新手入门
+Category: 新手入门
+Service:
+  函数计算:
+    Authorities:
+      - AliyunFCFullAccess
+      - AliyunHBaseFullAccess
+      - AliyunVPCFullAccess
+    Runtime: java11
+Parameters:
+  type: object
+  additionalProperties: false # 不允许增加其他属性
+  required: # 必填项
+    - region
+    - serviceName
+    - functionName
+    - vpcID
+    - vswitchID
+    - securityGroupID
+    - hbaseZKURL
+    - tableName
+  properties:
+    region:
+      title: 地域
+      type: string
+      default: cn-hangzhou
+      description: 创建应用所在的地区
+      enum:
+        - cn-beijing
+        - cn-hangzhou
+        - cn-shanghai
+        - cn-shenzhen
+        - cn-chengdu
+        - cn-qingdao
+        - cn-zhangjiakou
+        - cn-huhehaote
+        - cn-hongkong
+        - ap-southeast-1
+        - ap-southeast-2
+        - ap-southeast-3
+        - ap-southeast-5
+        - ap-northeast-1
+        - eu-central-1
+        - eu-west-1
+        - us-west-1
+        - us-east-1
+        - ap-south-1
+    serviceName:
+      title: 服务名
+      type: string
+      default: fc-to-hbase-sample-java11-service
+      description: 服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头，长度在 1-128 之间。
+    functionName:
+      title: 函数名
+      type: string
+      default: fc-to-hbase-sample-java11-function
+      description: 函数名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头，长度在 1-128 之间。
+    vpcID:
+      title: 函数实例所在的 vpc id
+      type: string
+      default: vpc-******
+      description: 函数实例所在的 vpc id。
+    vswitchID:
+      title: 函数实例所在的 vswitchId
+      type: string
+      default: vsw-*****
+      description: vpc 中 vswitch id，用于专有网络访问 hbase。
+    securityGroupID:
+      title: 函数计算实例所在 vpc 的 security group id
+      type: string
+      default: sg-*****
+      description: vpc 下安全组 id，用于专有网络访问 hbase。
+    hbaseZKURL:
+      title: HBase ZooKeeper 访问地址
+      type: string
+      description: 请输入 HBase ZooKeeper 访问地址。
+    tableName:
+      title: Hbase 表格名称
+      type: string
+      description: 输入即将在 HBase 创建的 table 表名。
