@@ -18,8 +18,8 @@ public class App implements StreamRequestHandler {
 
         // Bucket 名称, 需要预先创建
         String bucketName = "my-bucket";
-        // Endpoint必须填写Bucket所在地域对应的Endpoint。以华东1（杭州）为例，Endpoint填写为https://oss-cn-hangzhou.aliyuncs.com。
-        String endpoint = "https://oss-cn-beijing.aliyuncs.com";
+        // Endpoint必须填写Bucket所在地域对应的Endpoint，推荐使用内网访问地址。以华东1（杭州）为例，内网访问Endpoint为https://oss-cn-hangzhou-internal.aliyuncs.com。
+        String endpoint = "https://oss-cn-hangzhou-internal.aliyuncs.com";
 
         // 获取密钥信息，执行前，确保函数所在的服务配置了角色信息，并且角色需要拥有AliyunOSSFullAccess权限
         // 建议直接使用AliyunFCDefaultRole 角色
