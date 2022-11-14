@@ -1,9 +1,9 @@
 Type: Application
 Name: mns-topic-producer-golang-http
-Version: dev
+Version: 0.0.1
 Provider:
   - 阿里云
-Description: 快速部署一个消息服务MNS队列模型生产者示例函数到阿里云函数计算。
+Description: 快速部署一个消息服务 MNS 队列模型生产者示例函数到阿里云函数计算。
 HomePage: https://github.com/devsapp/start-fc  
 Tags:
   - 函数计算
@@ -63,7 +63,7 @@ Parameters:
     mnsEndpoint:
       title: MNS 接入点
       type: string
-      description: 访问 mns 的 endpoint。可登陆消息服务MNS 控制台->主题列表->主题详情->接入点
+      description: 访问 mns 的 endpoint。可登陆消息服务 MNS 控制台->主题列表->主题详情->接入点
     mnsTopicName:
       title: MNS Topic 名称
       type: string

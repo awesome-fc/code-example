@@ -1,6 +1,6 @@
 Type: Application
 Name: rds-mysql-fc-http-nodejs14
-Version: dev
+Version: 0.0.1
 Provider:
   - 阿里云
 Description: 快速部署一个读写 Mysql 数据库的函数到阿里云函数计算。
@@ -65,21 +65,21 @@ Parameters:
     mysqlUrl:
       title: Mysql 地址
       type: string
-      description: Mysql地址,可登陆RDS控制台->实例列表->基本信息->网络类型->外网地址 查看
+      description: Mysql 地址，可登陆 RDS 控制台->实例列表->基本信息->网络类型->外网地址 查看
     mysqlPort:
       title: Mysql 端口
       type: string
       default: 3306
-      description: Mysql端口号,默认3306
+      description: Mysql 端口号，默认 3306
     mysqlDatabase:
       title: Mysql 数据库名
       type: string
-      description: Mysql数据库名,可登陆RDS控制台->实例列表->数据库管理->数据库名称 查看
+      description: Mysql 数据库名，可登陆 RDS 控制台->实例列表->数据库管理->数据库名称 查看
     mysqlUser:
       title: Mysql 用户
       type: string
-      description: Mysql用户,可登陆RDS控制台->实例列表->账号管理->用户账号 查看
+      description: Mysql 用户，可登陆 RDS 控制台->实例列表->账号管理->用户账号 查看
     mysqlPassword:
       title: Mysql 密码
       type: string
-      description: Mysql密码,可登陆RDS控制台->实例列表->账号管理->用户账号 查看
+      description: Mysql 密码，可登陆 RDS 控制台->实例列表->账号管理->用户账号 查看
