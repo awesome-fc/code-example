@@ -1,6 +1,6 @@
 Type: Application
 Name: mns-topic-producer-nodejs14-event
-Version: dev
+Version: 0.0.1
 Provider:
   - 阿里云
 Description: 快速部署一个消息服务MNS队列模型生产者示例函数到阿里云函数计算。
