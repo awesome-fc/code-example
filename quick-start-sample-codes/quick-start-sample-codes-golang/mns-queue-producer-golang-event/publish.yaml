@@ -1,6 +1,6 @@
 Type: Application
 Name: mns-queue-producer-golang-event
-Version: dev
+Version: 0.0.1
 Provider:
   - 阿里云
 Description: 快速部署一个由 Golang 事件类型实现的消息服务MNS(队列模型-生产者)示例函数到阿里云函数计算。

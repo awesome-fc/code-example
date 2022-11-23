@@ -1,6 +1,6 @@
 Type: Application
 Name: rds-mysql-fc-http-java11
-Version: dev
+Version: 0.0.1
 Provider:
   - 阿里云
 Description: 快速部署一个读写 Mysql 数据库的函数到阿里云函数计算。
