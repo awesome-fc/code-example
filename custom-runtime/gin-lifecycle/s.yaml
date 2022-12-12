@@ -1,0 +1,58 @@
+edition: 1.0.0
+name: hello-world-app
+access: default #  秘钥别名
+
+vars: # 全局变量
+  region: "cn-hangzhou"
+
+services:
+  helloworld:
+    component: fc
+    actions:
+      pre-deploy:
+        - run: go mod tidy
+          path: ./code
+        - run: GOARCH=amd64 GO111MODULE=on GOOS=linux CGO_ENABLED=0 go build -o target/main main.go
+          path: ./code
+      # post-deploy:
+      #   - run: rm -rf target
+      #     path: ./code
+    props: # 组件的属性值
+      region: ${vars.region} # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
+      service:
+        name: "web-framework"
+        description: "Serverless Devs Website Service"
+      function:
+        name: "gin"
+        description: 'hello world by serverless devs'
+        codeUri: './code'
+        cAPort: 9000
+        customRuntimeConfig:
+          command:
+            - ./target/main
+        environmentVariables: {}
+        handler: index.handler
+        instanceConcurrency: 20
+        instanceType: e1
+        memorySize: 512
+        runtime: custom
+        timeout: 30
+        initializationTimeout: 60
+        initializer: "true"
+        instanceLifecycleConfig: { "preFreeze": { "handler": "true","timeout": 60 },"preStop": { "handler": "true","timeout": 60 } }
+      triggers:
+        - name: httpTrigger
+          type: http
+          config:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+      customDomains:
+        - domainName: auto
+          protocol: HTTP
+          routeConfigs:
+            - path: /*
+              methods:
+                - GET
+                - POST
