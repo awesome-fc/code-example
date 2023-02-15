@@ -2,7 +2,7 @@ Type: Application
 Name: rabbitmq-trigger-fc-event-python
 Provider:
   - 阿里云
-Version: 0.0.1
+Version: 0.0.2
 Description: 快速部署一个具备 RabbitMQ 触发器 Event 类型的函数到阿里云函数计算
 HomePage: https://github.com/devsapp/start-fc
 Tags:

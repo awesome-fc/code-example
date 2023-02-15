@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 
 	"github.com/aliyun/fc-runtime-go-sdk/fc"
@@ -35,27 +34,20 @@ type DataHeader struct {
 	IsReadOnly bool
 }
 
-func HandleRequest(ctx context.Context, event []string) (string, error) {
+func HandleRequest(ctx context.Context, events []StructEvent) (string, error) {
 	fctx, ok := fccontext.FromContext(ctx)
 	if !ok {
 		return "Get fccontext fail.", nil
 	}
 	flog := fctx.GetLogger()
 
-	for _, eventString := range event {
-		var evt StructEvent
-		err := json.Unmarshal([]byte(eventString), &evt)
-		if err != nil {
-			return "Unmarshal event fail.", err
-		}
-		flog.Info("kafka event:", event)
-
+	for _, evt := range events {
 		// The trigger event data is in the `Data` json object from the json array
 		flog.Info("kafka topic:", evt.Data.Topic)
 		flog.Info("kafka messgae:", evt.Data.Value)
 	}
 
-	return fmt.Sprintf("Receive Kafka Trigger Event: %v", event), nil
+	return fmt.Sprintf("Receive Kafka Trigger Event: %v", events), nil
 }
 
 func main() {

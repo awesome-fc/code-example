@@ -10,9 +10,6 @@ def handler(event, context):
   eventObject = json.loads(event)
   # Get each json object from json array
   for evt in eventObject:
-    # Parse the json inside
-    evt = json.loads(evt)
-
     logger.info('message body:' + evt['data']['body'])
     logger.info('message id:' + evt['data']['props']['messageId'])
 

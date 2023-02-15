@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 
 	"github.com/aliyun/fc-runtime-go-sdk/fc"
@@ -39,27 +38,20 @@ type RabbitProps struct {
 	MessageId *string `json:"messageId"`
 }
 
-func HandleRequest(ctx context.Context, event []string) (string, error) {
+func HandleRequest(ctx context.Context, events []StructEvent) (string, error) {
 	fctx, ok := fccontext.FromContext(ctx)
 	if !ok {
 		return "Get fccontext fail.", nil
 	}
 	flog := fctx.GetLogger()
-	flog.Info("event: %+v", event)
 
-	for _, eventString := range event {
-		var evt *StructEvent
-		err := json.Unmarshal([]byte(eventString), &evt)
-		if err != nil {
-			return "Unmarshal event fail.", err
-		}
-
+	for _, evt := range events {
 		// The trigger event data is in the `Data` json object from the json array
 		flog.Info("event id:", *evt.Id)
 		flog.Info("body of rabbitmq messageid :", *evt.Data.Body)
 	}
 
-	return fmt.Sprintf("Receive RabbitMQ Trigger Event: %v", event), nil
+	return fmt.Sprintf("Receive RabbitMQ Trigger Event: %v", events), nil
 }
 
 func main() {
