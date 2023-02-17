@@ -6,7 +6,7 @@ exports.handler = function (event, context, callback) {
    var eventObj = JSON.parse(event.toString());
 
    for (let i = 0; i < eventObj.length; ++i) {
-      var evt = JSON.parse(eventObj[i]);
+      var evt = eventObj[i];
       var messageTopic = evt['data']['topic']
       var message = evt['data']['value']
 
