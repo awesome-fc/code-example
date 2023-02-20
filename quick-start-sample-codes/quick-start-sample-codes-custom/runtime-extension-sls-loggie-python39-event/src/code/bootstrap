@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# step1. create pipelines.yml
+mkdir -p /tmp/log /code/etc
+cat << EOF > /code/etc/pipelines.yml
+pipelines:
+  - name: demo
+    sources:
+      - type: file
+        name: fc-demo
+        addonMeta: true
+        fields:
+          topic: "loggie"
+        fieldsUnderRoot: true
+        paths:
+          - "/tmp/log/*.log"
+    sink:
+      type: sls
+      endpoint: ${LOGGIE_SINK_SLS_ENDPOINT}
+      accessKeyId: ${LOGGIE_SINK_SLS_ACCESS_ID}
+      accessKeySecret: ${LOGGIE_SINK_SLS_ACCESS_SECRET}
+      project: ${LOGGIE_SINK_SLS_PROJECT}
+      logstore: ${LOGGIE_SINK_SLS_LOGSTORE}
+      topic: ${LOGGIE_SINK_SLS_TOPIC}
+EOF
+
+# step2. create loggie.yml
+cat << EOF > /code/etc/loggie.yml
+EOF
+
+# step3. run loggie agent as daemon
+/opt/bin/loggie -config.system=/code/etc/loggie.yml -config.pipeline=/code/etc/pipelines.yml > /tmp/loggie.log 2>&1 &
+
+# step4. start the runtime with the arms options
+exec python app.py
