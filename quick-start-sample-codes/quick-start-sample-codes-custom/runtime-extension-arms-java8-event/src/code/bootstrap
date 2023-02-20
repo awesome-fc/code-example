@@ -1,0 +1,27 @@
+#!/bin/bash
+set -eo pipefail
+
+appName="fc_arms_demo"
+if [ -n "${FC_SERVICE_NAME}" ] || [ -n "${FC_FUNCTION_NAME}" ]; then
+    appName="FC:${FC_SERVICE_NAME}.${FC_FUNCTION_NAME}"
+fi
+
+echo "appName: ${appName}"
+params=" "
+
+if [[ -n "${FC_EXTENSIONS_ARMS_LICENSE_KEY}" ]]; then
+    echo "FC_EXTENSIONS_ARMS_LICENSE_KEY: ${FC_EXTENSIONS_ARMS_LICENSE_KEY}"
+    params+="-Dfc.instanceId=$HOSTNAME@`hostname -i` "
+    # arms agent path in layer
+    params+="-javaagent:/opt/ArmsAgent/arms-bootstrap-1.7.0-SNAPSHOT.jar "
+    params+="-Darms.licenseKey=${FC_EXTENSIONS_ARMS_LICENSE_KEY} "
+    params+="-Darms.appName=${appName} "
+else
+    echo "The environment FC_EXTENSIONS_ARMS_LICENSE_KEY does not exist, please set the FC_EXTENSIONS_ARMS_LICENSE_KEY environment!"
+    exit 1
+fi
+
+echo "params: ${params}"
+exec java $params \
+    -Dserver.port=9000 \
+    -jar /code/demo-0.0.1-SNAPSHOT.jar
