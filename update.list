@@ -1,3 +1,3 @@
-quick-start-sample-codes/quick-start-sample-codes-python/kafka-trigger-python
-quick-start-sample-codes/quick-start-sample-codes-nodejs/kafka-trigger-nodejs
-quick-start-sample-codes/quick-start-sample-codes-golang/kafka-trigger-golang
+quick-start-sample-codes/quick-start-sample-codes-custom/runtime-extension-arms-java8-event
+quick-start-sample-codes/quick-start-sample-codes-custom/runtime-extension-arms-java11-event
+quick-start-sample-codes/quick-start-sample-codes-custom/runtime-extension-arms-java17-event

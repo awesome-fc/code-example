@@ -63,7 +63,7 @@ services:
           FC_EXTENSIONS_ARMS_LICENSE_KEY: {{ fcExtensionArmsLicenseKey }}
         layers:
           - acs:fc:{{ region }}:official:layers/Java17/versions/2
-          - acs:fc:{{ region }}:1940309364339785:layers/Java17_ArmsAgent273x/versions/1
+          - acs:fc:{{ region }}:official:layers/ArmsAgent273x_JDK17/versions/1
         codeUri: ./code/release/
         caPort: 9000
-        runtime: custom
+        runtime: custom.debian10

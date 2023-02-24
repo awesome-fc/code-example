@@ -57,11 +57,12 @@ services:
           LD_LIBRARY_PATH: >-
             /code:/code/lib:/usr/local/lib:/opt/lib
           PATH: >-
-            /usr/local/bin/apache-maven/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/ruby/bin:/opt/bin
+            /opt/java8/bin:/usr/local/bin/apache-maven/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/ruby/bin:/opt/bin
           FC_EXTENSION_ARMS: true
           FC_EXTENSIONS_ARMS_LICENSE_KEY: {{ fcExtensionArmsLicenseKey }}
         layers:
-          - acs:fc:{{ region }}:1940309364339785:layers/Java8_ArmsAgent271x/versions/1
+          - acs:fc:{{ region }}:official:layers/Java8/versions/1
+          - acs:fc:{{ region }}:official:layers/ArmsAgent271x/versions/1
         codeUri: ./code/release/
         caPort: 9000
-        runtime: custom
+        runtime: custom.debian10
