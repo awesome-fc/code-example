@@ -68,7 +68,7 @@ services:
           - acs:fc:{{ region }}:official:layers/Python39/versions/2
           - acs:fc:{{ region }}:official:layers/Python39-Package-Collection/versions/2
           - acs:fc:{{ region }}:official:layers/Python3-Flask2x/versions/2
-          - acs:fc:{{ region }}:1431999136518149:layers/Loggie13x/versions/1
+          - acs:fc:{{ region }}:official:layers/Loggie13x/versions/1
         codeUri: ./code
         caPort: 9000
         runtime: custom
