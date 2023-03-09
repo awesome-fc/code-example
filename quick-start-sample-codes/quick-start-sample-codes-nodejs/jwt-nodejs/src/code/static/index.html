@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login Page Example</title>
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div id="success" style="display: none">
+      <div id="message"></div>
+      <div>
+        <button onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <div id="login" style="display: none" class="box-form">
+      <div class="left">
+        <div class="overlay">
+          <h1>Hello World.</h1>
+          <p>Alibaba Cloud Function Compute JTW Authentication Example</p>
+        </div>
+      </div>
+
+      <div class="right">
+        <h5>Login</h5>
+        <p>Default Username/Password is fc/fc</p>
+        <form onsubmit="login();return false">
+          <div class="inputs">
+            <input id="username" type="text" placeholder="Your username" />
+            <br />
+            <input id="password" type="password" placeholder="Your password" />
+          </div>
+          <br /><br />
+          <button id="login-btn" type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="./js/main.js"></script>
+  </body>
+</html>
