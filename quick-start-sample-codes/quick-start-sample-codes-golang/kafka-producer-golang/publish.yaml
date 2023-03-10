@@ -2,7 +2,7 @@ Type: Application
 Name: kafka-producer-fc-event-golang
 Provider:
   - 阿里云
-Version: dev
+Version: 0.0.1
 Description: 快速部署一个可以生产消息至 Kafka 的函数到阿里云函数计算
 HomePage: https://github.com/devsapp/start-fc
 Tags:
