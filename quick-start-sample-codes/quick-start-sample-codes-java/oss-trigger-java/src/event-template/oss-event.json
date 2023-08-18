@@ -15,9 +15,9 @@
         "object": {
           "deltaSize": 0,
           "eTag": "0D1B95964986C0ED15C539E17F602680",
-          "key": "animal/cat-2.jpeg",
+          "key": "source/greyPOP.jpg",
           "objectMeta": {
-            "mimeType": "image/jpeg"
+            "mimeType": "image/jpg"
           },
           "size": 7107
         },

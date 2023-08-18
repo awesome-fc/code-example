@@ -2,23 +2,19 @@
 本代码样例主要实现以下功能:
 * 从 event 中解析出 OSS 事件触发相关信息
 * 根据以上获取的信息，初始化 OSS bucket 客户端
-* 从 OSS bucket 下载即将被处理的目标图片
-* 改变目标图片尺寸
-* 将处理过的图片上传到 OSS bucket 下的 processed 目录
+* 将源图片 resize 后持久化到OSS bucket 下指定的目标图片路径，从而实现图片备份
 
 
 This sample code is mainly doing the following things:
 * Get OSS processing related information from event 
 * Initiate OSS client with target bucket
-* Download the target image to be processed from bucket
-* Resize the image
-* Upload the processed image copy into the same bucket's processed folder
+* Resize the source image and then store the processed image into the same bucket's copy folder to backup the image
 
 """
 
 # -*- coding: utf-8 -*-
 import oss2, json
-from wand.image import Image
+import base64
 
 def handler(event, context):
     
@@ -52,14 +48,16 @@ def handler(event, context):
     # Download original image from oss bucket
     remote_stream = bucket.get_object(object_name)
     if not remote_stream:
+        print(f'{object_name} does not exist in bucket {bucket_name}')
         return
-    remote_stream = remote_stream.read()
     # Processed images will be saved to processed/
-    processed_path = 'processed/' + object_name
+    processed_path = object_name.replace('source/', 'processed/')
 
-    # Resize original image and upload the processed copy into the same bucket's processed folder
-    with Image(blob=remote_stream)  as img:
-        with img.clone() as i:
-            i.resize(128, 128)
-            new_blob = i.make_blob()
-            bucket.put_object(processed_path, new_blob)
+    # 将图片缩放为固定宽高128 px。
+    style = 'image/resize,m_fixed,w_128,h_128'
+    # 指定处理后图片名称。如果图片不在Bucket根目录，需携带文件完整访问路径，例如exampledir/example.jpg。
+    process = "{0}|sys/saveas,o_{1},b_{2}".format(style, 
+        oss2.compat.to_string(base64.urlsafe_b64encode(oss2.compat.to_bytes(processed_path))),
+        oss2.compat.to_string(base64.urlsafe_b64encode(oss2.compat.to_bytes(bucket_name))))
+    result = bucket.process_object(object_name, process)
+    print(result)
