@@ -1,12 +1,12 @@
 /*本代码样例主要实现以下功能:
 *   1. 从 request 中解析出 endpoint,bucket,object
 *   2. 根据以上获取的信息，初始化 OSS 客户端
-*   3. 从OSS中获取object的内容并将其上传到copy目录下实现备份
+*   3. 将源图片 resize 后持久化到OSS bucket 下指定的目标图片路径，从而实现图片备份
 *
 *This code sample mainly implements the following functions:
 * 1. Parse out endpoint, bucket, object from request
 * 2. According to the information obtained above, initialize the OSS client
-* 3. Obtain the content of the object from OSS and upload it to the copy directory for backup
+* 3. Resize the source image and then store the processed image into the same bucket's copy folder to backup the image
 */
 <?php
 
@@ -14,33 +14,41 @@ use RingCentral\Psr7\Response;
 use OSS\OssClient;
 use OSS\Core\OssException;
 
-function handler($request, $context): Response
+function base64url_encode($data)
 {
-    // 获取requestBody并将其解析为json
-    // Get requestBody and parse it as json
-    $requestBody = $request->getBody()->getContents();
-    $jObj = json_decode($requestBody);
-    // 从context中获取credentials
-    // Get credentials from context
-    $credentials = $context['credentials'];
-    $accessKeyId = $credentials['accessKeyId'];
-    $accessKeySecret = $credentials['accessKeySecret'];
-    $securityToken = $credentials['securityToken'];
+    return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+}
 
-    $endpoint = $jObj->endpoint;
-    $bucket = $jObj->bucket;
-    $object = $jObj->object;
+function handler($event, $context) {
+  $event           = json_decode($event, $assoc = true);
+  /*
+    阿里云账号AccessKey拥有所有API的访问权限，建议您使用RAM用户进行API访问或日常运维。
+    建议不要把AccessKey ID和AccessKey Secret保存到工程代码里，否则可能导致AccessKey泄露，威胁您账号下所有资源的安全。
+    本示例以从上下文中获取AccessKey/AccessSecretKey为例。
+  */
+  $accessKeyId     = $context["credentials"]["accessKeyId"];
+  $accessKeySecret = $context["credentials"]["accessKeySecret"];
+  $securityToken   = $context["credentials"]["securityToken"];
+  $evt        = $event['events']{0};
+  $bucketName = $evt['oss']['bucket']['name'];
+  $endpoint   = 'oss-' . $evt['region'] . '-internal.aliyuncs.com';
+  $objectName = $evt['oss']['object']['key'];
+  $targetObject = str_replace("source/", "processed/", $objectName);
 
     try {
         // 连接OSS
         // Connect to OSS
         $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint, false, $securityToken);
-        // 获取文件内容
-        // Get the file content
-        $content = $ossClient->getObject($bucket, $object);
-        // 上传文件到copy目录下实现文件备份
-        // Upload files to the copy directory to achieve file backup
-        $ossClient->putObject($bucket, "copy/" . $object, $content);
+        // 将图片缩放为固定宽高128 px
+        $style = "image/resize,m_fixed,w_128,h_128";
+        $process = $style.
+           '|sys/saveas'.
+           ',o_'.base64url_encode($targetObject).
+           ',b_'.base64url_encode($bucketName);
+        // 将图片 Resize 后保存到目标文件中
+        $result = $ossClient->processObject($bucketName, $objectName, $process);
+        // 打印处理结果。
+        print($result);
     } catch (OssException $e) {
         print_r(__FUNCTION__ . ": FAILED\n");
         printf($e->getMessage() . "\n");
@@ -48,13 +56,5 @@ function handler($request, $context): Response
 
     print(__FUNCTION__ . ": OK" . "\n");
 
-    return new Response(
-        200,
-        array(
-            'custom_header1' => 'v1',
-            'custom_header2' => ['v2', 'v3'],
-            'Content-Type' => 'text/plain',
-        ),
-        'done'
-    );
+    return $targetObject;
 }

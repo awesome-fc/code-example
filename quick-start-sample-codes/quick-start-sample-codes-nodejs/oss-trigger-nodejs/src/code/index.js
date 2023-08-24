@@ -3,15 +3,13 @@
 本代码样例主要实现以下功能:
 *   1. 从 event 中解析出 OSS 事件触发相关信息
 *   2. 根据以上获取的信息，初始化 OSS 客户端
-*   3. 从目标OSS bucket中获取事件触发的object
-*   4. 将获取得到的object进行备份到OSS bucket中
+*   3. 将源图片 resize 后持久化到OSS bucket 下指定的目标图片路径，从而实现图片备份
 
 
 This code sample mainly implements the following functions:
 *1. Parse the OSS event trigger related information from the event
 * 2. According to the above information, initialize the OSS client
-* 3. Get the object triggered by the event from the target OSS bucket
-* 4. Back up the acquired objects to the OSS bucket
+* 3. Resize the source image and then store the processed image into the same bucket's copy folder to backup the image
 */
 
 const OSS = require('ali-oss');
@@ -44,37 +42,18 @@ exports.handler = async function (event, context, callback) {
 
     console.log("The client entity is: \n");
     console.dir(events);
-
-    // 从OSS中获取文件buffer
-    // Get file buffer from OSS
-    let objectBuffer = await getBuffer(client, objectName);
-    // 将文件buffer进行备份到OSS中
-    await putBuffer(client, objectBuffer, 'copy/' + objectName)
+    
+    const targetImage = objectName.replace("source/", "processed/")
+    // 将图片缩放为固定宽高128 px。
+    const processStr = "image/resize,m_fixed,w_128,h_128"
+    // 将源图片 resize 后再存储到目标图片路径
+    const result = await client.processObjectSave(
+      objectName,
+      targetImage,
+      processStr,
+      bucketName
+    );
+    console.log(result.res.status);
 
     callback(null, "done");
-}
-
-// 从OSS中下载文件
-// Download files from OSS
-async function putBuffer(client, objectBuffer, objectName) {
-    try {
-        console.log("上传文件备份:" + objectName);
-        const result = await client.put(objectName, objectBuffer.content);
-        console.log(result);
-    } catch (e) {
-        console.log(e);
-    }
-}
-
-// 上传文件到OSS中
-// Upload files to OSS
-async function getBuffer(client, objectName) {
-    try {
-        console.log("下载:" + objectName);
-        const objectBuffer = await client.get(objectName);
-        console.log(objectBuffer.content);
-        return objectBuffer
-    } catch (e) {
-        console.log(e);
-    }
 }

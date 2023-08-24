@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/base64"
 	"fmt"
+	"strings"
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"github.com/aliyun/fc-runtime-go-sdk/events"
@@ -15,17 +16,13 @@ import (
 * 本代码样例主要实现以下功能:
 ** 从 event 中解析出 OSS 事件触发相关信息
 ** 根据以上获取的信息，初始化 OSS bucket 客户端
-** 从 OSS bucket 下载即将被处理的目标图片
-** 改变目标图片尺寸
-** 将处理过的图片上传到 OSS bucket 下的 processed 目录
+** 将源图片 resize 后持久化到OSS bucket 下指定的目标图片路径，从而实现图片备份
 
 
 * This sample code is mainly doing the following things:
 ** Get OSS processing related information from event
 ** Initiate OSS client with target bucket
-** Download the target image to be processed from bucket
-** Resize the image
-** Upload the processed image copy into the same bucket's processed folder
+** Resize the source image and then store the processed image into the same bucket's copy folder to backup the image
  */
 
 func main() {
@@ -60,7 +57,8 @@ func HandleRequest(ctx context.Context, event events.OssEvent) (string, error) {
 	//获得上传至 oss 图片的名称
 	sourceImageName := *ossInfo.Object.Key
 	// 指定压缩处理后的图片路径，将其放入 processed 文件夹中。
-	targetImageName := "processed/" + sourceImageName
+	targetImageName := strings.Replace(sourceImageName, "source/", "processed/", 1)
+
 	// 将图片缩放为固定宽高100 px后保存在oss中
 	style := "image/resize,m_fixed,w_100,h_100"
 	process := fmt.Sprintf("%s|sys/saveas,o_%v,b_%v", style, base64.URLEncoding.EncodeToString([]byte(targetImageName)), base64.URLEncoding.EncodeToString([]byte(buckName)))
