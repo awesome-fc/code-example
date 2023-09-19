@@ -1,6 +1,6 @@
 Type: Application
 Name: cdn-trigger-fc-event-golang
-Version: dev
+Version: 0.0.1
 Provider:
   - 阿里云
 Description: 快速部署一个 具备 CDN 触发器 Event 类型的函数到阿里云函数计算。
