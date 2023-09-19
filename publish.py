@@ -112,32 +112,32 @@ for eve_app in publish_list:
         failed_registry.append(eve_app)
 
     # publish code.zip to oss
-    # os.chdir(workspace)
-    # try:
-    #     makefile = Path('%s/src/Makefile' % (eve_app))
-    #     if makefile.is_file():
-    #         print("----------------------Makefile: ", makefile)
-    #         command = 'cd %s/src && make release' % (eve_app)
-    #         print(command)
-    #         child = subprocess.Popen(
-    #             command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, )
-    #         stdout, stderr = child.communicate()
-    #         print("stdout:", stdout.decode("utf-8"))
-    #         if child.returncode != 0:
-    #             print("stderr:", stderr.decode("utf-8"))
-    #             raise ChildProcessError(stderr)
-    #     jarPath = '%s/%s/src/code/target/code.jar' % (workspace, eve_app)
-    #     golangBinaryPath = '%s/%s/src/code/target/main' % (workspace, eve_app)
-    #     if os.path.isfile(jarPath):
-    #         code_zip = jarPath
-    #     elif os.path.isfile(golangBinaryPath):
-    #         code_zip = zip_golang_binary(workspace, eve_app)
-    #     else:
-    #         code_zip = zip_file(workspace, eve_app)
-    #     upload_oss(eve_app, code_zip)
-    # except Exception as e:
-    #     print('Failed to publish oss, app %s, err: %s' % (eve_app, e))
-    #     failed_oss.append(eve_app)
+    os.chdir(workspace)
+    try:
+        makefile = Path('%s/src/Makefile' % (eve_app))
+        if makefile.is_file():
+            print("----------------------Makefile: ", makefile)
+            command = 'cd %s/src && make release' % (eve_app)
+            print(command)
+            child = subprocess.Popen(
+                command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, )
+            stdout, stderr = child.communicate()
+            print("stdout:", stdout.decode("utf-8"))
+            if child.returncode != 0:
+                print("stderr:", stderr.decode("utf-8"))
+                raise ChildProcessError(stderr)
+        jarPath = '%s/%s/src/code/target/code.jar' % (workspace, eve_app)
+        golangBinaryPath = '%s/%s/src/code/target/main' % (workspace, eve_app)
+        if os.path.isfile(jarPath):
+            code_zip = jarPath
+        elif os.path.isfile(golangBinaryPath):
+            code_zip = zip_golang_binary(workspace, eve_app)
+        else:
+            code_zip = zip_file(workspace, eve_app)
+        upload_oss(eve_app, code_zip)
+    except Exception as e:
+        print('Failed to publish oss, app %s, err: %s' % (eve_app, e))
+        failed_oss.append(eve_app)
 
 print('Failed registry list: ', failed_registry)
 print('Failed oss list: ', failed_oss)
