@@ -11,7 +11,7 @@ Type: Application
 Name: start-golang-mongodb
 Provider:
   - 阿里云
-Version: dev
+Version: 0.0.1
 Description: 函数计算访问MongoDB
 HomePage: https://github.com/devsapp/start-golang-mongodb
 Tags: #标签详情
